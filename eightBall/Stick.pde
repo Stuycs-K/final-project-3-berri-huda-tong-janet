@@ -11,4 +11,13 @@ public class Stick {
     cueBall = new Ball();
     //is direction not just the dierction of the ball...
   }
+  
+  void calculateAcceleration(){
+  //acceleration = F/m
+  //f = the numForce
+  //m is equal to the mass
+  //direction is just equal to the absolute value or im not completely sure... tbh
+  
+  
+  }
 }
