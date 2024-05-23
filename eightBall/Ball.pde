@@ -20,8 +20,9 @@ public class Ball{
      float y1 = obj.position.y; 
      float x2 = hit.position.x; 
      float y2 = hit.position.y; 
-     hit.velocity.set(x1-x2, y1-y2); 
-     
+     PVector vel = new PVector(x1 - x2, y1 - y2); 
+     hit.velocity.set(vel); 
+     obj.velocity.set(vel.rotate(PI + HALF_PI)); 
      
   }
   
