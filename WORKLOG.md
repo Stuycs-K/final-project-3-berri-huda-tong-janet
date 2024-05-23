@@ -1,14 +1,14 @@
 # Work Log
 
-## GROUP MEMBER 1
+## Huda Berri
 
-### date x
+### 5/22
 
-info
+cloned repo, created and setup files, worked on the drawing of the board in the main file.
 
-### date y
+### 5/23
 
-info
+began working on the Stick class. .
 
 
 ## GROUP MEMBER 2
