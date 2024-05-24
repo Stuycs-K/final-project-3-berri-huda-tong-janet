@@ -8,7 +8,7 @@ public class Stick {
   
   Stick() {
     numForce = 24.0;
-    position = new PVector(pmouseX, pmouseY);
+    position = new PVector(120, 120);
     //cueBall = new Ball();
     //is direction not just the dierction of the ball...
   }
