@@ -17,14 +17,15 @@ public class Stick {
   position = new PVector(x, y);
   }
   
-  void calculateAcceleration(){
+  PVector calculateAcceleration(){
   //acceleration = F/m
   //f = the numForce
   //m is equal to the mass
   //direction is just equal to the absolute value or im not completely sure... tbh
   PVector direction = cueBall.getPosition().sub(position);
   direction.normalize();
-  PVector acceleration = 
+  PVector acceleration = direction.mult(numForce / cueBall.getMass());
+  return acceleration;
   
   
   }
