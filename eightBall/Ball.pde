@@ -26,6 +26,12 @@ public class Ball{
      
   }
   
+  public PVector getPosition(){
+  return position;
+  }
+  
+  public float getMass(){
+  return mass;}
   
   void display() {
     noStroke();

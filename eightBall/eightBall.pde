@@ -12,8 +12,10 @@ board.initialize();
 }//8ball
 
 void draw(){
-  Stick cueStick = new Stick();
+  /*Stick cueStick = new Stick();
   cueStick.setPos(pmouseX, pmouseY);
+  //need to add a delay + only draw stick when mouse was clicked and reset it each time... 
+  //also need to figure out how to tilt the stick.
   cueStick.display();
-
+*/
 }
