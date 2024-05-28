@@ -11,7 +11,7 @@ void setup(){
   board.initialize();
   balls = new ArrayList<Ball>(); 
   A = new Ball(200, 200, 1, 1, 150); 
-  B = new Ball(400, 400, -1, -1, 225); 
+  B = new Ball(400, 400, 0, 0, 225); 
 }//8ball
 
 /*
@@ -32,6 +32,6 @@ void draw(){
   B.hitWall(); 
   text(A.position.dist(B.position), 40, 40); 
   if ((A.position.dist(B.position) < 24) && (A.position.dist(B.position) > 20)){
-    B.getDirect(A); 
+    A.getDirect(B); 
   }
 }
