@@ -28,6 +28,11 @@ public class Stick {
   
   }
   
+  void setCB(Ball cb){
+  cueBall = cb;
+  }
+  
+  
   void display(){
 
   rect(position.x, position.y, 10, 100);
