@@ -42,6 +42,13 @@ public class Ball{
   public void changeColor(float col){
     colour = col;
   }
-
+  
+  public void move(PVector acc){
+  acceleration = acc;
+  velocity.add(acceleration);
+  acceleration = new PVector(0,0);
+  position.add(velocity);
+  }
+  
 
 }
