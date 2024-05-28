@@ -35,7 +35,12 @@ public class Ball{
   
   void display() {
     noStroke();
+    fill(colour);
     circle(position.x, position.y, 10);
+  }
+  
+  public void changeColor(float col){
+    colour = col;
   }
 
 

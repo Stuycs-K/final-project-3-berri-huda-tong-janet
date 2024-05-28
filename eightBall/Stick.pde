@@ -35,14 +35,15 @@ public class Stick {
   
   void display(){
 
-  rect(position.x, position.y, 10, 100);
-  float angle = PI/4;
+  //rect(position.x, position.y, 10, 100);
+  float angle = PI;
+  //must change this so that it turns to the correct angle!
    pushMatrix();
-  translate(position.x,position.y);
+  translate(cueBall.position.x,cueBall.position.y);
   rotate(angle);
   noStroke();
   fill(0);
-  rect(0,-5, 15, 10);
+  rect(0,0, 20, 10);
   popMatrix();
   }
 }
