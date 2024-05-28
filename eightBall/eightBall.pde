@@ -65,4 +65,5 @@ void keyPressed(){
 
 void mouseClicked(){
 cueStick.hit();
+draw();
 }
