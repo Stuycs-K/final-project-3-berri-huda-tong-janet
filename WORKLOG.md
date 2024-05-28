@@ -11,12 +11,15 @@ cloned repo, created and setup files, worked on the drawing of the board in the 
 began working on the Stick class. .
 
 
-## GROUP MEMBER 2
+## Janet Tong
 
-### date x
+### 5/23 
 
-info
+worked on the the getDirect() method
 
-### date y
+### 5/28
 
-info
+Hour 1: testing getDirect() and move() --> temporary draw() method 
+written, tests aren't working too well 
+
+
