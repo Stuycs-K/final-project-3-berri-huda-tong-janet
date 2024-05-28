@@ -19,7 +19,8 @@ worked on the the getDirect() method
 
 ### 5/28
 
-Hour 1: testing getDirect() and move() --> temporary draw() method 
+Session 1: testing getDirect() and move() --> temporary draw() method 
 written, tests aren't working too well 
 
-
+Session 2: wrote HitWall() so it reflects properly, added magnitudes to 
+getDirect() and works as intended by the laws of physics ! 
