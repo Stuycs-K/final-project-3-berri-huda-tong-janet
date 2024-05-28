@@ -21,17 +21,25 @@ public class Ball{
      float y1 = position.y; 
      float x2 = hit.position.x; 
      float y2 = hit.position.y; 
-     PVector vel = new PVector(x2 - x1, y2 - y1); 
+     PVector prev = hit.velocity.copy(); 
+     PVector vel = new PVector(x2 - x1, y2 - y1);
+     
+     //fix the magnitude of the velocity now --> assuming completely elastic, so velocities are exchanged since masses are equal
+     vel.normalize(); 
+     vel.mult(this.velocity.mag()); 
      hit.velocity.set(vel); 
-     velocity.set(vel.rotate(HALF_PI)); 
+     prev.normalize(); 
+     velocity.set(prev.rotate(PI + HALF_PI)); 
+      
+     
   }
   
   //angle of incidence = reflected angle 
   public void hitWall(){
-    if ((position.x -12 == 20) || (position.x +12 == 1100)){
+    if ((floor(position.x -12) == 20) || (floor(position.x +12) == 1100)){
        velocity.x = -1 * velocity.x; 
     }
-    if ((position.y -12 == 20) || (position.y +12 == 560)){
+    if ((floor(position.y -12) == 20) || (floor(position.y +12) == 560)){
       velocity.y = -1 * velocity.y; 
     }
   }
