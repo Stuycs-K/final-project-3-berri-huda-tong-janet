@@ -43,7 +43,7 @@ public class Stick {
   rotate(angle);
   noStroke();
   fill(0);
-  rect(0,0, 20, 10);
+  rect(cueBall.position.x - 6, cueBall.position.y -6, 20, 10);
   popMatrix();
   }
   
