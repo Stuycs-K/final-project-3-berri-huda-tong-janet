@@ -21,10 +21,19 @@ public class Ball{
      float y1 = position.y; 
      float x2 = hit.position.x; 
      float y2 = hit.position.y; 
-     PVector vel = new PVector(x1 - x2, y1 - y2); 
+     PVector vel = new PVector(x2 - x1, y2 - y1); 
      hit.velocity.set(vel); 
-     velocity.set(vel.rotate(PI + HALF_PI)); 
-      
+     velocity.set(vel.rotate(HALF_PI)); 
+  }
+  
+  //angle of incidence = reflected angle 
+  public void hitWall(){
+    if ((position.x -12 == 20) || (position.x +12 == 1100)){
+       velocity.x = -1 * velocity.x; 
+    }
+    if ((position.y -12 == 20) || (position.y +12 == 560)){
+      velocity.y = -1 * velocity.y; 
+    }
   }
  
   
