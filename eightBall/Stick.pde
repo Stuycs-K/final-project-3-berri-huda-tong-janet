@@ -9,7 +9,7 @@ public class Stick {
   Stick() {
     numForce = 24.0;
     position = new PVector(120, 120);
-    //cueBall = new Ball();
+    cueBall = new Ball(120 + 10, 120+5, 0, 0);
     //is direction not just the dierction of the ball...
   }
   
@@ -26,7 +26,6 @@ public class Stick {
   direction.normalize();
   PVector acceleration = direction.mult(numForce / cueBall.getMass());
   return acceleration;
-  
   
   }
   
