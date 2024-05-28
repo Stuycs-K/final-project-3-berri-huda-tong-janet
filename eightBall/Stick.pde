@@ -1,6 +1,5 @@
 public class Stick {
   private float numForce;
-  private PVector force;
   private PVector position;
   private Ball cueBall;
 
@@ -30,8 +29,15 @@ public class Stick {
   }
   
   void display(){
+
+  rect(position.x, position.y, 10, 100);
+  float angle = PI/4;
+   pushMatrix();
+  translate(position.x,position.y);
+  rotate(angle);
   noStroke();
   fill(0);
-  rect(position.x, position.y, 10, 100);
+  rect(0,-5, 15, 10);
+  popMatrix();
   }
 }
