@@ -2,6 +2,7 @@ ArrayList<Ball> balls;
 Ball A; 
 Ball B; 
 Board board; 
+String s = "boop"; 
 
 void setup(){
 
@@ -9,8 +10,8 @@ void setup(){
   Board board = new Board();
   board.initialize();
   balls = new ArrayList<Ball>(); 
-  A = new Ball(40, 40, 1, 1, 150); 
-  B = new Ball(80, 80, -1, -1, 225); 
+  A = new Ball(200, 200, 1, 1, 150); 
+  B = new Ball(400, 400, -1, -1, 225); 
 }//8ball
 
 /*
@@ -27,7 +28,10 @@ void draw(){
   B.move(); 
   A.display(); 
   B.display(); 
-  if (A.position.dist(B.position) == 24){
-    A.getDirect(B); 
+  A.hitWall(); 
+  B.hitWall(); 
+  text(A.position.dist(B.position), 40, 40); 
+  if ((A.position.dist(B.position) < 24) && (A.position.dist(B.position) > 20)){
+    B.getDirect(A); 
   }
 }
