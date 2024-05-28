@@ -56,6 +56,8 @@ void draw(){
 
 void keyPressed(){
   cueBall = new Ball(100, 100,0, 0);
+  cueBall.display();
+  cueStick.setCB(cueBall);
  cueStick.display();
 
 }
