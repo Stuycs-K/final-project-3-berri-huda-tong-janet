@@ -67,3 +67,7 @@ void keyPressed(){
   cueStick.setCB(cueBall);
   cueStick.display();
 }
+
+void mouseClicked(){
+cueStick.hit();
+}
