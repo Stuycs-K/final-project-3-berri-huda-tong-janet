@@ -46,7 +46,7 @@ public ArrayList<Ball> arrangeBalls(){
   }
   return ballz; 
 
-  fill (0);
+  
 }
 
 
