@@ -4,8 +4,10 @@ Ball B;
 Board board; 
 int turns = 0; 
 
-void setup(){
+public Stick cueStick;
+public Ball cueBall;
 
+void setup(){
   size(1120, 580);//real board is 9 ft by 4.5 ft; 540 by 1080 converted!
   Board board = new Board();
   board.initialize();
@@ -24,6 +26,8 @@ void mouseClicked(){
 */
 
 void draw(){
+
+
   //resetting the board to initialization state 
   fill(color(0,100,0));
   strokeWeight(20); 
@@ -58,7 +62,7 @@ void draw(){
   if ((A.position.dist(B.position) < 24) && (A.position.dist(B.position) > 20)){
     A.getDirect(B); 
   }
-  */
+ */
 }
 
 void contact(ArrayList<Ball> balls){

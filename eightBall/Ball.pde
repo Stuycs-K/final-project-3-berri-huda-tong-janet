@@ -1,5 +1,4 @@
 public class Ball{
-
   private float mass; 
   private PVector position;
   private PVector velocity;
@@ -7,12 +6,12 @@ public class Ball{
   private float colour;
   
 
+
   public Ball(float x, float y, float xspeed, float yspeed, float c){
     mass = .165; 
     position = new PVector(x, y); 
     velocity = new PVector(xspeed, yspeed); 
     acceleration = new PVector(0, 0); 
-
     colour = c; 
   }
   
@@ -67,5 +66,51 @@ public class Ball{
   }
   
 
+  //assume the hit ball is already touching the obj ball
+  /*public void getDirect(Ball obj, Ball hit){
+=======
+    colour = color(255); 
+  }
+  
+  //assume the hit ball is already touching the obj ball
+  public void getDirect(Ball obj, Ball hit){
+>>>>>>> cd2f070 (Janet (#1))
+     //get the centers of each ball 
+     float x1 = obj.position.x; 
+     float y1 = obj.position.y; 
+     float x2 = hit.position.x; 
+     float y2 = hit.position.y; 
+     PVector vel = new PVector(x1 - x2, y1 - y2); 
+     hit.velocity.set(vel); 
+     obj.velocity.set(vel.rotate(PI + HALF_PI)); 
+     
+  }
+<<<<<<< HEAD
+<<<<<<< HEAD
+  */
+  public PVector getPosition(){
+  return position;
+  }
+  
+  public float getMass(){
+  return mass;}
+  
+  void display() {
+    noStroke();
+    fill(colour);
+    circle(position.x, position.y, 20);
+  }
+  
+  public void changeColor(float col){
+    colour = col;
+  }
+  
+  public void move(PVector acc){
+  acceleration = acc;
+  velocity.add(acceleration);
+  acceleration = new PVector(0,0);
+  position.add(velocity);
+  }
+  
 
 }
