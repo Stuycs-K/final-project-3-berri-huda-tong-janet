@@ -38,7 +38,7 @@ public class Stick {
   void display(){
 
   //rect(position.x, position.y, 10, 100);
-  float angle = PI;
+  float angle = PVector.angleBetween(cueBall.position, cueStick.position);
   //must change this so that it turns to the correct angle!
    pushMatrix();
   translate(cueBall.position.x,cueBall.position.y);

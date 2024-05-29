@@ -21,6 +21,7 @@ void mouseClicked(){
 
 void draw(){
 
+
   //resetting the board to initialization state 
   fill(color(0,100,0));
   strokeWeight(20); 
@@ -50,12 +51,6 @@ void draw(){
   if ((A.position.dist(B.position) < 24) && (A.position.dist(B.position) > 20)){
     A.getDirect(B); 
   }
-
-  cueStick = new Stick();
-  cueStick.setPos(pmouseX, pmouseY);
-  //need to add a delay + only draw stick when mouse was clicked and reset it each time... 
-  //also need to figure out how to tilt the stick.
-}
 
 /*
 =======
