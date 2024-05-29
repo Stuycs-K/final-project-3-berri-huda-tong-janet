@@ -5,11 +5,16 @@ public class Stick {
   private Ball cueBall;
 
   //before we implement the drag for the force of the stick gna set it as like
+  
   Stick() {
     numForce = 24.0;
     position = new PVector(pmouseX, pmouseY);
     cueBall = new Ball(10, 10, 1, 1, 225);
-    //is direction not just the dierction of the ball...
+
+  }
+  
+  void setPos( int x, int y){
+  position = new PVector(x, y);
   }
   
   void calculateAcceleration(){
@@ -18,6 +23,11 @@ public class Stick {
   //m is equal to the mass
   //direction is just equal to the absolute value or im not completely sure... tbh
   
+  }
   
+  void display(){
+  noStroke();
+  fill(0);
+  rect(position.x, position.y, 10, 100);
   }
 }
