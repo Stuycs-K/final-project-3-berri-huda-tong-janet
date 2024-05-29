@@ -24,3 +24,11 @@ written, tests aren't working too well
 
 Session 2: wrote HitWall() so it reflects properly, added magnitudes to 
 getDirect() and works as intended by the laws of physics ! 
+
+Session 3: configured the triangle of balls, more testing 
+
+### 5/29 
+
+Session 1 in class: wrote contact() --> checks if the balls are in contact 
+with eachother and performs collisions as necessary, however having some 
+problems 
