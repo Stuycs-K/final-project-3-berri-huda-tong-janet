@@ -37,10 +37,10 @@ public class Ball{
   
   //angle of incidence = reflected angle 
   public void hitWall(){
-    if ((floor(position.x -12) == 20) || (floor(position.x +12) == 1100)){
+    if ((floor(position.x -12) == 40) || (floor(position.x +12) == 1080)){
        velocity.x = -1 * velocity.x; 
     }
-    if ((floor(position.y -12) == 20) || (floor(position.y +12) == 560)){
+    if ((floor(position.y -12) == 40) || (floor(position.y +12) == 540)){
       velocity.y = -1 * velocity.y; 
     }
   }

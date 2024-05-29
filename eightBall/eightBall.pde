@@ -12,8 +12,11 @@ void setup(){
   Board board = new Board();
   board.initialize();
   balls = board.arrangeBalls(); 
+  balls.add(new Ball(300, 290, 2, 0, 225)); 
+  /*
   A = new Ball(200, 200, 1, 1, 150); 
   B = new Ball(400, 400, 0, 0, 225); 
+  */
 }
 
 /*
@@ -42,9 +45,14 @@ void draw(){
   
   for (Ball b: balls){
     b.display(b.getColor()); 
+    b.move(); 
+    b.hitWall(); 
   }
   
-  //movement of balls
+  contact(balls); 
+  
+  //testing code for movement of balls
+  /*
   A.move(); 
   B.move(); 
   A.display(A.getColor()); 
@@ -54,45 +62,21 @@ void draw(){
   if ((A.position.dist(B.position) < 24) && (A.position.dist(B.position) > 20)){
     A.getDirect(B); 
   }
-
-/*
-=======
-=======
->>>>>>> 2e7467c (fixed merge and removed a temp draw)
-
-void keyPressed(){
-  cueBall = new Ball(150, 150,0, 0);
-  cueBall.changeColor(255);
-  cueBall.display();
-  cueStick.setCB(cueBall);
-  cueStick.display();
+ */
 }
 
-void mouseClicked(){
-cueStick.hit();
-draw();
-<<<<<<< HEAD
-=======
-
-ArrayList<Ball> balls; 
-Ball A; 
-Ball B; 
-Board board; }
-
-void setup(){
-
-  size(1120, 580);//real board is 9 ft by 4.5 ft; 540 by 1080 converted!
-  Board board = new Board();
-  board.initialize();
-  balls = new ArrayList<Ball>(); 
-  A = new Ball(40, 40, 1, 1, 150); 
-  B = new Ball(80, 80, -1, -1, 225); 
-}//8ball
-
-/*
-void mouseClicked(){
-  balls.add(new Ball(mouseX, mouseY, 1, 1)); 
+void contact(ArrayList<Ball> balls){
+   for(int i = 0; i < balls.size(); i++){
+     Ball b = balls.get(i); 
+     for (int j = 0; j < balls.size(); j++){
+       Ball c = balls.get(j); 
+       if (j != i){
+           if ((b.position.dist(c.position) < 24) && (b.position.dist(c.position) > 20)){
+            b.getDirect(c); 
+          }
+       }
+     }
+   }
 }
-*/
 
-}
+  
