@@ -11,6 +11,7 @@ void initialize(){
   strokeWeight(20); 
   stroke(150, 75, 0); //border to brown
   rect(20,20, 1080, 540);
+
   //holes
   fill(0);
   stroke(0); 
@@ -44,6 +45,8 @@ public ArrayList<Ball> arrangeBalls(){
     ballz.add(a); 
   }
   return ballz; 
+
+  fill (0);
 }
 
 
