@@ -11,6 +11,7 @@ void setup(){
   size(1120, 580);//real board is 9 ft by 4.5 ft; 540 by 1080 converted!
   Board board = new Board();
   board.initialize();
+  cueStick = board.cueStick;
   balls = board.arrangeBalls(); 
   A = new Ball(200, 200, 1, 1, 150); 
   B = new Ball(400, 400, 0, 0, 225); 
@@ -43,6 +44,8 @@ void draw(){
   for (Ball b: balls){
     b.display(b.getColor()); 
   }
+  //cueStick.display();
+  
   
   //movement of balls
   A.move(); 
