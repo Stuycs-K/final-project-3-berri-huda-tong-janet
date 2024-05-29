@@ -8,8 +8,11 @@ public class Stick {
   
   Stick() {
     numForce = 24.0;
-    position = new PVector(pmouseX, pmouseY);
     cueBall = new Ball(10, 10, 1, 1, 225);
+
+
+    position = new PVector(120, 120);
+    //cueBall = new Ball();
 
   }
   
