@@ -54,39 +54,21 @@ public class Ball{
     position.y = y; 
   }
  
+  public float getColor(){
+    return colour; 
+  }
   
   public void move(){
     position.add(velocity); 
     acceleration.add(velocity); 
   }
   
-  void display() {
-    fill(colour); 
+  void display(float c) {
+    fill(c); 
     noStroke();
     circle(position.x, position.y, 24);
-
-    colour = color(255); 
   }
   
-  //assume the hit ball is already touching the obj ball
-  public void getDirect(Ball obj, Ball hit){
-     //get the centers of each ball 
-     float x1 = obj.position.x; 
-     float y1 = obj.position.y; 
-     float x2 = hit.position.x; 
-     float y2 = hit.position.y; 
-     PVector vel = new PVector(x1 - x2, y1 - y2); 
-     hit.velocity.set(vel); 
-     obj.velocity.set(vel.rotate(PI + HALF_PI)); 
-     
-  }
-  
-  
-  void display() {
-    noStroke();
-    circle(position.x, position.y, 10);
-
-  }
 
 
 }
