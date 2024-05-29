@@ -1,16 +1,21 @@
 public class Ball{
-  //assume radius is always 12 units
+
   private float mass; 
   private PVector position;
   private PVector velocity;
   private PVector acceleration;
   private float colour;
   
+
   public Ball(float x, float y, float xspeed, float yspeed, float c){
+
+  //public Ball(float x, float y, float xspeed, float yspeed){
+
     mass = .165; 
     position = new PVector(x, y); 
     velocity = new PVector(xspeed, yspeed); 
     acceleration = new PVector(0, 0); 
+
     colour = c; 
   }
   
@@ -43,18 +48,27 @@ public class Ball{
       velocity.y = -1 * velocity.y; 
     }
   }
+  
+  public void setPosition(float x, float y){
+    position.x = x; 
+    position.y = y; 
+  }
  
+  public float getColor(){
+    return colour; 
+  }
   
   public void move(){
     position.add(velocity); 
     acceleration.add(velocity); 
   }
   
-  void display() {
-    fill(colour); 
+  void display(float c) {
+    fill(c); 
     noStroke();
     circle(position.x, position.y, 24);
   }
+  
 
 
 }
