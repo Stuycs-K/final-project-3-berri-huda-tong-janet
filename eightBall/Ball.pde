@@ -86,7 +86,15 @@ public class Ball{
      
   }
 <<<<<<< HEAD
-  */ 
+<<<<<<< HEAD
+  */
+  public PVector getPosition(){
+  return position;
+  }
+  
+  public float getMass(){
+  return mass;}
+  
   void display() {
     noStroke();
     circle(position.x, position.y, 10);
