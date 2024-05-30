@@ -18,27 +18,27 @@ public class Ball{
   //assume the hit ball is already touching the obj ball
   public void getDirect(Ball hit){
      //get the centers of each ball 
-     PVector x-axis = new Pvector(1, 0); 
+     PVector xaxis = new PVector(1, 0); 
      PVector prev = hit.velocity.copy(); 
      PVector cue = velocity.copy(); 
      float cueVel = cue.mag(); 
      float hitVel = prev.mag(); 
      
-     float cueIAng = angleBetween(x-axis, cue); //angle of cue ball 
-     float hitIAng = angleBetween(x-axis, prev); 
+     float cueIAng = PVector.angleBetween(xaxis, cue); //angle of cue ball 
+     float hitIAng = PVector.angleBetween(xaxis, prev); 
      
      //new directions
      PVector hitt = new PVector(hit.position.x - position.x, hit.position.y - position.y);
      PVector result = hitt.copy().rotate(PI + HALF_PI); 
-     float cueFAng = angleBetween(x-axis, result); 
-     float hitFAng = angleBetween(x-axis, hitt); 
+     float cueFAng = PVector.angleBetween(xaxis, result); 
+     float hitFAng = PVector.angleBetween(xaxis, hitt); 
      
      //system of equations to find the magnitude of the final velocities
      float z = (cueVel * cos(cueIAng)) + (hitVel * cos(hitIAng)); //v1icos + v2icos = v1fcos + v2fcos
      float y = (cueVel * sin(cueIAng)) + (hitVel * sin(hitIAng)); //sin of the above
      float a = cos(cueFAng); 
      float b = cos(hitFAng); 
-     float c = sin(CueFAng); 
+     float c = sin(cueFAng); 
      float d = sin(hitFAng); 
      //solved the system
      float magV1f = ((d*z) - (y*b))/((a*d) - (b*c)); 

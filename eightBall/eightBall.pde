@@ -12,21 +12,15 @@ void setup(){
   Board board = new Board();
   board.initialize();
   balls = board.arrangeBalls(); 
-  balls.add(new Ball(300, 290, 2, 0, 225)); 
-  /*
+  balls.add(new Ball(300, 290, 1, 0, 225)); 
+  
+  
   A = new Ball(200, 200, 1, 1, 150); 
   B = new Ball(400, 400, 0, 0, 225); 
-  */
-}
 
-/*
-void mouseClicked(){
-  balls.add(new Ball(mouseX, mouseY, 1, 1)); 
 }
-*/
 
 void draw(){
-
 
   //resetting the board to initialization state 
   fill(color(0,100,0));
@@ -41,8 +35,8 @@ void draw(){
   circle(560, 40, 20); 
   circle(40, 540, 20); 
   circle(1080, 540, 20); 
-  circle(560, 540, 20); 
   
+
   for (Ball b: balls){
     b.display(b.getColor()); 
     b.move(); 
@@ -50,9 +44,9 @@ void draw(){
   }
   
   contact(balls); 
-  
+
   //testing code for movement of balls
-  /*
+
   A.move(); 
   B.move(); 
   A.display(A.getColor()); 
@@ -62,7 +56,7 @@ void draw(){
   if ((A.position.dist(B.position) < 24) && (A.position.dist(B.position) > 20)){
     A.getDirect(B); 
   }
- */
+
 }
 
 void contact(ArrayList<Ball> balls){
