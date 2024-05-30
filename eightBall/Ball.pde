@@ -23,9 +23,24 @@ public class Ball{
      float x2 = hit.position.x; 
      float y2 = hit.position.y; 
      PVector prev = hit.velocity.copy(); 
-     PVector vel = new PVector(x2 - x1, y2 - y1);
+     PVector cue = velocity.copy(); 
+     
+     //new directions
+     PVector hitt = new PVector(x2 - x1, y2 - y1);
+     PVector result = hitt.copy().rotate(PI + HALF_PI); 
      
      //fix the magnitude of the velocity now --> assuming completely elastic, so velocities are exchanged since masses are equal
+     hitt.normalize(); 
+     result.normalize(); 
+     hitt.mult(cue.mag() * cos(PVector.angleBetween(cue, result)))
+     
+     
+     
+     
+     
+     
+     
+     
      vel.normalize(); 
      vel.mult(this.velocity.mag()); 
      hit.velocity.set(vel); 
