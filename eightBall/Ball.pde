@@ -18,21 +18,26 @@ public class Ball{
   //assume the hit ball is already touching the obj ball
   public void getDirect(Ball hit){
      //get the centers of each ball 
-     float x1 = position.x; 
-     float y1 = position.y; 
-     float x2 = hit.position.x; 
-     float y2 = hit.position.y; 
+     PVector x-axis = new Pvector(1, 0); 
      PVector prev = hit.velocity.copy(); 
      PVector cue = velocity.copy(); 
+     float cueVel = cue.mag(); 
+     float hitVel = prev.mag(); 
+     
+     float cueIAng = angleBetween(x-axis, cue); //angle of cue ball 
+     float hitIAng = angleBetween(x-axis, prev); 
      
      //new directions
-     PVector hitt = new PVector(x2 - x1, y2 - y1);
+     PVector hitt = new PVector(hit.position.x - position.x, hit.position.y - position.y);
      PVector result = hitt.copy().rotate(PI + HALF_PI); 
+     float cueFAng = angleBetween(x-axis, result); 
+     float hitFAng = angleBetween(x-axis, hitt); 
+     
+     
      
      //fix the magnitude of the velocity now --> assuming completely elastic, so velocities are exchanged since masses are equal
      hitt.normalize(); 
      result.normalize(); 
-     hitt.mult(cue.mag() * cos(PVector.angleBetween(cue, result)))
      
      
      
