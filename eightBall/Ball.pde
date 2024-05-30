@@ -33,6 +33,17 @@ public class Ball{
      float cueFAng = angleBetween(x-axis, result); 
      float hitFAng = angleBetween(x-axis, hitt); 
      
+     //system of equations to find the magnitude of the final velocities
+     float z = (cueVel * cos(cueIAng)) + (hitVel * cos(hitIAng)); //v1icos + v2icos = v1fcos + v2fcos
+     float y = (cueVel * sin(cueIAng)) + (hitVel * sin(hitIAng)); //sin of the above
+     float a = cos(cueFAng); 
+     float b = cos(hitFAng); 
+     float c = sin(CueFAng); 
+     float d = sin(hitFAng); 
+     float magV1f = 
+     float magV2f = ((c*z) - (a*y))/((b*c) - (c*d)); 
+     
+     
      
      
      //fix the magnitude of the velocity now --> assuming completely elastic, so velocities are exchanged since masses are equal
@@ -41,17 +52,7 @@ public class Ball{
      
      
      
-     
-     
-     
-     
-     
-     vel.normalize(); 
-     vel.mult(this.velocity.mag()); 
-     hit.velocity.set(vel); 
-     prev.normalize(); 
-     velocity.set(prev.rotate(PI + HALF_PI)); 
-      
+  
      
   }
   
