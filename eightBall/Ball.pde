@@ -40,20 +40,17 @@ public class Ball{
      float b = cos(hitFAng); 
      float c = sin(CueFAng); 
      float d = sin(hitFAng); 
-     float magV1f = 
-     float magV2f = ((c*z) - (a*y))/((b*c) - (c*d)); 
+     //solved the system
+     float magV1f = ((d*z) - (y*b))/((a*d) - (b*c)); 
+     float magV2f = ((c*z) - (a*y))/((b*c) - (a*d)); 
      
-     
-     
-     
-     //fix the magnitude of the velocity now --> assuming completely elastic, so velocities are exchanged since masses are equal
+     //multiply the vectors by their appropriate velocities 
      hitt.normalize(); 
      result.normalize(); 
+     this.velocity.set(result.mult(magV1f)); 
+     hit.velocity.set(hitt.mult(magV2f)); 
      
-     
-     
-  
-     
+
   }
   
   //angle of incidence = reflected angle 
