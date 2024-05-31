@@ -74,7 +74,7 @@ public class Ball{
   
   public void move(){
     position.add(velocity); 
-    acceleration.add(velocity); 
+    velocity.add(acceleration); 
   }
   
   void display(float c) {

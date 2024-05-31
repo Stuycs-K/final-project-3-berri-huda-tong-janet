@@ -12,11 +12,11 @@ void setup(){
   Board board = new Board();
   board.initialize();
   balls = board.arrangeBalls(); 
-  balls.add(new Ball(300, 290, 1, 0, 225)); 
+  balls.add(new Ball(300, 290, 2, 0, 225)); 
   
   
   A = new Ball(200, 200, 1, 1, 150); 
-  B = new Ball(400, 400, 0, 0, 225); 
+  B = new Ball(400, 400, -1, -1, 225); 
 
 }
 
@@ -39,8 +39,8 @@ void draw(){
 
   for (Ball b: balls){
     b.display(b.getColor()); 
-    b.move(); 
     b.hitWall(); 
+    b.move();
   }
   
   contact(balls); 
