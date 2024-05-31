@@ -18,21 +18,39 @@ public class Ball{
   //assume the hit ball is already touching the obj ball
   public void getDirect(Ball hit){
      //get the centers of each ball 
-     float x1 = position.x; 
-     float y1 = position.y; 
-     float x2 = hit.position.x; 
-     float y2 = hit.position.y; 
+     PVector xaxis = new PVector(1, 0); 
      PVector prev = hit.velocity.copy(); 
-     PVector vel = new PVector(x2 - x1, y2 - y1);
+     PVector cue = velocity.copy(); 
+     float cueVel = cue.mag(); 
+     float hitVel = prev.mag(); 
      
-     //fix the magnitude of the velocity now --> assuming completely elastic, so velocities are exchanged since masses are equal
-     vel.normalize(); 
-     vel.mult(this.velocity.mag()); 
-     hit.velocity.set(vel); 
-     prev.normalize(); 
-     velocity.set(prev.rotate(PI + HALF_PI)); 
-      
+     float cueIAng = PVector.angleBetween(xaxis, cue); //angle of cue ball 
+     float hitIAng = PVector.angleBetween(xaxis, prev); 
      
+     //new directions
+     PVector hitt = new PVector(hit.position.x - position.x, hit.position.y - position.y);
+     PVector result = hitt.copy().rotate(PI + HALF_PI); 
+     float cueFAng = PVector.angleBetween(xaxis, result); 
+     float hitFAng = PVector.angleBetween(xaxis, hitt); 
+     
+     //system of equations to find the magnitude of the final velocities
+     float z = (cueVel * cos(cueIAng)) + (hitVel * cos(hitIAng)); //v1icos + v2icos = v1fcos + v2fcos
+     float y = (cueVel * sin(cueIAng)) + (hitVel * sin(hitIAng)); //sin of the above
+     float a = cos(cueFAng); 
+     float b = cos(hitFAng); 
+     float c = sin(cueFAng); 
+     float d = sin(hitFAng); 
+     //solved the system
+     float magV1f = ((d*z) - (y*b))/((a*d) - (b*c)); 
+     float magV2f = ((c*z) - (a*y))/((b*c) - (a*d)); 
+     
+     //multiply the vectors by their appropriate velocities 
+     hitt.normalize(); 
+     result.normalize(); 
+     this.velocity.set(result.mult(magV1f)); 
+     hit.velocity.set(hitt.mult(magV2f)); 
+     
+
   }
   
   //angle of incidence = reflected angle 
@@ -56,7 +74,7 @@ public class Ball{
   
   public void move(){
     position.add(velocity); 
-    acceleration.add(velocity); 
+    velocity.add(acceleration); 
   }
   
   void display(float c) {
