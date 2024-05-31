@@ -35,6 +35,26 @@ public class Ball{
     hit.velocity.set(hitt); 
   }
   
+  public void getMovingDirect(Ball hit){
+    //same idea as stationary Direct but manipulating
+    PVector forceVel = velocity.sub(hit.velocity); 
+    PVector hitt = new PVector(hit.position.x - position.x, hit.position.y - position.y);
+    PVector cue = new PVector(0, 0);  
+    if (PVector.angleBetween(forceVel, hitt.copy().rotate(HALF_PI + PI)) < HALF_PI){
+      cue = hitt.copy().rotate(HALF_PI + PI); 
+    }
+    else{
+      cue = hitt.copy().rotate(HALF_PI); 
+    }
+    float theta = PVector.angleBetween(forceVel, hitt); 
+    float magH = cos(theta) * forceVel.mag(); 
+    float magC = sin(theta) * forceVel.mag(); 
+    hitt.normalize().mult(magH); 
+    cue.normalize().mult(magC); 
+    velocity.set(cue.add(hit.velocity)); 
+    hit.velocity.set(hitt.add(hit.velocity)); 
+  }
+  
   
   
   /*

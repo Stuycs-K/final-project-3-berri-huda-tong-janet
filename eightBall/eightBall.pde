@@ -15,9 +15,9 @@ void setup(){
   balls.add(new Ball(300, 290, 2, 0)); 
   
   
-  A = new Ball(100, 200, 2, 1); 
+  A = new Ball(150, 200, 1, 1); 
   A.changeColor(150); 
-  B = new Ball(350, 300, 0, 0); 
+  B = new Ball(200, 250, -1, -2); 
 
 }
 
@@ -57,7 +57,7 @@ void draw(){
   A.hitWall(); 
   B.hitWall(); 
   if ((A.position.dist(B.position) < 24) && (A.position.dist(B.position) > 20)){
-    A.getStationaryDirect(B); 
+    A.getMovingDirect(B); 
   }
 
 }
