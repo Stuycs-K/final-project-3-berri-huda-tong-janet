@@ -112,10 +112,10 @@ public class Ball{
   
   //angle of incidence = reflected angle 
   public void hitWall(){
-    if ((floor(position.x -12) == 40) || (floor(position.x +12) == 1080)){
+    if ((floor(position.x -12) <= 40) || (floor(position.x +12) >= 1080)){
        velocity.x = -1 * velocity.x; 
     }
-    if ((floor(position.y -12) == 40) || (floor(position.y +12) == 540)){
+    if ((floor(position.y -12) <= 40) || (floor(position.y +12) >= 540)){
       velocity.y = -1 * velocity.y; 
     }
   }
@@ -132,6 +132,9 @@ public class Ball{
   }
  
   public void move(){
+    if (velocity.mag() <= 0.1){
+      velocity.set(0, 0); 
+    }
     position.add(velocity); 
     acceleration.add(friction()); 
     velocity.add(acceleration); 
