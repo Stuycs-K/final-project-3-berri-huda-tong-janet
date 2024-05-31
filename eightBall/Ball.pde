@@ -13,7 +13,7 @@ public class Ball{
     position = new PVector(x, y); 
     velocity = new PVector(xspeed, yspeed); 
     acceleration = new PVector(0, 0); 
-    colour = color(random(225), random(225), random(225)); 
+    colour = random(225); 
   }
   
   public void getStationaryDirect(Ball hit){
@@ -53,6 +53,21 @@ public class Ball{
     cue.normalize().mult(magC); 
     velocity.set(cue.add(hit.velocity)); 
     hit.velocity.set(hitt.add(hit.velocity)); 
+  }
+  
+  public void getDirect(Ball hit){
+    if (this.position.dist(hit.position) <= 24){
+      if (hit.velocity.mag() == 0){
+        getStationaryDirect(hit); 
+      }
+      else if (velocity.mag() == 0){
+        hit.getStationaryDirect(this); 
+      }
+      else{
+        getMovingDirect(hit); 
+      }
+    }
+
   }
   
   

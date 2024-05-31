@@ -21,7 +21,7 @@ void setup(){
 
 }
 
-void draw(){
+void draw(){ 
 
   //resetting the board to initialization state 
   fill(color(0,100,0));
@@ -38,44 +38,39 @@ void draw(){
   circle(40, 540, 20); 
   circle(1080, 540, 20); 
   
-/*
+
   for (Ball b: balls){
-    b.display(); 
-    b.hitWall(); 
     b.move();
-  }
-  */
-  
- // contact(balls); 
+    b.hitWall(); 
+    contact(balls);
+    b.display(); 
+  } 
 
   //testing code for movement of balls
-
+/*
   A.move(); 
   B.move(); 
   A.display(); 
   B.display(); 
   A.hitWall(); 
   B.hitWall(); 
-  if ((A.position.dist(B.position) < 24) && (A.position.dist(B.position) > 20)){
-    A.getMovingDirect(B); 
-  }
+  A.getDirect(B); 
+*/
 
 }
 
-/*
+
 void contact(ArrayList<Ball> balls){
    for(int i = 0; i < balls.size(); i++){
      Ball b = balls.get(i); 
      for (int j = 0; j < balls.size(); j++){
        Ball c = balls.get(j); 
        if (j != i){
-           if ((b.position.dist(c.position) < 24) && (b.position.dist(c.position) > 20)){
             b.getDirect(c); 
-          }
        }
      }
    }
 }
-*/
+
 
   
