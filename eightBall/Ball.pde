@@ -4,17 +4,41 @@ public class Ball{
   private PVector velocity;
   private PVector acceleration;
   private float colour;
+  private final float friction_constant = 0.06; 
   
 
 
-  public Ball(float x, float y, float xspeed, float yspeed, float c){
+  public Ball(float x, float y, float xspeed, float yspeed){
     mass = .165; 
     position = new PVector(x, y); 
     velocity = new PVector(xspeed, yspeed); 
     acceleration = new PVector(0, 0); 
-    colour = c; 
+    colour = color(random(225), random(225), random(225)); 
   }
   
+  public void getStationaryDirect(Ball hit){
+    //get the vectors necessary 
+    PVector hitt = new PVector(hit.position.x - position.x, hit.position.y - position.y);
+    PVector cue = new PVector(0, 0); 
+    PVector xaxis = new PVector(1, 0); 
+    if (PVector.angleBetween(xaxis, hitt) > PVector.angleBetween(xaxis, velocity)){
+      cue = hitt.copy().rotate(HALF_PI + PI); 
+    }
+    else{
+      cue = hitt.copy().rotate(HALF_PI); 
+    }
+    float theta = PVector.angleBetween(velocity, hitt); 
+    float magH = cos(theta); 
+    float magC = sin(theta); 
+    hitt.normalize().mult(magH); 
+    cue.normalize().mult(magC); 
+    velocity.set(cue); 
+    hit.velocity.set(hitt); 
+  }
+  
+  
+  
+  /*
   //assume the hit ball is already touching the obj ball
   public void getDirect(Ball hit){
      //get the centers of each ball 
@@ -52,6 +76,7 @@ public class Ball{
      
 
   }
+  */
   
   //angle of incidence = reflected angle 
   public void hitWall(){
@@ -63,61 +88,34 @@ public class Ball{
     }
   }
   
+  public void friction(){
+    float Force = 9.81 * mass * friction_constant; 
+    PVector friction = velocity.copy().normalize().mult(Force); 
+    acceleration.sub(friction); 
+  }
+  
   public void setPosition(float x, float y){
     position.x = x; 
     position.y = y; 
   }
  
-  public float getColor(){
-    return colour; 
-  }
-  
   public void move(){
     position.add(velocity); 
     velocity.add(acceleration); 
   }
   
-  void display(float c) {
-    fill(c); 
+  void display() {
+    fill(colour); 
     noStroke();
     circle(position.x, position.y, 24);
   }
   
-
-  //assume the hit ball is already touching the obj ball
-  /*public void getDirect(Ball obj, Ball hit){
-=======
-    colour = color(255); 
-  }
-  
-  //assume the hit ball is already touching the obj ball
-  public void getDirect(Ball obj, Ball hit){
->>>>>>> cd2f070 (Janet (#1))
-     //get the centers of each ball 
-     float x1 = obj.position.x; 
-     float y1 = obj.position.y; 
-     float x2 = hit.position.x; 
-     float y2 = hit.position.y; 
-     PVector vel = new PVector(x1 - x2, y1 - y2); 
-     hit.velocity.set(vel); 
-     obj.velocity.set(vel.rotate(PI + HALF_PI)); 
-     
-  }
-<<<<<<< HEAD
-<<<<<<< HEAD
-  */
   public PVector getPosition(){
   return position;
   }
   
   public float getMass(){
   return mass;}
-  
-  void display() {
-    noStroke();
-    fill(colour);
-    circle(position.x, position.y, 20);
-  }
   
   public void changeColor(float col){
     colour = col;

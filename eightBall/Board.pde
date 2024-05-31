@@ -26,7 +26,7 @@ void initialize(){
 public ArrayList<Ball> arrangeBalls(){
   ArrayList<Ball> ballz = new ArrayList<Ball>(); 
   for (int i = 1; i < 16; i++){
-    Ball a = new Ball(0, 0, 0, 0, color(random(225), random(225), random(225))); 
+    Ball a = new Ball(0, 0, 0, 0); 
     if (i == 1){
       a.setPosition(750, 290); 
     }
