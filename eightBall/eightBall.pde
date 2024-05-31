@@ -12,9 +12,7 @@ void setup(){
   Board board = new Board();
   board.initialize();
   balls = board.initializeBalls(); 
-  board.arrangeBalls(balls); 
-  
-  
+  board.arrangeBalls(balls);   
   A = new Ball(150, 200, 4, 4); 
   A.changeColor(150); 
   B = new Ball(200, 250, -4, -8); 
@@ -40,18 +38,17 @@ void draw(){
   
 
   for (Ball b: balls){
+
     b.move();
     b.hitWall(); 
     contact(balls);
     b.display(); 
   } 
-
-  //testing code for movement of balls
-
   A.move(); 
   B.move(); 
   A.display(); 
   B.display(); 
+  cueStick.display();
   A.hitWall(); 
   B.hitWall(); 
   A.getDirect(B); 
