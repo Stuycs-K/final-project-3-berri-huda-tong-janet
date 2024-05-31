@@ -9,7 +9,6 @@ public class Stick {
     numForce = 24.0;
     cueBall = new Ball(10, 10, 1, 1);
     position = new PVector(120, 120);
-
     cueBall = new Ball(120 + 10, 120+5, 0, 0);
     //is direction not just the dierction of the ball...
   }
@@ -45,7 +44,7 @@ public class Stick {
   rotate(angle);
   noStroke();
   fill(0);
-  rect(cueBall.position.x - 6, cueBall.position.y -6, 20, 10);
+  rect(cueBall.position.x - 6, cueBall.position.y -6, 50, 20);
   popMatrix();
   }
   
