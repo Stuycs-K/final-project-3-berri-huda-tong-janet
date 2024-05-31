@@ -12,12 +12,12 @@ void setup(){
   Board board = new Board();
   board.initialize();
   balls = board.arrangeBalls(); 
-  balls.add(new Ball(300, 290, 2, 0)); 
+  balls.add(new Ball(300, 290, 10, 0)); 
   
   
-  A = new Ball(150, 200, 1, 1); 
+  A = new Ball(150, 200, 4, 4); 
   A.changeColor(150); 
-  B = new Ball(200, 250, -1, -2); 
+  B = new Ball(200, 250, -4, -8); 
 
 }
 
@@ -47,7 +47,7 @@ void draw(){
   } 
 
   //testing code for movement of balls
-/*
+
   A.move(); 
   B.move(); 
   A.display(); 
@@ -55,7 +55,7 @@ void draw(){
   A.hitWall(); 
   B.hitWall(); 
   A.getDirect(B); 
-*/
+
 
 }
 
