@@ -1,9 +1,6 @@
 public class Board{
-private Stick cueStick;
 
 Board(){
-cueStick = new Stick();
-
 }
 
 void initialize(){

@@ -5,11 +5,12 @@ public class Stick {
 
   //before we implement the drag for the force of the stick gna set it as like
   
-  Stick() {
+  Stick(Ball cb) {
     numForce = 24.0;
-    cueBall = new Ball(10, 10, 1, 1);
-    position = new PVector(120, 120);
-    cueBall = new Ball(120 + 10, 120+5, 0, 0);
+    //position = newPVector(cb.getPosition().x, cb.getPosition().y);
+    //cueBall = new Ball(10, 10, 1, 1);
+    //position = new PVector(120, 120);
+    //cueBall = new Ball(120 + 10, 120+5, 0, 0);
     //is direction not just the dierction of the ball...
   }
   
@@ -37,17 +38,14 @@ public class Stick {
   void display(){
 
   //rect(position.x, position.y, 10, 100);
-  float angle = PVector.angleBetween(cueBall.position, cueStick.position);
-  //must change angle later!!!!
-  
+  PVector pos = cueBall.getPosition();
+  float angle = PVector.angleBetween(pos, cueStick.position);
   pushMatrix();
-  translate(cueBall.position.x,cueBall.position.y);
+  translate(pos.x,pos.y);
   rotate(angle);
   noStroke();
   fill(255,191,128);
-  rect(cueBall.position.x - 6, cueBall.position.y -6, 200, 15);
-  //rect(cueBall.position.x - 
-  //quad(cueBall.position.x -5, cueBall.position.y -5, cueBall.position.x + 5, cueBall.position.y + 5, cueBall.position.x - 5, cueBall.position.y + 100, cueBall.position.x + 100, cueBall.position.y -6);
+  rect(pos.x - 6, pos.y -6, 200, 15);
   popMatrix();
   }
   

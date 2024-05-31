@@ -10,15 +10,14 @@ public Ball cueBall;
 void setup(){
   size(1120, 580);//real board is 9 ft by 4.5 ft; 540 by 1080 converted!
   Board board = new Board();
-  cueStick = new Stick();
   board.initialize();
-  balls = board.initializeBalls(); 
-  cueStick.setCB(balls.get(0));
-  board.arrangeBalls(balls);   
+  cueStick = board.cueStick;
+  balls = board.arrangeBalls();
+  balls.add(new Ball(300, 290, 10, 0)); 
   A = new Ball(150, 200, 4, 4); 
   A.changeColor(150); 
   B = new Ball(200, 250, -4, -8); 
-  //cueStick.display();
+
 }
 
 void draw(){ 
@@ -29,7 +28,6 @@ void draw(){
   stroke(150, 75, 0); //border to brown
   rect(20,20, 1080, 540);
   //holes
-  //cueStick.display();
   
   fill(0);
   stroke(0); 
@@ -38,7 +36,7 @@ void draw(){
   circle(560, 40, 20); 
   circle(40, 540, 20); 
   circle(1080, 540, 20); 
-  cueStick.display();
+  
 
   for (Ball b: balls){
 
@@ -51,7 +49,7 @@ void draw(){
   B.move(); 
   A.display(); 
   B.display(); 
-  //cueStick.display();
+  cueStick.display();
   A.hitWall(); 
   B.hitWall(); 
   A.getDirect(B); 
