@@ -120,10 +120,10 @@ public class Ball{
     }
   }
   
-  public void friction(){
-    float Force = 9.81 * mass * friction_constant; 
+  public PVector friction(){
+    float Force = -1 * 9.81 * mass * friction_constant; 
     PVector friction = velocity.copy().normalize().mult(Force); 
-    acceleration.sub(friction); 
+    return friction; 
   }
   
   public void setPosition(float x, float y){
@@ -133,7 +133,9 @@ public class Ball{
  
   public void move(){
     position.add(velocity); 
+    acceleration.add(friction()); 
     velocity.add(acceleration); 
+    acceleration.set(0, 0); 
   }
   
   void display() {
