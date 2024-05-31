@@ -19,17 +19,16 @@ public class Ball{
   public void getStationaryDirect(Ball hit){
     //get the vectors necessary 
     PVector hitt = new PVector(hit.position.x - position.x, hit.position.y - position.y);
-    PVector cue = new PVector(0, 0); 
-    PVector xaxis = new PVector(1, 0); 
-    if (PVector.angleBetween(xaxis, hitt) > PVector.angleBetween(xaxis, velocity)){
+    PVector cue = new PVector(0, 0);  
+    if (PVector.angleBetween(velocity, hitt.copy().rotate(HALF_PI + PI)) < HALF_PI){
       cue = hitt.copy().rotate(HALF_PI + PI); 
     }
     else{
       cue = hitt.copy().rotate(HALF_PI); 
     }
     float theta = PVector.angleBetween(velocity, hitt); 
-    float magH = cos(theta); 
-    float magC = sin(theta); 
+    float magH = cos(theta) * velocity.mag() ; 
+    float magC = sin(theta) * velocity.mag(); 
     hitt.normalize().mult(magH); 
     cue.normalize().mult(magC); 
     velocity.set(cue); 
