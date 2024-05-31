@@ -7,10 +7,10 @@ public class Stick {
   
   Stick() {
     numForce = 24.0;
-    cueBall = new Ball(10, 10, 1, 1, 225);
+    cueBall = new Ball(10, 10, 1, 1);
     position = new PVector(120, 120);
 
-    cueBall = new Ball(120 + 10, 120+5, 0, 0, 0);
+    cueBall = new Ball(120 + 10, 120+5, 0, 0);
     //is direction not just the dierction of the ball...
   }
   
