@@ -12,21 +12,16 @@ void setup(){
   Board board = new Board();
   board.initialize();
   balls = board.arrangeBalls(); 
-  balls.add(new Ball(300, 290, 2, 0, 225)); 
-  /*
-  A = new Ball(200, 200, 1, 1, 150); 
-  B = new Ball(400, 400, 0, 0, 225); 
-  */
+  balls.add(new Ball(300, 290, 10, 0)); 
+  
+  
+  A = new Ball(150, 200, 4, 4); 
+  A.changeColor(150); 
+  B = new Ball(200, 250, -4, -8); 
+
 }
 
-/*
-void mouseClicked(){
-  balls.add(new Ball(mouseX, mouseY, 1, 1)); 
-}
-*/
-
-void draw(){
-
+void draw(){ 
 
   //resetting the board to initialization state 
   fill(color(0,100,0));
@@ -34,6 +29,7 @@ void draw(){
   stroke(150, 75, 0); //border to brown
   rect(20,20, 1080, 540);
   //holes
+  
   fill(0);
   stroke(0); 
   circle(40, 40, 20); 
@@ -41,29 +37,28 @@ void draw(){
   circle(560, 40, 20); 
   circle(40, 540, 20); 
   circle(1080, 540, 20); 
-  circle(560, 540, 20); 
   
+
   for (Ball b: balls){
-    b.display(b.getColor()); 
-    b.move(); 
+    b.move();
     b.hitWall(); 
-  }
-  
-  contact(balls); 
-  
+    contact(balls);
+    b.display(); 
+  } 
+
   //testing code for movement of balls
-  /*
+
   A.move(); 
   B.move(); 
-  A.display(A.getColor()); 
-  B.display(B.getColor()); 
+  A.display(); 
+  B.display(); 
   A.hitWall(); 
   B.hitWall(); 
-  if ((A.position.dist(B.position) < 24) && (A.position.dist(B.position) > 20)){
-    A.getDirect(B); 
-  }
- */
+  A.getDirect(B); 
+
+
 }
+
 
 void contact(ArrayList<Ball> balls){
    for(int i = 0; i < balls.size(); i++){
@@ -71,12 +66,11 @@ void contact(ArrayList<Ball> balls){
      for (int j = 0; j < balls.size(); j++){
        Ball c = balls.get(j); 
        if (j != i){
-           if ((b.position.dist(c.position) < 24) && (b.position.dist(c.position) > 20)){
             b.getDirect(c); 
-          }
        }
      }
    }
 }
+
 
   

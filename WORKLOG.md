@@ -32,3 +32,13 @@ Session 3: configured the triangle of balls, more testing
 Session 1 in class: wrote contact() --> checks if the balls are in contact 
 with eachother and performs collisions as necessary, however having some 
 problems 
+
+
+### 5/30 
+
+Rewrote getDirect() because was incorrect before --> split into getStationaryDirect() and 
+getMovingDirect() 
+
+Began working on friction 
+
+Need to figure out how to make sure hitWall() is timed correctly 

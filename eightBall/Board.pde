@@ -26,21 +26,21 @@ void initialize(){
 public ArrayList<Ball> arrangeBalls(){
   ArrayList<Ball> ballz = new ArrayList<Ball>(); 
   for (int i = 1; i < 16; i++){
-    Ball a = new Ball(0, 0, 0, 0, color(random(225), random(225), random(225))); 
+    Ball a = new Ball(0, 0, 0, 0); 
     if (i == 1){
       a.setPosition(750, 290); 
     }
     if ((i >= 2) && (i <= 3)){
-      a.setPosition(750 + (12 * sqrt(3)), 278 + (24 * (i -2)));  
+      a.setPosition(750 + (12 * sqrt(3)), 278 + (24 * (i -2) + (i-2)));  
     }
     if ((i >= 4) && (i <= 6)){
-      a.setPosition(750 + (24 * sqrt(3)), 266 + (24 * (i -4)));  
+      a.setPosition(752 + (24 * sqrt(3)), 266 + (24 * (i -4) + (i-4)));  
     }
     if ((i >= 7) && (i <= 10)){
-      a.setPosition(750 + (36 * sqrt(3)), 254 + (24 * (i -7)));  
+      a.setPosition(754 + (36 * sqrt(3)), 254 + (24 * (i -7) + (i-7)));  
     }
     if ((i >= 11) && (i <= 15)){
-      a.setPosition(750 + (48 * sqrt(3)), 242 + (24 * (i -11)));  
+      a.setPosition(756 + (48 * sqrt(3)), 242 + (24 * (i -11) + (i-11)));  
     }
     ballz.add(a); 
   }
