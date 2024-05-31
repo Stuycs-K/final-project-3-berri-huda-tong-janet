@@ -70,8 +70,6 @@ public class Ball{
 
   }
   
-  
-  
   /*
   //assume the hit ball is already touching the obj ball
   public void getDirect(Ball hit){
