@@ -23,10 +23,20 @@ void initialize(){
   circle(560, 540, 20); 
 }
 
-public ArrayList<Ball> arrangeBalls(){
+public ArrayList<Ball> initializeBalls(){
   ArrayList<Ball> ballz = new ArrayList<Ball>(); 
+  ballz.add(new Ball(300, 290, 0, 0, 225)); 
+  for (int i = 0; i < 16; i++){
+      ballz.add(new Ball(0, 0, 0, 0, random(225))); 
+  }
+  return ballz; 
+}
+
+
+//creates the triangle of balls
+public void arrangeBalls(ArrayList<Ball> ballz){ 
   for (int i = 1; i < 16; i++){
-    Ball a = new Ball(0, 0, 0, 0); 
+    Ball a = ballz.get(i); 
     if (i == 1){
       a.setPosition(750, 290); 
     }
@@ -42,9 +52,7 @@ public ArrayList<Ball> arrangeBalls(){
     if ((i >= 11) && (i <= 15)){
       a.setPosition(756 + (48 * sqrt(3)), 242 + (24 * (i -11) + (i-11)));  
     }
-    ballz.add(a); 
   }
-  return ballz; 
 
   
 }
