@@ -12,7 +12,7 @@ void setup(){
   Board board = new Board();
   board.initialize();
   cueStick = board.cueStick;
-  balls = board.arrangeBalls(); 
+  balls = board.arrangeBalls();
   balls.add(new Ball(300, 290, 10, 0)); 
   
   
@@ -51,6 +51,7 @@ void draw(){
   B.move(); 
   A.display(); 
   B.display(); 
+  cueStick.display();
   A.hitWall(); 
   B.hitWall(); 
   A.getDirect(B); 

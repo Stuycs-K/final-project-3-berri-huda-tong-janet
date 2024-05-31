@@ -38,13 +38,16 @@ public class Stick {
 
   //rect(position.x, position.y, 10, 100);
   float angle = PVector.angleBetween(cueBall.position, cueStick.position);
-  //must change this so that it turns to the correct angle!
-   pushMatrix();
+  //must change angle later!!!!
+  
+  pushMatrix();
   translate(cueBall.position.x,cueBall.position.y);
   rotate(angle);
   noStroke();
-  fill(0);
-  rect(cueBall.position.x - 6, cueBall.position.y -6, 50, 20);
+  fill(255,191,128);
+  rect(cueBall.position.x - 6, cueBall.position.y -6, 150, 15);
+  //rect(cueBall.position.x - 
+  //quad(cueBall.position.x -5, cueBall.position.y -5, cueBall.position.x + 5, cueBall.position.y + 5, cueBall.position.x - 5, cueBall.position.y + 100, cueBall.position.x + 100, cueBall.position.y -6);
   popMatrix();
   }
   
