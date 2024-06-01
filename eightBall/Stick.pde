@@ -7,6 +7,7 @@ public class Stick {
   
   Stick(Ball cb) {
     numForce = 24.0;
+    cueBall = cb;
     //position = newPVector(cb.getPosition().x, cb.getPosition().y);
     //cueBall = new Ball(10, 10, 1, 1);
     //position = new PVector(120, 120);
@@ -19,10 +20,6 @@ public class Stick {
   }
   
   PVector calculateAcceleration(){
-  //acceleration = F/m
-  //f = the numForce
-  //m is equal to the mass
-  //direction is just equal to the absolute value or im not completely sure... tbh
   PVector direction = cueBall.getPosition().sub(position);
   direction.normalize();
   PVector acceleration = direction.mult(numForce / cueBall.getMass());

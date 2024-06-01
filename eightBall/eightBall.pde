@@ -10,10 +10,10 @@ public Ball cueBall;
 void setup(){
   size(1120, 580);//real board is 9 ft by 4.5 ft; 540 by 1080 converted!
   Board board = new Board();
-  cueStick = new Stick();
   board.initialize();
   balls = board.initializeBalls(); 
-  cueStick.setCB(balls.get(0));
+  cueStick = new Stick(balls.get(0));
+  //cueStick.setCB(balls.get(0));
   board.arrangeBalls(balls);   
   A = new Ball(150, 200, 4, 4); 
   A.changeColor(150); 
