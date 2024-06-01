@@ -8,6 +8,7 @@ public class Stick {
   Stick(Ball cb) {
     numForce = 24.0;
     cueBall = cb;
+    position = new PVector(100, 100);
     //position = newPVector(cb.getPosition().x, cb.getPosition().y);
     //cueBall = new Ball(10, 10, 1, 1);
     //position = new PVector(120, 120);
@@ -33,16 +34,15 @@ public class Stick {
   
   
   void display(){
-
-  //rect(position.x, position.y, 10, 100);
   PVector pos = cueBall.getPosition();
-  float angle = PVector.angleBetween(pos, cueStick.position);
+  PVector dir = PVector.sub(pos, position);
+  float angle = PVector.angleBetween(new PVector(1,0), dir);
   pushMatrix();
-  translate(pos.x,pos.y);
+  translate(position.x, position.y);
   rotate(angle);
   noStroke();
   fill(255,191,128);
-  rect(pos.x - 6, pos.y -6, 200, 15);
+  rect(0, -7.5, 200, 15);  
   popMatrix();
   }
   

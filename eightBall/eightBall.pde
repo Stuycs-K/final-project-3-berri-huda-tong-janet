@@ -51,11 +51,10 @@ void draw(){
   B.move(); 
   A.display(); 
   B.display(); 
-  //cueStick.display();
   A.hitWall(); 
   B.hitWall(); 
   A.getDirect(B); 
-
+  cueStick.display();
 
 }
 
