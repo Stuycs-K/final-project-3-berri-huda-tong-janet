@@ -12,47 +12,40 @@ void setup(){
   board = new Board();
   balls = board.initializeBalls(); 
   cueStick = new Stick(balls.get(0));
-  //cueStick.setCB(balls.get(0));
   board.arrangeBalls(balls);   
-  /*
-  A = new Ball(150, 200, 4, 4); 
-  A.changeColor(150); 
-  B = new Ball(200, 250, -4, -8); 
-  */
-  //cueStick.display();
 }
 
 void draw(){ 
   board.initialize(); 
   cueStick.display();
-  for (Ball b: balls){
+  for (int i = 0; i < balls.size(); i++){
+    Ball b = balls.get(i); 
     b.move(balls);
     b.hitWall(); 
     b.display(); 
-  } 
-
+    if (b.inHole()){
+      if (b.getColor() != 225){
+        balls.remove(b); 
+      }
+    }
+  }
 }
 
-/*void inHole(){
-  for (int i = 0; i < balls.size(); i ++){
-  if ()
-  }
-*/
-
-  void mouseClicked(){
+void mouseClicked(){
     cueStick.updatePos();
    //cueStick.setVis(true);
    cueStick.hit();
-  }
+}
   
-  void mousePressed(){
+void mousePressed(){
   cueStick.updatePos();
   cueStick.setVis(true);
-  }
-  void mouseReleased(){
+}
+ 
+void mouseReleased(){
   cueStick.setVis(false);}
   
-  void keyPressed(){
+void keyPressed(){
   if(key == 's'){
   cueStick.setVis(!cueStick.getVis());}
   if (key == 'r'){

@@ -14,13 +14,14 @@ void initialize(){
   //holes
   
   fill(0);
+  strokeWeight(1); 
   stroke(0); 
-  circle(40, 40, 20); 
-  circle(1080, 40, 20); 
-  circle(560, 40, 20); 
-  circle(40, 540, 20); 
-  circle(560, 540, 20);
-  circle(1080, 540, 20); 
+  circle(40, 40, 40); 
+  circle(1080, 40, 40); 
+  circle(560, 40, 40); 
+  circle(40, 540, 40); 
+  circle(560, 540, 40);
+  circle(1080, 540, 40); 
 }
 
 public ArrayList<Ball> initializeBalls(){

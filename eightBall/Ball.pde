@@ -17,6 +17,7 @@ public class Ball{
   }
   */ 
 
+//CONSTRUCTOR -------------
   public Ball(float x, float y, float xspeed, float yspeed, color c){
     mass = .165; 
     position = new PVector(x, y); 
@@ -25,7 +26,7 @@ public class Ball{
     colour = c ; 
   }
  
-  
+//BALL COLLISIONS -------------
   public void getStationaryDirect(Ball hit){
     //get the vectors necessary 
     PVector hitt = new PVector(hit.position.x - position.x, hit.position.y - position.y);
@@ -103,7 +104,6 @@ public class Ball{
      }
      return 0; 
    }
- 
   
   //angle of incidence = reflected angle 
   public void hitWall(){
@@ -114,18 +114,33 @@ public class Ball{
       velocity.y = -1 * velocity.y; 
     }
   }
-  
+ 
+//FRICTION ------------
   public PVector friction(){
     float Force = -1 * 9.81 * mass * friction_constant; 
     PVector friction = velocity.copy().normalize().mult(Force); 
     return friction; 
   }
   
+//IN HOLE? 
+
+  public boolean inHole(){
+    //if center of ball is within these radii, then considered inHole 
+    if ((position.y >= 32 && position.y <= 48) || (position.y >= 532 && position.y <= 548)){
+      return ((position.x >= 32 && position.y <= 48) || (position.y >= 552 && position.y <= 568) || (position.y >= 1072 && position.y <= 1088)); 
+    }
+    return false; 
+  }
+  
+  
+  
+  
+  
+//ACCESSOR METHODS
   public void setPosition(float x, float y){
     position.x = x; 
     position.y = y; 
   }
-
   
   void display() {
     noStroke();
@@ -139,6 +154,10 @@ public class Ball{
   
   public float getMass(){
   return mass;}
+  
+  public color getColor(){
+    return colour; 
+  }
   
   public void move(PVector acc){
   acceleration = acc;
