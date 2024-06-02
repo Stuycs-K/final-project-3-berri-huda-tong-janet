@@ -7,6 +7,7 @@ public class Ball{
   private final float friction_constant = 0.06; 
   
 //temp constructor 
+/*
   public Ball(float x, float y, float xspeed, float yspeed){
     mass = .165; 
     position = new PVector(x, y); 
@@ -14,6 +15,7 @@ public class Ball{
     acceleration = new PVector(0, 0); 
     colour = random(225) ; 
   }
+  */ 
 
   public Ball(float x, float y, float xspeed, float yspeed, float c){
     mass = .165; 
@@ -22,6 +24,7 @@ public class Ball{
     acceleration = new PVector(0, 0); 
     colour = c ; 
   }
+ 
   
   public void getStationaryDirect(Ball hit){
     //get the vectors necessary 
@@ -63,26 +66,29 @@ public class Ball{
   }
   
   public void getDirect(Ball hit){
-    if (this.position.dist(hit.position) <= 24){
-      if (hit.velocity.mag() == 0){
+    if (hit.velocity.mag() == 0){
         getStationaryDirect(hit); 
       }
-      else if (velocity.mag() == 0){
-        hit.getStationaryDirect(this); 
-      }
-      else{
-        getMovingDirect(hit); 
-      }
+    else if (velocity.mag() == 0){
+      hit.getStationaryDirect(this); 
+    }
+    else{
+      getMovingDirect(hit); 
     }
   }
   
-  public void move(){
-    if (velocity.mag() <= 0.1){
+  public void move(ArrayList<Ball> balls){
+    if (velocity.mag() <= 0.01){
       velocity.set(0, 0); 
     }
+    //moving at this pace to check if its in contact with other balls 
     while (position != position.copy().add(velocity)){
-      position.x += 0.01 * velocity.x ; 
-      position.y += 0.01 * velocity.y; 
+      position.x += 0.1 * velocity.x ; 
+      position.y += 0.1 * velocity.y; 
+      int ind = contact(balls); 
+      if (ind != 0){
+        this.getDirect(balls.get(ind)); 
+      }
     }
     acceleration.add(friction()); 
     velocity.add(acceleration); 
@@ -91,10 +97,10 @@ public class Ball{
   
   //checks if two balls are in contact 
   //returns the index of the contacted ball 
-  public int contact(ArrayList<Ball> balls, Ball b){
+  public int contact(ArrayList<Ball> balls){
     for (int j = 0; j < balls.size(); j++){
        Ball c = balls.get(j); 
-        if (b.position.dist(c.position) <= 24 && b.position.dist(c.position) != 0){
+        if (this.position.dist(c.position) <= 24 && this.position.dist(c.position) != 0){
             return j ; 
         }
      }

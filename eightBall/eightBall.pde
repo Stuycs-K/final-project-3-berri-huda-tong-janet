@@ -43,12 +43,10 @@ void draw(){
   cueStick.display();
 
   for (Ball b: balls){
-    b.move();
+    b.move(balls);
     b.hitWall(); 
     b.display(); 
   } 
-  
-  contact(balls);
    
       /*
   A.move(); 
