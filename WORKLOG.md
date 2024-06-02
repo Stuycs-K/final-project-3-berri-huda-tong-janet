@@ -42,3 +42,13 @@ getMovingDirect()
 Began working on friction 
 
 Need to figure out how to make sure hitWall() is timed correctly 
+
+### 5/31 
+
+wrote initializeBalls() and arranged the balls accordingly 
+
+### 6/2 
+
+continued testing with the ball collisions, running into trouble with colliding with 2+ balls 
+
+wrote inHole() 
