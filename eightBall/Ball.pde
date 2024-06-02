@@ -3,10 +3,11 @@ public class Ball{
   private PVector position;
   private PVector velocity;
   private PVector acceleration;
-  private float colour;
-  private final float friction_constant = 0.06; 
+  private color colour;
+  private final float friction_constant = 0.1; 
   
 //temp constructor 
+/*
   public Ball(float x, float y, float xspeed, float yspeed){
     mass = .165; 
     position = new PVector(x, y); 
@@ -14,15 +15,18 @@ public class Ball{
     acceleration = new PVector(0, 0); 
     colour = random(225) ; 
   }
+  */ 
 
-  public Ball(float x, float y, float xspeed, float yspeed, float c){
+//CONSTRUCTOR -------------
+  public Ball(float x, float y, float xspeed, float yspeed, color c){
     mass = .165; 
     position = new PVector(x, y); 
     velocity = new PVector(xspeed, yspeed); 
     acceleration = new PVector(0, 0); 
     colour = c ; 
   }
-  
+ 
+//BALL COLLISIONS -------------
   public void getStationaryDirect(Ball hit){
     //get the vectors necessary 
     PVector hitt = new PVector(hit.position.x - position.x, hit.position.y - position.y);
@@ -63,59 +67,43 @@ public class Ball{
   }
   
   public void getDirect(Ball hit){
-    if (this.position.dist(hit.position) <= 24){
-      if (hit.velocity.mag() == 0){
+    if (hit.velocity.mag() == 0){
         getStationaryDirect(hit); 
       }
-      else if (velocity.mag() == 0){
-        hit.getStationaryDirect(this); 
-      }
-      else{
-        getMovingDirect(hit); 
-      }
+    else if (velocity.mag() == 0){
+      hit.getStationaryDirect(this); 
     }
-
+    else{
+      getMovingDirect(hit); 
+    }
   }
   
-  /*
-  //assume the hit ball is already touching the obj ball
-  public void getDirect(Ball hit){
-     //get the centers of each ball 
-     PVector xaxis = new PVector(1, 0); 
-     PVector prev = hit.velocity.copy(); 
-     PVector cue = velocity.copy(); 
-     float cueVel = cue.mag(); 
-     float hitVel = prev.mag(); 
-     
-     float cueIAng = PVector.angleBetween(xaxis, cue); //angle of cue ball 
-     float hitIAng = PVector.angleBetween(xaxis, prev); 
-     
-     //new directions
-     PVector hitt = new PVector(hit.position.x - position.x, hit.position.y - position.y);
-     PVector result = hitt.copy().rotate(PI + HALF_PI); 
-     float cueFAng = PVector.angleBetween(xaxis, result); 
-     float hitFAng = PVector.angleBetween(xaxis, hitt); 
-     
-     //system of equations to find the magnitude of the final velocities
-     float z = (cueVel * cos(cueIAng)) + (hitVel * cos(hitIAng)); //v1icos + v2icos = v1fcos + v2fcos
-     float y = (cueVel * sin(cueIAng)) + (hitVel * sin(hitIAng)); //sin of the above
-     float a = cos(cueFAng); 
-     float b = cos(hitFAng); 
-     float c = sin(cueFAng); 
-     float d = sin(hitFAng); 
-     //solved the system
-     float magV1f = ((d*z) - (y*b))/((a*d) - (b*c)); 
-     float magV2f = ((c*z) - (a*y))/((b*c) - (a*d)); 
-     
-     //multiply the vectors by their appropriate velocities 
-     hitt.normalize(); 
-     result.normalize(); 
-     this.velocity.set(result.mult(magV1f)); 
-     hit.velocity.set(hitt.mult(magV2f)); 
-     
-
+  public void move(ArrayList<Ball> balls){
+    if (velocity.mag() <= 0.5){
+      velocity.set(0, 0); 
+    }
+    position.add(velocity); 
+    acceleration.add(friction()); 
+    velocity.add(acceleration); 
+    acceleration.set(0, 0); 
+    
+    int ind = contact(balls); 
+    if (ind != 0){
+      this.getDirect(balls.get(ind)); 
+    }
   }
-  */
+  
+  //checks if two balls are in contact 
+  //returns the index of the contacted ball 
+  public int contact(ArrayList<Ball> balls){
+    for (int j = 0; j < balls.size(); j++){
+       Ball c = balls.get(j); 
+        if (this.position.dist(c.position) <= 24  && this.position.dist(c.position) != 0){
+          return j ; 
+        }
+     }
+     return 0; 
+   }
   
   //angle of incidence = reflected angle 
   public void hitWall(){
@@ -126,31 +114,37 @@ public class Ball{
       velocity.y = -1 * velocity.y; 
     }
   }
-  
+ 
+//FRICTION ------------
   public PVector friction(){
     float Force = -1 * 9.81 * mass * friction_constant; 
     PVector friction = velocity.copy().normalize().mult(Force); 
     return friction; 
   }
   
+//IN HOLE? 
+
+  public boolean inHole(){
+    //if center of ball is within these radii, then considered inHole 
+    if ((position.y >= 32 && position.y <= 48) || (position.y >= 532 && position.y <= 548)){
+      return ((position.x >= 32 && position.y <= 48) || (position.y >= 552 && position.y <= 568) || (position.y >= 1072 && position.y <= 1088)); 
+    }
+    return false; 
+  }
+  
+  
+  
+  
+  
+//ACCESSOR METHODS
   public void setPosition(float x, float y){
     position.x = x; 
     position.y = y; 
   }
- 
-  public void move(){
-    if (velocity.mag() <= 0.1){
-      velocity.set(0, 0); 
-    }
-    position.add(velocity); 
-    acceleration.add(friction()); 
-    velocity.add(acceleration); 
-    acceleration.set(0, 0); 
-  }
   
   void display() {
-    fill(colour); 
     noStroke();
+    fill(colour); 
     circle(position.x, position.y, 24);
   }
   
@@ -161,8 +155,8 @@ public class Ball{
   public float getMass(){
   return mass;}
   
-  public void changeColor(float col){
-    colour = col;
+  public color getColor(){
+    return colour; 
   }
   
   public void move(PVector acc){
