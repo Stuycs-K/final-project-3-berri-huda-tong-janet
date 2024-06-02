@@ -62,9 +62,13 @@ public class Stick {
   }
   
   void updatePos(){
-  PVector mousePos = new PVector(mouseX, mouseY);
+  /*PVector mousePos = new PVector(mouseX, mouseY);
   PVector dir =PVector.sub(mousePos, cueBall.getPosition());
   float angle = atan2(dir.y, dir.x);
   position.set(cueBall.getPosition().x - 25 * cos(angle), cueBall.getPosition().y - 25* sin(angle));
+  
+  */
+  
+  position = new PVector(mouseX, mouseY);
   }
 }
