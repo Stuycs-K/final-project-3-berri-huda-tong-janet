@@ -24,7 +24,7 @@ public ArrayList<Ball> initializeBalls(){
   ArrayList<Ball> ballz = new ArrayList<Ball>(); 
   ballz.add(new Ball(300, 290, 0, 0, 225)); 
   for (int i = 0; i < 16; i++){
-      ballz.add(new Ball(0, 0, 0, 0, random(225))); 
+      ballz.add(new Ball(0, 0, 0, 0, color(random(225), random(225), random(225)))); 
   }
   return ballz; 
 }

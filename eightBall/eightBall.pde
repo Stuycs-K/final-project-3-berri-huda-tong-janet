@@ -71,13 +71,24 @@ void contact(ArrayList<Ball> balls){
    }
 }
 
+/*void inHole(){
+  for (int i = 0; i < balls.size(); i ++){
+  if ()
+  }
+*/
+
   void mouseClicked(){
     cueStick.updatePos();
    //cueStick.setVis(true);
    cueStick.hit();
-  
-  
   }
+  
+  void mousePressed(){
+  cueStick.updatePos();
+  cueStick.setVis(true);
+  }
+  void mouseReleased(){
+  cueStick.setVis(false);}
   
   void keyPressed(){
   if(key == 's'){
