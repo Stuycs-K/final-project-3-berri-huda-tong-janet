@@ -7,7 +7,7 @@ public class Stick {
   //before we implement the drag for the force of the stick gna set it as like
   
   Stick(Ball cb) {
-    numForce = 10.0;
+    numForce = 3.5;
     cueBall = cb;
     position = new PVector(100, 100);
     visible = false;
@@ -26,7 +26,7 @@ public class Stick {
   }
   
   PVector calculateAcceleration(){
-  PVector direction = cueBall.getPosition().sub(position);
+  PVector direction = PVector.sub(cueBall.getPosition(), position);
   direction.normalize();
   PVector acceleration = direction.mult(numForce / cueBall.getMass());
   return acceleration;
@@ -40,6 +40,7 @@ public class Stick {
   
   void display(){
     if (!visible){return;}
+    updatePos();
   PVector pos = cueBall.getPosition();
   PVector dir = PVector.sub(pos, position);
   float angle = PVector.angleBetween(new PVector(1,0), dir);
@@ -48,7 +49,7 @@ public class Stick {
   rotate(angle);
   noStroke();
   fill(255,191,128);
-  rect(0, -7.5, 200, 15);  
+  rect(-200, -7.5, 200, 15);  
   popMatrix();
   }
   
@@ -62,13 +63,13 @@ public class Stick {
   }
   
   void updatePos(){
-  /*PVector mousePos = new PVector(mouseX, mouseY);
+  PVector mousePos = new PVector(mouseX, mouseY);
   PVector dir =PVector.sub(mousePos, cueBall.getPosition());
   float angle = atan2(dir.y, dir.x);
-  position.set(cueBall.getPosition().x - 25 * cos(angle), cueBall.getPosition().y - 25* sin(angle));
+  position.set(cueBall.getPosition().x - 50 * cos(angle), cueBall.getPosition().y - 50* sin(angle));
   
-  */
+ 
   
-  position = new PVector(mouseX, mouseY);
+  //position = new PVector(mouseX, mouseY);
   }
 }

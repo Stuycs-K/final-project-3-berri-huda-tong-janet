@@ -81,8 +81,10 @@ void contact(ArrayList<Ball> balls){
   
   void keyPressed(){
   if(key == 's'){
-  cueStick.setVis(!cueStick.getVis());
-  }}
+  cueStick.setVis(!cueStick.getVis());}
+  if (key == 'r'){
+  setup();}
+}
 
 
   
