@@ -171,6 +171,5 @@ public class Ball{
   acceleration = new PVector(0,0);
   position.add(velocity);
   }
-  
 
 }

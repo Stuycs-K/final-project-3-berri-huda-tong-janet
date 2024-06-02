@@ -2,20 +2,25 @@ public class Stick {
   private float numForce;
   private PVector position;
   private Ball cueBall;
+  private boolean visible;
 
   //before we implement the drag for the force of the stick gna set it as like
   
   Stick(Ball cb) {
-    numForce = 24.0;
+    numForce = 5.0;
     cueBall = cb;
     position = new PVector(100, 100);
+    visible = false;
     //position = newPVector(cb.getPosition().x, cb.getPosition().y);
     //cueBall = new Ball(10, 10, 1, 1);
     //position = new PVector(120, 120);
     //cueBall = new Ball(120 + 10, 120+5, 0, 0);
     //is direction not just the dierction of the ball...
   }
-  
+  void setVis(boolean b){
+  visible = b;
+}
+
   void setPos( int x, int y){
   position = new PVector(x, y);
   }
@@ -34,6 +39,7 @@ public class Stick {
   
   
   void display(){
+    if (!visible){return;}
   PVector pos = cueBall.getPosition();
   PVector dir = PVector.sub(pos, position);
   float angle = PVector.angleBetween(new PVector(1,0), dir);
@@ -50,4 +56,6 @@ public class Stick {
   PVector accel = calculateAcceleration();
   cueBall.move(accel);
   }
+  
+  boolean getVis(){return visible;}
 }

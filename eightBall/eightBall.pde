@@ -71,5 +71,17 @@ void contact(ArrayList<Ball> balls){
    }
 }
 
+  void mouseClicked(){
+   cueStick.setVis(true);
+   cueStick.hit();
+  
+  
+  }
+  
+  void keyPressed(){
+  if(key == 's'){
+  cueStick.setVis(!cueStick.getVis());
+  }}
+
 
   
