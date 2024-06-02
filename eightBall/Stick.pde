@@ -43,7 +43,8 @@ public class Stick {
     updatePos();
   PVector pos = cueBall.getPosition();
   PVector dir = PVector.sub(pos, position);
-  float angle = PVector.angleBetween(new PVector(1,0), dir);
+  float angle = atan2(dir.y, dir.x);
+  //float angle = PVector.angleBetween(new PVector(1,0), dir);
   pushMatrix();
   translate(position.x, position.y);
   rotate(angle);
