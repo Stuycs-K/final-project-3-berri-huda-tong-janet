@@ -4,7 +4,7 @@ public class Ball{
   private PVector velocity;
   private PVector acceleration;
   private color colour;
-  private final float friction_constant = 0.2; 
+  private final float friction_constant = 0.1; 
   
 //temp constructor 
 /*
@@ -81,20 +81,14 @@ public class Ball{
     if (velocity.mag() <= 0.5){
       velocity.set(0, 0); 
     }
-    //moving at this pace to check if its in contact with other balls 
-    /*while (position.x != position.x + velocity.x && position.y != position.y + velocity.y){
-      position.x += velocity.x * 0.2; 
-      position.y += velocity.y * 0.2; 
-      */
-      position.add(velocity); 
-      acceleration.add(friction()); 
-      velocity.add(acceleration); 
-      acceleration.set(0, 0); 
-      
-      int ind = contact(balls); 
-      if (ind != 0){
-        this.getDirect(balls.get(ind)); 
-      //}
+    position.add(velocity); 
+    acceleration.add(friction()); 
+    velocity.add(acceleration); 
+    acceleration.set(0, 0); 
+    
+    int ind = contact(balls); 
+    if (ind != 0){
+      this.getDirect(balls.get(ind)); 
     }
   }
   
@@ -103,8 +97,8 @@ public class Ball{
   public int contact(ArrayList<Ball> balls){
     for (int j = 0; j < balls.size(); j++){
        Ball c = balls.get(j); 
-        if (this.position.dist(c.position) <= 24 && this.position.dist(c.position) != 0){
-            return j ; 
+        if (this.position.dist(c.position) <= 24  && this.position.dist(c.position) != 0){
+          return j ; 
         }
      }
      return 0; 
