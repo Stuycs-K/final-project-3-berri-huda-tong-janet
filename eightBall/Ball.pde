@@ -74,48 +74,33 @@ public class Ball{
         getMovingDirect(hit); 
       }
     }
-
   }
   
-  /*
-  //assume the hit ball is already touching the obj ball
-  public void getDirect(Ball hit){
-     //get the centers of each ball 
-     PVector xaxis = new PVector(1, 0); 
-     PVector prev = hit.velocity.copy(); 
-     PVector cue = velocity.copy(); 
-     float cueVel = cue.mag(); 
-     float hitVel = prev.mag(); 
-     
-     float cueIAng = PVector.angleBetween(xaxis, cue); //angle of cue ball 
-     float hitIAng = PVector.angleBetween(xaxis, prev); 
-     
-     //new directions
-     PVector hitt = new PVector(hit.position.x - position.x, hit.position.y - position.y);
-     PVector result = hitt.copy().rotate(PI + HALF_PI); 
-     float cueFAng = PVector.angleBetween(xaxis, result); 
-     float hitFAng = PVector.angleBetween(xaxis, hitt); 
-     
-     //system of equations to find the magnitude of the final velocities
-     float z = (cueVel * cos(cueIAng)) + (hitVel * cos(hitIAng)); //v1icos + v2icos = v1fcos + v2fcos
-     float y = (cueVel * sin(cueIAng)) + (hitVel * sin(hitIAng)); //sin of the above
-     float a = cos(cueFAng); 
-     float b = cos(hitFAng); 
-     float c = sin(cueFAng); 
-     float d = sin(hitFAng); 
-     //solved the system
-     float magV1f = ((d*z) - (y*b))/((a*d) - (b*c)); 
-     float magV2f = ((c*z) - (a*y))/((b*c) - (a*d)); 
-     
-     //multiply the vectors by their appropriate velocities 
-     hitt.normalize(); 
-     result.normalize(); 
-     this.velocity.set(result.mult(magV1f)); 
-     hit.velocity.set(hitt.mult(magV2f)); 
-     
-
+  public void move(){
+    if (velocity.mag() <= 0.1){
+      velocity.set(0, 0); 
+    }
+    while (position != position.copy().add(velocity)){
+      position.x += 0.01 * velocity.x ; 
+      position.y += 0.01 * velocity.y; 
+    }
+    acceleration.add(friction()); 
+    velocity.add(acceleration); 
+    acceleration.set(0, 0); 
   }
-  */
+  
+  //checks if two balls are in contact 
+  //returns the index of the contacted ball 
+  public int contact(ArrayList<Ball> balls, Ball b){
+    for (int j = 0; j < balls.size(); j++){
+       Ball c = balls.get(j); 
+        if (b.position.dist(c.position) <= 24 && b.position.dist(c.position) != 0){
+            return j ; 
+        }
+     }
+     return 0; 
+   }
+ 
   
   //angle of incidence = reflected angle 
   public void hitWall(){
@@ -137,16 +122,7 @@ public class Ball{
     position.x = x; 
     position.y = y; 
   }
- 
-  public void move(){
-    if (velocity.mag() <= 0.1){
-      velocity.set(0, 0); 
-    }
-    position.add(velocity); 
-    acceleration.add(friction()); 
-    velocity.add(acceleration); 
-    acceleration.set(0, 0); 
-  }
+
   
   void display() {
     fill(colour); 

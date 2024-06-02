@@ -15,9 +15,11 @@ void setup(){
   cueStick = new Stick(balls.get(0));
   //cueStick.setCB(balls.get(0));
   board.arrangeBalls(balls);   
+  /*
   A = new Ball(150, 200, 4, 4); 
   A.changeColor(150); 
   B = new Ball(200, 250, -4, -8); 
+  */
   //cueStick.display();
 }
 
@@ -41,12 +43,14 @@ void draw(){
   cueStick.display();
 
   for (Ball b: balls){
-
     b.move();
     b.hitWall(); 
-    contact(balls);
     b.display(); 
   } 
+  
+  contact(balls);
+   
+      /*
   A.move(); 
   B.move(); 
   A.display(); 
@@ -54,22 +58,13 @@ void draw(){
   A.hitWall(); 
   B.hitWall(); 
   A.getDirect(B); 
+  */
   cueStick.display();
 
 }
 
 
-void contact(ArrayList<Ball> balls){
-   for(int i = 0; i < balls.size(); i++){
-     Ball b = balls.get(i); 
-     for (int j = 0; j < balls.size(); j++){
-       Ball c = balls.get(j); 
-       if (j != i){
-            b.getDirect(c); 
-       }
-     }
-   }
-}
+
 
 /*void inHole(){
   for (int i = 0; i < balls.size(); i ++){
