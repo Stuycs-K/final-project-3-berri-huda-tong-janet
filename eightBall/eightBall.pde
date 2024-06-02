@@ -72,7 +72,8 @@ void contact(ArrayList<Ball> balls){
 }
 
   void mouseClicked(){
-   cueStick.setVis(true);
+    cueStick.updatePos();
+   //cueStick.setVis(true);
    cueStick.hit();
   
   

@@ -7,7 +7,7 @@ public class Stick {
   //before we implement the drag for the force of the stick gna set it as like
   
   Stick(Ball cb) {
-    numForce = 5.0;
+    numForce = 10.0;
     cueBall = cb;
     position = new PVector(100, 100);
     visible = false;
@@ -57,5 +57,14 @@ public class Stick {
   cueBall.move(accel);
   }
   
-  boolean getVis(){return visible;}
+  boolean getVis(){
+  return visible;
+  }
+  
+  void updatePos(){
+  PVector mousePos = new PVector(mouseX, mouseY);
+  PVector dir =PVector.sub(mousePos, cueBall.getPosition());
+  float angle = atan2(dir.y, dir.x);
+  position.set(cueBall.getPosition().x - 25 * cos(angle), cueBall.getPosition().y - 25* sin(angle));
+  }
 }
