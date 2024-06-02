@@ -3,8 +3,8 @@ public class Ball{
   private PVector position;
   private PVector velocity;
   private PVector acceleration;
-  private float colour;
-  private final float friction_constant = 0.06; 
+  private color colour;
+  private final float friction_constant = 0.2; 
   
 //temp constructor 
 /*
@@ -17,7 +17,7 @@ public class Ball{
   }
   */ 
 
-  public Ball(float x, float y, float xspeed, float yspeed, float c){
+  public Ball(float x, float y, float xspeed, float yspeed, color c){
     mass = .165; 
     position = new PVector(x, y); 
     velocity = new PVector(xspeed, yspeed); 
@@ -78,21 +78,24 @@ public class Ball{
   }
   
   public void move(ArrayList<Ball> balls){
-    if (velocity.mag() <= 0.01){
+    if (velocity.mag() <= 0.5){
       velocity.set(0, 0); 
     }
     //moving at this pace to check if its in contact with other balls 
-    while (position != position.copy().add(velocity)){
-      position.x += 0.1 * velocity.x ; 
-      position.y += 0.1 * velocity.y; 
+    /*while (position.x != position.x + velocity.x && position.y != position.y + velocity.y){
+      position.x += velocity.x * 0.2; 
+      position.y += velocity.y * 0.2; 
+      */
+      position.add(velocity); 
+      acceleration.add(friction()); 
+      velocity.add(acceleration); 
+      acceleration.set(0, 0); 
+      
       int ind = contact(balls); 
       if (ind != 0){
         this.getDirect(balls.get(ind)); 
-      }
+      //}
     }
-    acceleration.add(friction()); 
-    velocity.add(acceleration); 
-    acceleration.set(0, 0); 
   }
   
   //checks if two balls are in contact 
@@ -131,8 +134,8 @@ public class Ball{
 
   
   void display() {
-    fill(colour); 
     noStroke();
+    fill(colour); 
     circle(position.x, position.y, 24);
   }
   
@@ -142,10 +145,6 @@ public class Ball{
   
   public float getMass(){
   return mass;}
-  
-  public void changeColor(float col){
-    colour = col;
-  }
   
   public void move(PVector acc){
   acceleration = acc;

@@ -26,11 +26,10 @@ public class Stick {
   }
   
   PVector calculateAcceleration(){
-  PVector direction = PVector.sub(cueBall.getPosition(), position);
-  direction.normalize();
-  PVector acceleration = direction.mult(numForce / cueBall.getMass());
-  return acceleration;
-  
+    PVector direction = PVector.sub(cueBall.getPosition(), position);
+    direction.normalize();
+    PVector acceleration = direction.mult(numForce / cueBall.getMass());
+    return acceleration;
   }
   
   void setCB(Ball cb){

@@ -9,8 +9,7 @@ public Ball cueBall;
 
 void setup(){
   size(1120, 580);//real board is 9 ft by 4.5 ft; 540 by 1080 converted!
-  Board board = new Board();
-  board.initialize();
+  board = new Board();
   balls = board.initializeBalls(); 
   cueStick = new Stick(balls.get(0));
   //cueStick.setCB(balls.get(0));
@@ -24,45 +23,15 @@ void setup(){
 }
 
 void draw(){ 
-
-  //resetting the board to initialization state 
-  fill(color(0,100,0));
-  strokeWeight(20); 
-  stroke(150, 75, 0); //border to brown
-  rect(20,20, 1080, 540);
-  //holes
-  //cueStick.display();
-  
-  fill(0);
-  stroke(0); 
-  circle(40, 40, 20); 
-  circle(1080, 40, 20); 
-  circle(560, 40, 20); 
-  circle(40, 540, 20); 
-  circle(1080, 540, 20); 
+  board.initialize(); 
   cueStick.display();
-
   for (Ball b: balls){
     b.move(balls);
     b.hitWall(); 
     b.display(); 
   } 
-   
-      /*
-  A.move(); 
-  B.move(); 
-  A.display(); 
-  B.display(); 
-  A.hitWall(); 
-  B.hitWall(); 
-  A.getDirect(B); 
-  */
-  cueStick.display();
 
 }
-
-
-
 
 /*void inHole(){
   for (int i = 0; i < balls.size(); i ++){

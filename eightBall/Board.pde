@@ -4,28 +4,39 @@ Board(){
 }
 
 void initialize(){
+  fill(225);
+  rect(0, 0, 1120, 580);
+  //resetting the board to initialization state 
   fill(color(0,100,0));
   strokeWeight(20); 
   stroke(150, 75, 0); //border to brown
   rect(20,20, 1080, 540);
-
   //holes
+  
   fill(0);
   stroke(0); 
   circle(40, 40, 20); 
   circle(1080, 40, 20); 
   circle(560, 40, 20); 
   circle(40, 540, 20); 
+  circle(560, 540, 20);
   circle(1080, 540, 20); 
-  circle(560, 540, 20); 
 }
 
 public ArrayList<Ball> initializeBalls(){
   ArrayList<Ball> ballz = new ArrayList<Ball>(); 
   ballz.add(new Ball(300, 290, 0, 0, 225)); 
-  for (int i = 0; i < 16; i++){
-      ballz.add(new Ball(0, 0, 0, 0, color(random(225), random(225), random(225)))); 
+  for (int i = 0; i < 2; i++){
+      ballz.add(new Ball(0, 0, 0, 0, color(225, 165, 0))); //yellow 
+      ballz.add(new Ball(0, 0, 0, 0, color(0, 0, 225))); //blue
+      ballz.add(new Ball(0, 0, 0, 0, color(225, 0, 0))); //red
+      ballz.add(new Ball(0, 0, 0, 0, color(60, 179, 113))); //green
+      ballz.add(new Ball(0, 0, 0, 0, color(225, 135, 0))); //orange
+      ballz.add(new Ball(0, 0, 0, 0, color(110, 90, 1775))); //purple
+      ballz.add(new Ball(0, 0, 0, 0, color(165, 0, 0))); //maroon
+      
   }
+  ballz.add(5, new Ball(0, 0, 0, 0, 0)); 
   return ballz; 
 }
 
