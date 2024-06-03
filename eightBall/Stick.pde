@@ -1,6 +1,7 @@
 public class Stick {
   private float numForce;
   private PVector position;
+  private PVector direction; 
   private Ball cueBall;
   private boolean visible;
   private boolean freeze= false; 
@@ -12,6 +13,7 @@ public class Stick {
     cueBall = cb;
     position = new PVector(100, 100);
     visible = false;
+    direction = PVector.sub(cueBall.getPosition(), position);
     //position = newPVector(cb.getPosition().x, cb.getPosition().y);
     //cueBall = new Ball(10, 10, 1, 1);
     //position = new PVector(120, 120);
@@ -44,14 +46,17 @@ public class Stick {
     float angle = atan2(dir.y, dir.x);
     //float angle = PVector.angleBetween(new PVector(1,0), dir);
     pushMatrix();
-    if (!freeze){
-      translate(position.x, position.y);
-      rotate(angle);
-    }
+    translate(position.x, position.y);
+    rotate(angle);
     noStroke();
     fill(255,191,128);
     rect(-200, -7.5, 200, 15);  
     popMatrix();
+  }
+  
+  
+  void displayLines(){
+    line(cueBall.position.x, cueBall.position.y, cueBall.position.x + 100 * cueStick.direction.x, cueBall.position.y + 100 * cueStick.direction.y); 
   }
   
   

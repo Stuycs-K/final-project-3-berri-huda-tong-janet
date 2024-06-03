@@ -34,10 +34,17 @@ void draw(){
       }
     }
   }
+  nextTurn(); 
 }
 
 void nextTurn(){
-  
+  boolean a = true; 
+  for (Ball b: balls){
+    a = (b.velocity.mag() == 0); 
+  }
+  if (a){
+    cueStick.setVis(true); 
+  }
 }
 
 void mouseDragged(){
@@ -49,14 +56,16 @@ void mouseDragged(){
 }
 
 void mouseClicked(){
-  float x = mouseX; 
-  float y = mouseY; 
   cueStick.setFreeze(!cueStick.getFreeze()); 
+  if (!cueStick.getFreeze()){
+    cueStick.updatePos(); 
+  }
 }
   
 void mousePressed(){
-  cueStick.updatePos();
-  cueStick.setVis(true);
+  if (!cueStick.getFreeze()){
+    cueStick.updatePos();
+  }
 }
  
 void mouseReleased(){
@@ -64,13 +73,16 @@ void mouseReleased(){
   if (mouseX > 1120){
     float dist = mouseY - 20; 
     cueStick.changeForce(dist/90); 
-    cueStick.hit(); 
     cueStick.setVis(false); 
+    cueStick.hit(); 
     board.displayBar(80); 
   }
-  //otherwise it changes the angle of the stick 
-  else{
-    cueStick.updatePos();
+
+}
+
+void keyPressed(){
+  if (key == 'r'){
+    setup(); 
   }
 }
   
