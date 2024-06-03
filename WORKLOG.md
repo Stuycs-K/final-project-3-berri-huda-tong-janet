@@ -8,7 +8,26 @@ cloned repo, created and setup files, worked on the drawing of the board in the 
 
 ### 5/23
 
-began working on the Stick class. .
+began working on the Stick class. 
+
+### 5/24
+initializing. set up the board and the sizing.
+
+### 5/28
+had to rebase the directory; took a long time
+worked more on stick and the eightBall methods like setup and draw
+
+### 5/29
+wrote some of the display of stick (ended up rewriting a lot of it though)
+also wrote a move method to see how
+
+### 5/30 
+sick
+
+### 5/31 - 6/2
+fixed the Stick class.
+  fixed displays; set up keys and clicks to show the directions of the stick
+  fixed how the stick hits cueBalls.
 
 
 ## Janet Tong
@@ -42,3 +61,13 @@ getMovingDirect()
 Began working on friction 
 
 Need to figure out how to make sure hitWall() is timed correctly 
+
+### 5/31 
+
+wrote initializeBalls() and arranged the balls accordingly 
+
+### 6/2 
+
+continued testing with the ball collisions, running into trouble with colliding with 2+ balls 
+
+wrote inHole() 

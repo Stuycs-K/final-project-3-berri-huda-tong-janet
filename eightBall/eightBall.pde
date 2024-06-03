@@ -8,94 +8,85 @@ public Stick cueStick;
 public Ball cueBall;
 
 void setup(){
-  size(1120, 580);//real board is 9 ft by 4.5 ft; 540 by 1080 converted!
-  Board board = new Board();
-  board.initialize();
+  size(1220, 580);//real board is 9 ft by 4.5 ft; 540 by 1080 converted!
+  board = new Board();
   balls = board.initializeBalls(); 
   cueStick = new Stick(balls.get(0));
-  //cueStick.setCB(balls.get(0));
-  board.arrangeBalls(balls);   
-  A = new Ball(150, 200, 4, 4); 
-  A.changeColor(150); 
-  B = new Ball(200, 250, -4, -8); 
-  //cueStick.display();
+  board.arrangeBalls(balls);  
+  //release thing
+  board.displayBar(80); 
 }
 
 void draw(){ 
-
-  //resetting the board to initialization state 
-  fill(color(0,100,0));
-  strokeWeight(20); 
-  stroke(150, 75, 0); //border to brown
-  rect(20,20, 1080, 540);
-  //holes
-  //cueStick.display();
-  
-  fill(0);
-  stroke(0); 
-  circle(40, 40, 20); 
-  circle(1080, 40, 20); 
-  circle(560, 40, 20); 
-  circle(40, 540, 20); 
-  circle(1080, 540, 20); 
+  board.initialize(); 
   cueStick.display();
-
-  for (Ball b: balls){
-
-    b.move();
-    b.hitWall(); 
-    contact(balls);
-    b.display(); 
+  if (mouseX < 1120){
+    board.displayBar(80);
   } 
-  A.move(); 
-  B.move(); 
-  A.display(); 
-  B.display(); 
-  A.hitWall(); 
-  B.hitWall(); 
-  A.getDirect(B); 
-  cueStick.display();
-
-}
-
-
-void contact(ArrayList<Ball> balls){
-   for(int i = 0; i < balls.size(); i++){
-     Ball b = balls.get(i); 
-     for (int j = 0; j < balls.size(); j++){
-       Ball c = balls.get(j); 
-       if (j != i){
-            b.getDirect(c); 
-       }
-     }
-   }
-}
-
-/*void inHole(){
-  for (int i = 0; i < balls.size(); i ++){
-  if ()
+  for (int i = 0; i < balls.size(); i++){
+    Ball b = balls.get(i); 
+    b.move(balls);
+    b.hitWall(); 
+    b.display(); 
+    if (b.inHole()){
+      if (b.getColor() != 225){
+        balls.remove(b); 
+      }
+    }
+    b.hitWall(); 
   }
-*/
+  nextTurn(); 
+}
 
-  void mouseClicked(){
+void nextTurn(){
+  boolean a = true; 
+  for (Ball b: balls){
+    a = (b.velocity.mag() == 0); 
+  }
+  if (a){
+    cueStick.setVis(true); 
+  }
+}
+
+void mouseDragged(){
+  if (mouseX > 1120 && mouseX < 1200){
+    pushMatrix(); 
+    board.displayBar(mouseY); 
+    popMatrix(); 
+  }
+}
+
+void mouseClicked(){
+  cueStick.setFreeze(!cueStick.getFreeze()); 
+  if (!cueStick.getFreeze()){
+    cueStick.updatePos(); 
+  }
+}
+  
+void mousePressed(){
+  if (!cueStick.getFreeze()){
     cueStick.updatePos();
-   //cueStick.setVis(true);
-   cueStick.hit();
   }
-  
-  void mousePressed(){
-  cueStick.updatePos();
-  cueStick.setVis(true);
-  }
-  void mouseReleased(){
-  cueStick.setVis(false);}
-  
-  void keyPressed(){
-  if(key == 's'){
-  cueStick.setVis(!cueStick.getVis());}
-  if (key == 'r'){
-  setup();}
 }
+ 
+void mouseReleased(){
+  //for the stick bar 
+  if (mouseX > 1120){
+    float dist = mouseY - 20; 
+    cueStick.changeForce(dist/90); 
+    cueStick.setVis(false); 
+    cueStick.hit(); 
+    board.displayBar(80); 
+  }
+
+}
+
+void keyPressed(){
+  if (key == 'r'){
+    setup(); 
+  }
+}
+  
 
 
   
