@@ -3,6 +3,7 @@ Ball A;
 Ball B; 
 Board board; 
 int turns = 0; 
+boolean cueGone = false; 
 
 public Stick cueStick;
 public Ball cueBall;
@@ -26,12 +27,21 @@ void draw(){
   for (int i = 0; i < balls.size(); i++){
     Ball b = balls.get(i); 
     b.move(balls);
-    b.hitWall(); 
     b.display(); 
     if (b.inHole()){
       if (b.getColor() != 225){
         balls.remove(b); 
       }
+      /*
+      else{
+        b.setPosition(300, 290); 
+        cueGone = true; 
+        int a = frameCount; 
+        while (frameCount - a <= 3){
+          text("You may drag the cue ball as you desire", 100, 300); 
+        }
+      }
+      */
     }
     b.hitWall(); 
   }
@@ -53,6 +63,9 @@ void mouseDragged(){
     pushMatrix(); 
     board.displayBar(mouseY); 
     popMatrix(); 
+  }
+  if (cueGone && (mouseX >= 288 && mouseX <= 312 && mouseY >= 278 && mouseY <= 302)){
+    balls.get(0).setPosition(mouseX, mouseY); 
   }
 }
 

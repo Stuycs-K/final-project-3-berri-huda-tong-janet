@@ -88,6 +88,7 @@ public class Ball{
     if (ind != 0){
       this.getDirect(balls.get(ind)); 
     }
+    hitWall(); 
     position.add(velocity); 
     acceleration.add(friction()); 
     velocity.add(acceleration); 
@@ -96,6 +97,7 @@ public class Ball{
     if (ind != 0){
       this.getDirect(balls.get(ind)); 
     }
+    hitWall(); 
   }
   
   //checks if two balls are in contact 
@@ -132,7 +134,7 @@ public class Ball{
   public boolean inHole(){
     //if center of ball is within these radii, then considered inHole 
     if ((position.y >= 20 && position.y <= 60) || (position.y >= 520 && position.y <= 560)){
-      return ((position.x >= 32 && position.y <= 48) || (position.x >= 552 && position.x <= 568) || (position.x >= 1072 && position.x <= 1088)); 
+      return ((position.x >= 30 && position.y <= 50) || (position.x >= 550 && position.x <= 570) || (position.x >= 1070 && position.x <= 1090)); 
     }
     return false; 
   }
