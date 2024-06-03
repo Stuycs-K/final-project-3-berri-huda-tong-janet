@@ -14,18 +14,15 @@ void setup(){
   cueStick = new Stick(balls.get(0));
   board.arrangeBalls(balls);  
   //release thing
-  fill(112); 
-  rect(1140, 20, 60, 540, 20, 20, 20, 20 ); 
-  for (int i = 1; i < 6; i++){
-    line(1140, 20 + (90 * i), 1200, 20 + (90 * i)); 
-  }
-  fill(255,191,128);
-  rect(1160, 80, 20, 450);
+  board.displayBar(80); 
 }
 
 void draw(){ 
   board.initialize(); 
   cueStick.display();
+  if (mouseX < 1120){
+    board.displayBar(80);
+  } 
   for (int i = 0; i < balls.size(); i++){
     Ball b = balls.get(i); 
     b.move(balls);
@@ -39,48 +36,44 @@ void draw(){
   }
 }
 
-void mouseDragged(){
-  if (mouseX > 1120 && mouseX < 1200){
-    fill(112); 
-    rect(1140, 20, 60, 540, 20, 20, 20, 20 ); 
-    for (int i = 1; i < 6; i++){
-      line(1140, 20 + (90 * i), 1200, 20 + (90 * i)); 
-    }
-    stroke(0); 
-    fill(255,191,128);
-    rect(1160, mouseY, 20, 450); 
-  }
+void nextTurn(){
   
 }
 
+void mouseDragged(){
+  if (mouseX > 1120 && mouseX < 1200){
+    pushMatrix(); 
+    board.displayBar(mouseY); 
+    popMatrix(); 
+  }
+}
+
 void mouseClicked(){
-    cueStick.updatePos();
-   //cueStick.setVis(true);
-   cueStick.hit();
+  float x = mouseX; 
+  float y = mouseY; 
+  cueStick.setFreeze(!cueStick.getFreeze()); 
 }
   
 void mousePressed(){
-  if (mouseX> 1120){
-    
-  }
-  else{
-    cueStick.updatePos();
-    cueStick.setVis(true);
-  }
+  cueStick.updatePos();
+  cueStick.setVis(true);
 }
  
 void mouseReleased(){
+  //for the stick bar 
   if (mouseX > 1120){
-    
+    float dist = mouseY - 20; 
+    cueStick.changeForce(dist/90); 
+    cueStick.hit(); 
+    cueStick.setVis(false); 
+    board.displayBar(80); 
+  }
+  //otherwise it changes the angle of the stick 
+  else{
+    cueStick.updatePos();
   }
 }
   
-void keyPressed(){
-  if(key == 's'){
-  cueStick.setVis(!cueStick.getVis());}
-  if (key == 'r'){
-  setup();}
-}
 
 
   

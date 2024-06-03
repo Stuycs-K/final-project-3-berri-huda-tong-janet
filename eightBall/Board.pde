@@ -66,6 +66,23 @@ public void arrangeBalls(ArrayList<Ball> ballz){
   }
 }
 
+public void displayBar(float y){
+  noStroke(); 
+  fill(225);
+  rect(1120, 0, 100, 580);
+  stroke(0); 
+  fill(112); 
+  rect(1140, 20, 60, 540, 20, 20, 20, 20 ); 
+  for (int i = 1; i < 6; i++){
+    line(1140, 20 + (90 * i), 1200, 20 + (90 * i)); 
+  }
+  if (y != 0){
+    stroke(0); 
+    fill(255,191,128);
+    rect(1160, y, 20, 450); 
+  }
+}
+
 
 
 

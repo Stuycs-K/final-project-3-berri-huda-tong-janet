@@ -3,11 +3,12 @@ public class Stick {
   private PVector position;
   private Ball cueBall;
   private boolean visible;
+  private boolean freeze= false; 
 
   //before we implement the drag for the force of the stick gna set it as like
   
   Stick(Ball cb) {
-    numForce = 3.5;
+    numForce = 1;
     cueBall = cb;
     position = new PVector(100, 100);
     visible = false;
@@ -35,20 +36,31 @@ public class Stick {
   
   void display(){
     if (!visible){return;}
-    updatePos();
+    if (!freeze){
+      updatePos();
+    }
     PVector pos = cueBall.getPosition();
     PVector dir = PVector.sub(pos, position);
     float angle = atan2(dir.y, dir.x);
     //float angle = PVector.angleBetween(new PVector(1,0), dir);
     pushMatrix();
-    translate(position.x, position.y);
-    rotate(angle);
+    if (!freeze){
+      translate(position.x, position.y);
+      rotate(angle);
+    }
     noStroke();
     fill(255,191,128);
     rect(-200, -7.5, 200, 15);  
-    
-    
     popMatrix();
+  }
+  
+  
+  boolean getFreeze(){
+    return freeze;
+  }
+  
+  void setFreeze(boolean a){
+    freeze = a; 
   }
   
   void hit(){
@@ -69,4 +81,9 @@ public class Stick {
   
   //position = new PVector(mouseX, mouseY);
   }
+    
+  public void changeForce(float val){
+    numForce = val; 
+  }
+    
 }
