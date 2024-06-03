@@ -111,7 +111,7 @@ public class Ball{
   //angle of incidence = reflected angle 
   public void hitWall(){
     if ((position.x -12  <= 40) || (position.x -12 + velocity.x <= 40) || (position.x +12 >= 1080) || (position.x + 12 + velocity.x >= 1080)){
-       velocity.x = -1 * velocity.x; 
+     velocity.x = -1 * velocity.x; 
     }
     if ((position.y -12  <= 40) || (position.y -12 + velocity.y <= 40) || (position.y +12 >= 540) || (position.y + 12 + velocity.y >= 540)){
       velocity.y = -1 * velocity.y; 
@@ -129,8 +129,8 @@ public class Ball{
 
   public boolean inHole(){
     //if center of ball is within these radii, then considered inHole 
-    if ((position.y >= 32 && position.y <= 48) || (position.y >= 532 && position.y <= 548)){
-      return ((position.x >= 32 && position.y <= 48) || (position.x >= 552 && position.x <= 568) || (position.x >= 1072 && position.x <= 1088)); 
+    if ((position.y >= 20 && position.y <= 60) || (position.y >= 520 && position.y <= 560)){
+      return ((position.x >= 20 && position.y <= 60) || (position.x >= 540 && position.x <= 580) || (position.x >= 1060 && position.x <= 1100)); 
     }
     return false; 
   }
