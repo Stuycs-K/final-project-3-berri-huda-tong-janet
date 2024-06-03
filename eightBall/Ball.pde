@@ -4,6 +4,7 @@ public class Ball{
   private PVector velocity;
   private PVector acceleration;
   private color colour;
+  private boolean stripe; 
   private final float friction_constant = 0.1; 
   
 //temp constructor 
@@ -18,12 +19,13 @@ public class Ball{
   */ 
 
 //CONSTRUCTOR -------------
-  public Ball(float x, float y, float xspeed, float yspeed, color c){
+  public Ball(float x, float y, float xspeed, float yspeed, color c, boolean stri){
     mass = .165; 
     position = new PVector(x, y); 
     velocity = new PVector(xspeed, yspeed); 
     acceleration = new PVector(0, 0); 
     colour = c ; 
+    stripe = stri; 
   }
  
 //BALL COLLISIONS -------------
@@ -148,6 +150,10 @@ public class Ball{
     noStroke();
     fill(colour); 
     circle(position.x, position.y, 24);
+    if (stripe){
+      fill(225); 
+      rect(position.x - 4, position.y - 11, 8, 22); 
+    }
   }
   
   public PVector getPosition(){

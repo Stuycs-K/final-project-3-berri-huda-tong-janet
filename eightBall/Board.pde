@@ -28,18 +28,25 @@ void initialize(){
 
 public ArrayList<Ball> initializeBalls(){
   ArrayList<Ball> ballz = new ArrayList<Ball>(); 
-  ballz.add(new Ball(300, 290, 0, 0, 225)); 
-  for (int i = 0; i < 2; i++){
-      ballz.add(new Ball(0, 0, 0, 0, color(225, 165, 0))); //yellow 
-      ballz.add(new Ball(0, 0, 0, 0, color(0, 0, 225))); //blue
-      ballz.add(new Ball(0, 0, 0, 0, color(225, 0, 0))); //red
-      ballz.add(new Ball(0, 0, 0, 0, color(60, 179, 113))); //green
-      ballz.add(new Ball(0, 0, 0, 0, color(225, 135, 0))); //orange
-      ballz.add(new Ball(0, 0, 0, 0, color(110, 90, 1775))); //purple
-      ballz.add(new Ball(0, 0, 0, 0, color(165, 0, 0))); //maroon
+  ballz.add(new Ball(300, 290, 0, 0, 225, false)); 
+  ballz.add(new Ball(0, 0, 0, 0, color(225, 165, 0), false)); //yellow 
+  ballz.add(new Ball(0, 0, 0, 0, color(0, 0, 225), true)); //blue
+  ballz.add(new Ball(0, 0, 0, 0, color(225, 0, 0), true)); //red
+  ballz.add(new Ball(0, 0, 0, 0, color(60, 179, 113), true)); //green
+  ballz.add(new Ball(0, 0, 0, 0, color(225, 135, 0), true)); //orange
+  ballz.add(new Ball(0, 0, 0, 0, color(0, 0, 225), false)); //blue
+  ballz.add(new Ball(0, 0, 0, 0, color(225, 0, 0), false)); //red
+  ballz.add(new Ball(0, 0, 0, 0, color(60, 179, 113), false)); //green
+  ballz.add(new Ball(0, 0, 0, 0, color(225, 135, 0), false)); //orange
+  ballz.add(new Ball(0, 0, 0, 0, color(110, 90, 1775), false)); //purple
+  ballz.add(new Ball(0, 0, 0, 0, color(165, 0, 0), false)); //maroon
+  ballz.add(new Ball(0, 0, 0, 0, color(225, 165, 0), true)); //yellow 
+
+  ballz.add(new Ball(0, 0, 0, 0, color(110, 90, 1775), true)); //purple
+  ballz.add(new Ball(0, 0, 0, 0, color(165, 0, 0), true)); //maroon
       
-  }
-  ballz.add(5, new Ball(0, 0, 0, 0, 0)); 
+
+  ballz.add(5, new Ball(0, 0, 0, 0, 0, false)); 
   return ballz; 
 }
 

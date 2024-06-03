@@ -33,6 +33,7 @@ void draw(){
         balls.remove(b); 
       }
     }
+    b.hitWall(); 
   }
   nextTurn(); 
 }
