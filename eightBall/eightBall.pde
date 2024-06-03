@@ -8,7 +8,7 @@ public Stick cueStick;
 public Ball cueBall;
 
 void setup(){
-  size(1120, 580);//real board is 9 ft by 4.5 ft; 540 by 1080 converted!
+  size(1220, 580);//real board is 9 ft by 4.5 ft; 540 by 1080 converted!
   board = new Board();
   balls = board.initializeBalls(); 
   cueStick = new Stick(balls.get(0));

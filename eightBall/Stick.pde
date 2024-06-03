@@ -47,9 +47,6 @@ public class Stick {
     fill(255,191,128);
     rect(-200, -7.5, 200, 15);  
     
-    //lines 
-    
-    
     
     popMatrix();
   }
