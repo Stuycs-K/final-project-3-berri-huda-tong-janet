@@ -23,15 +23,7 @@ void initialize(){
   circle(40, 540, 40); 
   circle(560, 540, 40);
   circle(1080, 540, 40); 
-  
-  //release thing 
-  fill(112); 
-  rect(1140, 20, 60, 540, 20, 20, 20, 20 ); 
-  for (int i = 1; i < 6; i++){
-    line(1140, 20 + (90 * i), 1200, 20 + (90 * i)); 
-  }
-  fill(255,191,128);
-  rect(1160, 80, 20, 450); 
+   
 }
 
 public ArrayList<Ball> initializeBalls(){
@@ -72,9 +64,9 @@ public void arrangeBalls(ArrayList<Ball> ballz){
       a.setPosition(762+ (48 * sqrt(3)), 242 + (25 * (i -11) + (i-11)));  
     }
   }
-
-  
 }
+
+
 
 
 }

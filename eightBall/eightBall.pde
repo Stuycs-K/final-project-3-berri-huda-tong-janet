@@ -12,7 +12,15 @@ void setup(){
   board = new Board();
   balls = board.initializeBalls(); 
   cueStick = new Stick(balls.get(0));
-  board.arrangeBalls(balls);   
+  board.arrangeBalls(balls);  
+  //release thing
+  fill(112); 
+  rect(1140, 20, 60, 540, 20, 20, 20, 20 ); 
+  for (int i = 1; i < 6; i++){
+    line(1140, 20 + (90 * i), 1200, 20 + (90 * i)); 
+  }
+  fill(255,191,128);
+  rect(1160, 80, 20, 450);
 }
 
 void draw(){ 
@@ -31,6 +39,20 @@ void draw(){
   }
 }
 
+void mouseDragged(){
+  if (mouseX > 1120 && mouseX < 1200){
+    fill(112); 
+    rect(1140, 20, 60, 540, 20, 20, 20, 20 ); 
+    for (int i = 1; i < 6; i++){
+      line(1140, 20 + (90 * i), 1200, 20 + (90 * i)); 
+    }
+    stroke(0); 
+    fill(255,191,128);
+    rect(1160, mouseY, 20, 450); 
+  }
+  
+}
+
 void mouseClicked(){
     cueStick.updatePos();
    //cueStick.setVis(true);
@@ -38,12 +60,20 @@ void mouseClicked(){
 }
   
 void mousePressed(){
-  cueStick.updatePos();
-  cueStick.setVis(true);
+  if (mouseX> 1120){
+    
+  }
+  else{
+    cueStick.updatePos();
+    cueStick.setVis(true);
+  }
 }
  
 void mouseReleased(){
-  cueStick.setVis(false);}
+  if (mouseX > 1120){
+    
+  }
+}
   
 void keyPressed(){
   if(key == 's'){
