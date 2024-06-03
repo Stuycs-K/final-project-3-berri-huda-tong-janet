@@ -50,16 +50,16 @@ public void arrangeBalls(ArrayList<Ball> ballz){
       a.setPosition(750, 290); 
     }
     if ((i >= 2) && (i <= 3)){
-      a.setPosition(750 + (12 * sqrt(3)), 278 + (24 * (i -2) + (i-2)));  
+      a.setPosition(753+ (12 * sqrt(3)), 279 + (25 * (i -2) + (i-2)));  
     }
     if ((i >= 4) && (i <= 6)){
-      a.setPosition(752 + (24 * sqrt(3)), 266 + (24 * (i -4) + (i-4)));  
+      a.setPosition(756 + (24 * sqrt(3)), 266 + (25 * (i -4) + (i-4)));  
     }
     if ((i >= 7) && (i <= 10)){
-      a.setPosition(754 + (36 * sqrt(3)), 254 + (24 * (i -7) + (i-7)));  
+      a.setPosition(759 + (36 * sqrt(3)), 254 + (25 * (i -7) + (i-7)));  
     }
     if ((i >= 11) && (i <= 15)){
-      a.setPosition(756 + (48 * sqrt(3)), 242 + (24 * (i -11) + (i-11)));  
+      a.setPosition(762+ (48 * sqrt(3)), 242 + (25 * (i -11) + (i-11)));  
     }
   }
 

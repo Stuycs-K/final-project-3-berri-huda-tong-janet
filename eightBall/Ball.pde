@@ -82,12 +82,15 @@ public class Ball{
     if (velocity.mag() <= 0.5){
       velocity.set(0, 0); 
     }
+    int ind = contact(balls); 
+    if (ind != 0){
+      this.getDirect(balls.get(ind)); 
+    }
     position.add(velocity); 
     acceleration.add(friction()); 
     velocity.add(acceleration); 
     acceleration.set(0, 0); 
-    
-    int ind = contact(balls); 
+    ind = contact(balls); 
     if (ind != 0){
       this.getDirect(balls.get(ind)); 
     }
@@ -98,7 +101,7 @@ public class Ball{
   public int contact(ArrayList<Ball> balls){
     for (int j = 0; j < balls.size(); j++){
        Ball c = balls.get(j); 
-        if (this.position.dist(c.position) <= 24  && this.position.dist(c.position) != 0){
+        if ((this.position.dist(c.position) <= 24 || this.position.copy().add(this.velocity).dist(c.position.copy().add(c.velocity)) <= 24)  && this.position.dist(c.position) != 0){
           return j ; 
         }
      }
@@ -107,10 +110,10 @@ public class Ball{
   
   //angle of incidence = reflected angle 
   public void hitWall(){
-    if ((floor(position.x -12) <= 40) || (floor(position.x +12) >= 1080)){
+    if ((position.x -12  <= 40) || (position.x -12 + velocity.x <= 40) || (position.x +12 >= 1080) || (position.x + 12 + velocity.x >= 1080)){
        velocity.x = -1 * velocity.x; 
     }
-    if ((floor(position.y -12) <= 40) || (floor(position.y +12) >= 540)){
+    if ((position.y -12  <= 40) || (position.y -12 + velocity.y <= 40) || (position.y +12 >= 540) || (position.y + 12 + velocity.y >= 540)){
       velocity.y = -1 * velocity.y; 
     }
   }
@@ -127,11 +130,10 @@ public class Ball{
   public boolean inHole(){
     //if center of ball is within these radii, then considered inHole 
     if ((position.y >= 32 && position.y <= 48) || (position.y >= 532 && position.y <= 548)){
-      return ((position.x >= 32 && position.y <= 48) || (position.y >= 552 && position.y <= 568) || (position.y >= 1072 && position.y <= 1088)); 
+      return ((position.x >= 32 && position.y <= 48) || (position.x >= 552 && position.x <= 568) || (position.x >= 1072 && position.x <= 1088)); 
     }
     return false; 
   }
-  
   
   
   

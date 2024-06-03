@@ -17,12 +17,13 @@ public class Stick {
     //cueBall = new Ball(120 + 10, 120+5, 0, 0);
     //is direction not just the dierction of the ball...
   }
+  
   void setVis(boolean b){
-  visible = b;
-}
+    visible = b;
+  }
 
   void setPos( int x, int y){
-  position = new PVector(x, y);
+    position = new PVector(x, y);
   }
   
   PVector calculateAcceleration(){
@@ -32,25 +33,25 @@ public class Stick {
     return acceleration;
   }
   
-  void setCB(Ball cb){
-  cueBall = cb;
-  }
-  
-  
   void display(){
     if (!visible){return;}
     updatePos();
-  PVector pos = cueBall.getPosition();
-  PVector dir = PVector.sub(pos, position);
-  float angle = atan2(dir.y, dir.x);
-  //float angle = PVector.angleBetween(new PVector(1,0), dir);
-  pushMatrix();
-  translate(position.x, position.y);
-  rotate(angle);
-  noStroke();
-  fill(255,191,128);
-  rect(-200, -7.5, 200, 15);  
-  popMatrix();
+    PVector pos = cueBall.getPosition();
+    PVector dir = PVector.sub(pos, position);
+    float angle = atan2(dir.y, dir.x);
+    //float angle = PVector.angleBetween(new PVector(1,0), dir);
+    pushMatrix();
+    translate(position.x, position.y);
+    rotate(angle);
+    noStroke();
+    fill(255,191,128);
+    rect(-200, -7.5, 200, 15);  
+    
+    //lines 
+    
+    
+    
+    popMatrix();
   }
   
   void hit(){
@@ -63,11 +64,10 @@ public class Stick {
   }
   
   void updatePos(){
-  PVector mousePos = new PVector(mouseX, mouseY);
-  PVector dir =PVector.sub(mousePos, cueBall.getPosition());
-  float angle = atan2(dir.y, dir.x);
-  position.set(cueBall.getPosition().x - 50 * cos(angle), cueBall.getPosition().y - 50* sin(angle));
-  
+    PVector mousePos = new PVector(mouseX, mouseY);
+    PVector dir =PVector.sub(mousePos, cueBall.getPosition());
+    float angle = atan2(dir.y, dir.x);
+    position.set(cueBall.getPosition().x - 50 * cos(angle), cueBall.getPosition().y - 50* sin(angle));
  
   
   //position = new PVector(mouseX, mouseY);
