@@ -132,7 +132,7 @@ public class Ball{
   public boolean inHole(){
     //if center of ball is within these radii, then considered inHole 
     if ((position.y >= 20 && position.y <= 60) || (position.y >= 520 && position.y <= 560)){
-      return ((position.x >= 20 && position.y <= 60) || (position.x >= 540 && position.x <= 580) || (position.x >= 1060 && position.x <= 1100)); 
+      return ((position.x >= 32 && position.y <= 48) || (position.x >= 552 && position.x <= 568) || (position.x >= 1072 && position.x <= 1088)); 
     }
     return false; 
   }
