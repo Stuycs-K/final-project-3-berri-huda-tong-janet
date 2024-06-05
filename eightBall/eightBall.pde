@@ -5,6 +5,7 @@ Board board;
 int turns = 0; 
 boolean cueGone = false; 
 boolean lose = false; 
+boolean win = false; 
 
 public Stick cueStick;
 public Ball cueBall;
@@ -20,7 +21,7 @@ void setup(){
 }
 
 void draw(){ 
-  if (!lose){
+  if (!lose && !win){
     board.initialize(); 
     cueStick.display();
     if (mouseX < 1120){
@@ -30,28 +31,25 @@ void draw(){
       Ball b = balls.get(i); 
       b.move(balls);
       b.display(); 
-      if (b.inHole()){
-        if (b.getColor() != 225){
-          balls.remove(b); 
-        }
-        /*
-        else{
-          b.setPosition(300, 290); 
-          cueGone = true; 
-          int a = frameCount; 
-          while (frameCount - a <= 3){
-            text("You may drag the cue ball as you desire", 100, 300); 
-          }
-        }
-        */
+      if (b.update(balls) == 0){
+        lose = true; 
+      }
+      if (b.update(balls) == 1){
+        win = true; 
       }
       b.hitWall(); 
     }
     nextTurn(); 
   }
   else{
-    textSize(100); 
-    text("YOU LOST! Press R to restart", 200, 400); 
+    textSize(50); 
+    if (lose){
+      text("YOU LOST! Press R to restart", 200, 400); 
+    }
+    if (win){
+      text("YOU WON! Press R to restart", 200, 250); 
+    }
+    
   }
 }
 

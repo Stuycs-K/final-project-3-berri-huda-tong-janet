@@ -152,10 +152,12 @@ public class Ball{
         }
         return 1; //0 means display win message
       }
+      /*
       if (getColor() == 225){
         setPosition(300, 200); 
         
       }
+      */
       /*
       else{
         b.setPosition(300, 290); 
@@ -167,6 +169,7 @@ public class Ball{
       }
       */
     }
+          return 2; 
   }
   
   
