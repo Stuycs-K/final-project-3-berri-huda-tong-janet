@@ -6,27 +6,41 @@ int turns = 0;
 boolean cueGone = false; 
 boolean lose = false; 
 boolean win = false; 
+boolean lock = false; 
+boolean pressed = false; 
 
 public Stick cueStick;
 public Ball cueBall;
 
 void setup(){
-  size(1220, 580);//real board is 9 ft by 4.5 ft; 540 by 1080 converted!
+  size(1220, 650);//real board is 9 ft by 4.5 ft; 540 by 1080 converted!
   board = new Board();
   balls = board.initializeBalls(); 
   cueStick = new Stick(balls.get(0));
   board.arrangeBalls(balls);  
   //release thing
   board.displayBar(80); 
+  //lock button 
+  fill(getLock()); 
+  rect(1140, 580, 60, 50, 10, 10, 10, 10); 
+  textSize(20); 
+  fill(0); 
+  text("LOCK", 1148, 610); 
 }
 
 void draw(){ 
   if (!lose && !win){
     board.initialize(); 
     cueStick.display();
-    if (mouseX < 1120){
+      //lock button 
+    fill(getLock()); 
+    rect(1140, 580, 60, 50, 10, 10, 10, 10); 
+    textSize(20); 
+    fill(0); 
+    text("LOCK", 1148, 610); 
+    if (mouseX < 1120 || (mouseX > 1120 && !pressed)){
       board.displayBar(80);
-    } 
+    }
     for (int i = 0; i < balls.size(); i++){
       Ball b = balls.get(i); 
       b.move(balls);
@@ -66,7 +80,15 @@ void nextTurn(){
   }
 }
 
+color getLock(){
+  if (lock){
+    return color(225, 0, 0); 
+  }
+  return color(0, 225, 0); 
+}
+
 void mouseDragged(){
+  pressed = true; 
   if (mouseX > 1120 && mouseX < 1200){
     pushMatrix(); 
     board.displayBar(mouseY); 
@@ -78,6 +100,7 @@ void mouseDragged(){
 }
 
 void mouseClicked(){
+  lock = !lock; 
   cueStick.setFreeze(!cueStick.getFreeze()); 
   if (!cueStick.getFreeze()){
     cueStick.updatePos(); 
@@ -99,6 +122,7 @@ void mouseReleased(){
     cueStick.hit(); 
     board.displayBar(80); 
   }
+  pressed = false; 
 }
 
 void keyPressed(){

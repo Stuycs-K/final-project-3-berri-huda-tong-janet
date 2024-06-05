@@ -5,7 +5,7 @@ Board(){
 
 void initialize(){
   fill(225);
-  rect(0, 0, 1120, 580);
+  rect(0, 0, 1220, 650);
   //resetting the board to initialization state 
   fill(color(0,100,0));
   strokeWeight(20); 
@@ -23,6 +23,8 @@ void initialize(){
   circle(40, 540, 40); 
   circle(560, 540, 40);
   circle(1080, 540, 40); 
+  
+  
    
 }
 
