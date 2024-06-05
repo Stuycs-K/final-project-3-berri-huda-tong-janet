@@ -109,6 +109,8 @@ void mouseClicked(){
   if (!cueStick.getFreeze()){
     cueStick.updatePos(); 
   }
+  
+  System.out.println("x: " + mouseX + " y: " + mouseY);
 }
   
 void mousePressed(){
