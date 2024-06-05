@@ -71,3 +71,12 @@ wrote initializeBalls() and arranged the balls accordingly
 continued testing with the ball collisions, running into trouble with colliding with 2+ balls 
 
 wrote inHole() 
+
+### 6/3 
+
+began working on cueBall repositioning 
+
+### 6/4 
+
+completed cueBall repositioning, WIN/LOSS messages created based on result 
+with black ball, created "demo" keys, debugging 
