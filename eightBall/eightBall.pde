@@ -41,14 +41,18 @@ void draw(){
     if (mouseX < 1120 || (mouseX > 1120 && !pressed)){
       board.displayBar(80);
     }
+    if (pressed){
+      board.displayBar(mouseY); 
+    }
     for (int i = 0; i < balls.size(); i++){
       Ball b = balls.get(i); 
       b.move(balls);
       b.display(); 
       if (b.update(balls) == 0){
+        System.out.println("honk"); 
         lose = true; 
       }
-      if (b.update(balls) == 1){
+      else if (b.update(balls) == 1){
         win = true; 
       }
       b.hitWall(); 
@@ -56,12 +60,13 @@ void draw(){
     nextTurn(); 
   }
   else{
+    fill(0); 
     textSize(50); 
     if (lose){
-      text("YOU LOST! Press R to restart", 200, 275); 
+      text("YOU LOST! Press R to restart", 200, 610); 
     }
     if (win){
-      text("YOU WON! Press R to restart", 200, 275); 
+      text("YOU WON! Press R to restart", 200, 610); 
     }
     
   }
@@ -128,6 +133,8 @@ void mouseReleased(){
 void keyPressed(){
   if (key == 'r'){
     setup(); 
+    lose = false; 
+    win = false; 
   }
   if (key == 'd'){
     balls.get(5).setPosition(70, 70); 

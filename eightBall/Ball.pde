@@ -142,12 +142,9 @@ public class Ball{
   public int update(ArrayList<Ball> balls){
     if (inHole()){
       //not white ball
-      if (balls.indexOf(this) != 0){
-         balls.remove(this); 
-      }
       //if black ball
       if (getColor() == 0){
-        if (balls.size() != 1){
+        if (balls.size() != 2){
           return 0; //0 means change lose to true
         }
         return 1; //0 means display win message
@@ -155,6 +152,10 @@ public class Ball{
       if (getColor() == 225){
         setPosition(300, 200); 
         cueGone = true;  
+        cueStick.updatePos(); 
+      }
+      if (getColor() != 225){
+        balls.remove(this); 
       }
     }
     return 2; 
