@@ -4,21 +4,13 @@ public class Stick {
   private PVector direction; 
   private Ball cueBall;
   private boolean visible;
-  private boolean freeze= false; 
-
-  //before we implement the drag for the force of the stick gna set it as like
-  
+  private boolean freeze= false;   
   Stick(Ball cb) {
     numForce = 1;
     cueBall = cb;
     position = new PVector(100, 100);
     visible = false;
     direction = PVector.sub(cueBall.getPosition(), position);
-    //position = newPVector(cb.getPosition().x, cb.getPosition().y);
-    //cueBall = new Ball(10, 10, 1, 1);
-    //position = new PVector(120, 120);
-    //cueBall = new Ball(120 + 10, 120+5, 0, 0);
-    //is direction not just the dierction of the ball...
   }
   
   void setVis(boolean b){
@@ -45,7 +37,6 @@ public class Stick {
     PVector pos = cueBall.getPosition();
     PVector dir = PVector.sub(pos, position);
     float angle = atan2(dir.y, dir.x);
-    //float angle = PVector.angleBetween(new PVector(1,0), dir);
     pushMatrix();
     translate(position.x, position.y);
     rotate(angle);
@@ -75,7 +66,6 @@ public class Stick {
   PVector pos = cueBall.getPosition();
   PVector dir = PVector.sub(pos, position);
   float angle = atan2(dir.y, dir.x);
-  //float angle = PVector.angleBetween(new PVector(1,0), dir);
   pushMatrix();
   translate(position.x, position.y);
   rotate(angle);
@@ -100,9 +90,6 @@ public class Stick {
     PVector dir =PVector.sub(mousePos, cueBall.getPosition());
     float angle = atan2(dir.y, dir.x);
     position.set(cueBall.getPosition().x - 50 * cos(angle), cueBall.getPosition().y - 50* sin(angle));
- 
-  
-  //position = new PVector(mouseX, mouseY);
   }
     
   public void changeForce(float val){
