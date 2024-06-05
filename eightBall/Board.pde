@@ -28,7 +28,7 @@ void initialize(){
 
 public ArrayList<Ball> initializeBalls(){
   ArrayList<Ball> ballz = new ArrayList<Ball>(); 
-  ballz.add(new Ball(300, 290, 0, 0, 225, false)); 
+  ballz.add(new Ball(300, 290, 0, 0, 225, false)); //white
   ballz.add(new Ball(0, 0, 0, 0, color(225, 165, 0), false)); //yellow 
   ballz.add(new Ball(0, 0, 0, 0, color(0, 0, 225), true)); //blue
   ballz.add(new Ball(0, 0, 0, 0, color(225, 0, 0), true)); //red
@@ -46,7 +46,7 @@ public ArrayList<Ball> initializeBalls(){
   ballz.add(new Ball(0, 0, 0, 0, color(165, 0, 0), true)); //maroon
       
 
-  ballz.add(5, new Ball(0, 0, 0, 0, 0, false)); 
+  ballz.add(5, new Ball(0, 0, 0, 0, 0, false)); //black
   return ballz; 
 }
 

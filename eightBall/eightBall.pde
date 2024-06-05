@@ -4,6 +4,7 @@ Ball B;
 Board board; 
 int turns = 0; 
 boolean cueGone = false; 
+boolean lose = false; 
 
 public Stick cueStick;
 public Ball cueBall;
@@ -19,33 +20,39 @@ void setup(){
 }
 
 void draw(){ 
-  board.initialize(); 
-  cueStick.display();
-  if (mouseX < 1120){
-    board.displayBar(80);
-  } 
-  for (int i = 0; i < balls.size(); i++){
-    Ball b = balls.get(i); 
-    b.move(balls);
-    b.display(); 
-    if (b.inHole()){
-      if (b.getColor() != 225){
-        balls.remove(b); 
-      }
-      /*
-      else{
-        b.setPosition(300, 290); 
-        cueGone = true; 
-        int a = frameCount; 
-        while (frameCount - a <= 3){
-          text("You may drag the cue ball as you desire", 100, 300); 
+  if (!lose){
+    board.initialize(); 
+    cueStick.display();
+    if (mouseX < 1120){
+      board.displayBar(80);
+    } 
+    for (int i = 0; i < balls.size(); i++){
+      Ball b = balls.get(i); 
+      b.move(balls);
+      b.display(); 
+      if (b.inHole()){
+        if (b.getColor() != 225){
+          balls.remove(b); 
         }
+        /*
+        else{
+          b.setPosition(300, 290); 
+          cueGone = true; 
+          int a = frameCount; 
+          while (frameCount - a <= 3){
+            text("You may drag the cue ball as you desire", 100, 300); 
+          }
+        }
+        */
       }
-      */
+      b.hitWall(); 
     }
-    b.hitWall(); 
+    nextTurn(); 
   }
-  nextTurn(); 
+  else{
+    textSize(100); 
+    text("YOU LOST! Press R to restart", 200, 400); 
+  }
 }
 
 void nextTurn(){
@@ -55,6 +62,9 @@ void nextTurn(){
   }
   if (a){
     cueStick.setVis(true); 
+  }
+  else{
+    cueStick.setVis(false); 
   }
 }
 
@@ -83,15 +93,14 @@ void mousePressed(){
 }
  
 void mouseReleased(){
+  cueStick.setVis(false); 
   //for the stick bar 
   if (mouseX > 1120){
     float dist = mouseY - 20; 
     cueStick.changeForce(dist/90); 
-    cueStick.setVis(false); 
     cueStick.hit(); 
     board.displayBar(80); 
   }
-
 }
 
 void keyPressed(){

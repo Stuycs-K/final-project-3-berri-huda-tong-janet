@@ -134,9 +134,39 @@ public class Ball{
   public boolean inHole(){
     //if center of ball is within these radii, then considered inHole 
     if ((position.y >= 20 && position.y <= 60) || (position.y >= 520 && position.y <= 560)){
-      return ((position.x >= 30 && position.y <= 50) || (position.x >= 550 && position.x <= 570) || (position.x >= 1070 && position.x <= 1090)); 
+      return ((position.x >= 25 && position.x <= 55) || (position.x >= 545 && position.x <= 575) || (position.x >= 1065 && position.x <= 1095)); 
     }
     return false; 
+  }
+  
+  public int update(ArrayList<Ball> balls){
+    if (inHole()){
+      //not white ball
+      if (balls.indexOf(this) != 0){
+         balls.remove(this); 
+      }
+      //if black ball
+      if (getColor() == 0){
+        if (balls.size() != 0){
+          return 0; //0 means change lose to true
+        }
+        return 1; //0 means display win message
+      }
+      if (getColor() == 225){
+        setPosition(300, 200); 
+        
+      }
+      /*
+      else{
+        b.setPosition(300, 290); 
+        cueGone = true; 
+        int a = frameCount; 
+        while (frameCount - a <= 3){
+          text("You may drag the cue ball as you desire", 100, 300); 
+        }
+      }
+      */
+    }
   }
   
   
