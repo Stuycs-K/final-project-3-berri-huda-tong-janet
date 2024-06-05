@@ -44,10 +44,10 @@ void draw(){
   else{
     textSize(50); 
     if (lose){
-      text("YOU LOST! Press R to restart", 200, 400); 
+      text("YOU LOST! Press R to restart", 200, 275); 
     }
     if (win){
-      text("YOU WON! Press R to restart", 200, 250); 
+      text("YOU WON! Press R to restart", 200, 275); 
     }
     
   }
@@ -104,6 +104,19 @@ void mouseReleased(){
 void keyPressed(){
   if (key == 'r'){
     setup(); 
+  }
+  if (key == 'd'){
+    balls.get(5).setPosition(70, 70); 
+    balls.get(0).setPosition(100, 100); 
+  }
+  if (key == 'w'){
+    for (int i = balls.size() -1; i > 0; i--){
+      if (i != 5){
+        balls.remove(i); 
+      }
+    }
+    balls.get(1).setPosition(70, 70); 
+    balls.get(0).setPosition(100, 100); 
   }
 }
   

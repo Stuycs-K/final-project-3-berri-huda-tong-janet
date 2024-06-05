@@ -147,7 +147,7 @@ public class Ball{
       }
       //if black ball
       if (getColor() == 0){
-        if (balls.size() != 0){
+        if (balls.size() != 1){
           return 0; //0 means change lose to true
         }
         return 1; //0 means display win message
