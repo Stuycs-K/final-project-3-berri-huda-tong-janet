@@ -72,7 +72,7 @@ void mouseDragged(){
     board.displayBar(mouseY); 
     popMatrix(); 
   }
-  if (cueGone && (mouseX >= 288 && mouseX <= 312 && mouseY >= 278 && mouseY <= 302)){
+  if (cueGone && (mouseX >= balls.get(0).position.x -12 && mouseX <=  balls.get(0).position.x + 12 && mouseY >=  balls.get(0).position.y -12 && mouseY <=  balls.get(0).position.y +12)){
     balls.get(0).setPosition(mouseX, mouseY); 
   }
 }

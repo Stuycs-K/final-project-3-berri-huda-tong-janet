@@ -152,24 +152,12 @@ public class Ball{
         }
         return 1; //0 means display win message
       }
-      /*
       if (getColor() == 225){
         setPosition(300, 200); 
-        
+        cueGone = true;  
       }
-      */
-      /*
-      else{
-        b.setPosition(300, 290); 
-        cueGone = true; 
-        int a = frameCount; 
-        while (frameCount - a <= 3){
-          text("You may drag the cue ball as you desire", 100, 300); 
-        }
-      }
-      */
     }
-          return 2; 
+    return 2; 
   }
   
   
