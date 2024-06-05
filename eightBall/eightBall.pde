@@ -49,7 +49,6 @@ void draw(){
       b.move(balls);
       b.display(); 
       if (b.update(balls) == 0){
-        System.out.println("honk"); 
         lose = true; 
       }
       else if (b.update(balls) == 1){
