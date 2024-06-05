@@ -80,6 +80,7 @@ public void displayBar(float y){
   fill(225);
   rect(1120, 0, 100, 580);
   stroke(0); 
+  strokeWeight(1); 
   fill(112); 
   rect(1140, 20, 60, 540, 20, 20, 20, 20 ); 
   for (int i = 1; i < 6; i++){
