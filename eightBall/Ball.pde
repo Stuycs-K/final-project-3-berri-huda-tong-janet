@@ -88,6 +88,7 @@ public class Ball{
     if (ind != 0){
       this.getDirect(balls.get(ind)); 
     }
+    hitWall(); 
     position.add(velocity); 
     acceleration.add(friction()); 
     velocity.add(acceleration); 
@@ -96,6 +97,7 @@ public class Ball{
     if (ind != 0){
       this.getDirect(balls.get(ind)); 
     }
+    hitWall(); 
   }
   
   //checks if two balls are in contact 
@@ -132,9 +134,31 @@ public class Ball{
   public boolean inHole(){
     //if center of ball is within these radii, then considered inHole 
     if ((position.y >= 20 && position.y <= 60) || (position.y >= 520 && position.y <= 560)){
-      return ((position.x >= 32 && position.y <= 48) || (position.x >= 552 && position.x <= 568) || (position.x >= 1072 && position.x <= 1088)); 
+      return ((position.x >= 25 && position.x <= 55) || (position.x >= 545 && position.x <= 575) || (position.x >= 1065 && position.x <= 1095)); 
     }
     return false; 
+  }
+  
+  public int update(ArrayList<Ball> balls){
+    if (inHole()){
+      //not white ball
+      //if black ball
+      if (getColor() == 0){
+        if (balls.size() != 2){
+          return 0; //0 means change lose to true
+        }
+        return 1; //0 means display win message
+      }
+      if (getColor() == 225){
+        setPosition(300, 200); 
+        cueGone = true;  
+        cueStick.updatePos(); 
+      }
+      if (getColor() != 225){
+        balls.remove(this); 
+      }
+    }
+    return 2; 
   }
   
   
