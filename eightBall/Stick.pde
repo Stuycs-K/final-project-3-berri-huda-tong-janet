@@ -45,7 +45,6 @@ public class Stick {
     rect(-200, -7.5, 200, 15); 
     angle = angle * -1;
     fill(225);
-    strokeWeight(10);
     line(pos.x, pos.y, pos.x + 10 * cos(angle), pos.y + 10 * sin(angle));
     popMatrix();
   }
