@@ -29,6 +29,11 @@ fixed the Stick class.
   fixed displays; set up keys and clicks to show the directions of the stick
   fixed how the stick hits cueBalls.
 
+### 6/3
+tried to get the line of the stick to show
+
+### 6/5
+wrote a helper method for beginning the turn logistics/player displays
 
 ## Janet Tong
 
