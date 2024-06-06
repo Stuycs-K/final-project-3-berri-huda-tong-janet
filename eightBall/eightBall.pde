@@ -8,6 +8,7 @@ boolean lose = false;
 boolean win = false; 
 boolean lock = false; 
 boolean pressed = false; 
+ArrayList<Player> players;
 
 public Stick cueStick;
 public Ball cueBall;

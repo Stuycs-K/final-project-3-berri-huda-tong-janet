@@ -28,9 +28,11 @@ void initialize(){
   strokeWeight(3);
   noFill();
   rect(10, 580, 550, 45);
-   //560 is middle
-   rect(560, 580, 550, 45);
-   strokeWeight(1);
+  //560 is middle
+  rect(560, 580, 550, 45);
+  strokeWeight(1);
+  
+  
 }
 
 public ArrayList<Ball> initializeBalls(){
