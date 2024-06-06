@@ -15,4 +15,17 @@ public class Player{
   public ArrayList<Ball> getBallsIn(){
   return ballsIn;
   }
+  
+  public int getID(){
+  return id;
+  }
+  
+  public boolean getPlayStripes(){
+  return striped;
+  }
+  
+  public void setStripes(boolean stripe){
+  this.striped = stripe;
+  }
+  
 }

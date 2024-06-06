@@ -9,6 +9,7 @@ boolean win = false;
 boolean lock = false; 
 boolean pressed = false; 
 ArrayList<Player> players;
+int currInd = 0;
 
 public Stick cueStick;
 public Ball cueBall;
@@ -17,6 +18,8 @@ void setup(){
   size(1220, 650);//real board is 9 ft by 4.5 ft; 540 by 1080 converted!
   board = new Board();
   balls = board.initializeBalls(); 
+  players.add(new Player(1, false));
+  players.add(new Player(2, false));
   cueStick = new Stick(balls.get(0));
   board.arrangeBalls(balls);  
   //release thing
