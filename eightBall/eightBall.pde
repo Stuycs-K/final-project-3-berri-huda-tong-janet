@@ -54,7 +54,15 @@ void draw(){
     rect(1140, 580, 60, 50, 10, 10, 10, 10); 
     textSize(20); 
     fill(0); 
-    text("LOCK", 1148, 610); 
+    text("LOCK", 1148, 610);
+    //x: 10, y: 580, length: 1100, height: 60.
+    String textt = "Player: " + (currInd + 1) + "   ||   You're Playing: ";
+    if (currInd == 0){
+    textt += "STRIPES";
+    }else{
+      textt += "SOLIDS";
+  }
+    text(textt, 15, 600);
     if (mouseX < 1120 || (mouseX > 1120 && !pressed)){
       board.displayBar(80);
     }
@@ -96,7 +104,7 @@ void nextTurn(){
       break;
     }
   }
-  if (allStop){
+  if (allStop && cueStick.getVis()){
     if (!pocketedBalls){
     currInd = (currInd + 1) % players.size();
   }
@@ -182,8 +190,3 @@ void switchPlayer(){
   currInd = (currInd + 1) % players.size();
   pocketedBalls = false;
 }
-
-  
-
-
-  
