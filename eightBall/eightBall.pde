@@ -106,13 +106,10 @@ void nextTurn(){
   }
   if (allStop && cueStick.getVis()){
     if (!pocketedBalls){
-    currInd = (currInd + 1) % players.size();
+      currInd = (currInd + 1) % players.size();
   }
     cueStick.setVis(true); 
     pocketedBalls =  false;
-  }
-  else{
-    cueStick.setVis(false); 
   }
 }
 
