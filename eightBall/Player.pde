@@ -1,13 +1,18 @@
 public class Player{
   private int id;
   private boolean striped;
-  private ArrayList<Ball> ballsIn;
-  
-  
-  Player(int ID){
+  private ArrayList<Ball> ballsIn = new ArrayList<>();
+ 
+  Player(int ID, boolean stripe){
   id = ID;
-  ballsIn = new ArrayList<Ball>(0);
+  striped = stripe;
 }
 
+  public void addBallIn(Ball ball){
+  ballsIn.add(ball);
+  }
   
+  public ArrayList<Ball> getBallsIn(){
+  return ballsIn;
+  }
 }

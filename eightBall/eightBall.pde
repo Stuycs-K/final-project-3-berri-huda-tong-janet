@@ -29,7 +29,7 @@ void setup(){
   text("LOCK", 1148, 610); 
 }
 
-boolean startTurn(){
+boolean getStripes(){
   boolean temp = false;
   for (int i = 0; i < balls.size(); i++){
   if (balls.get(i).inHole()){
