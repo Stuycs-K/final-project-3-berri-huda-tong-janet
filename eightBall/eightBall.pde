@@ -10,6 +10,7 @@ boolean lock = false;
 boolean pressed = false; 
 ArrayList<Player> players;
 int currInd = 0;
+boolean pocketedBalls = false;
 
 public Stick cueStick;
 public Ball cueBall;
@@ -18,9 +19,11 @@ void setup(){
   size(1220, 650);//real board is 9 ft by 4.5 ft; 540 by 1080 converted!
   board = new Board();
   balls = board.initializeBalls(); 
-  players.add(new Player(1, false));
+  players = new ArrayList<Player>();
+  players.add(new Player(1, true));
   players.add(new Player(2, false));
   cueStick = new Stick(balls.get(0));
+  pocketedBalls = false;
   board.arrangeBalls(balls);  
   //release thing
   board.displayBar(80); 
@@ -86,12 +89,19 @@ void draw(){
 }
 
 void nextTurn(){
-  boolean a = true; 
+  boolean allStop = true; 
   for (Ball b: balls){
-    a = (b.velocity.mag() == 0); 
+    if (b.velocity.mag() > 0){
+      allStop = false;
+      break;
+    }
   }
-  if (a){
+  if (allStop){
+    if (!pocketedBalls){
+    currInd = (currInd + 1) % players.size();
+  }
     cueStick.setVis(true); 
+    pocketedBalls =  false;
   }
   else{
     cueStick.setVis(false); 
@@ -150,6 +160,8 @@ void keyPressed(){
     setup(); 
     lose = false; 
     win = false; 
+    currInd = 0;
+    pocketedBalls = false;
   }
   if (key == 'd'){
     balls.get(5).setPosition(70, 70); 
@@ -165,6 +177,12 @@ void keyPressed(){
     balls.get(0).setPosition(100, 100); 
   }
 }
+
+void switchPlayer(){
+  currInd = (currInd + 1) % players.size();
+  pocketedBalls = false;
+}
+
   
 
 
