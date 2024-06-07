@@ -5,7 +5,7 @@ public class Ball{
   private PVector acceleration;
   private color colour;
   private boolean stripe; 
-  private final float friction_constant = 0.1; 
+  private final float friction_constant = 0.06; 
   
 //temp constructor 
 /*
@@ -84,32 +84,37 @@ public class Ball{
     if (velocity.mag() <= 0.5){
       velocity.set(0, 0); 
     }
-    int ind = contact(balls); 
-    if (ind != 0){
-      this.getDirect(balls.get(ind)); 
+    ArrayList<Ball> contacted = contact(balls); 
+    if (contacted.size() != 0){
+      for (int i = 0; i < contacted.size(); i++){
+         this.getDirect(contacted.get(i)); 
+      }
     }
     hitWall(); 
     position.add(velocity); 
     acceleration.add(friction()); 
     velocity.add(acceleration); 
     acceleration.set(0, 0); 
-    ind = contact(balls); 
-    if (ind != 0){
-      this.getDirect(balls.get(ind)); 
+    contacted = contact(balls); 
+    if (contacted.size() != 0){
+      for (int i = 0; i < contacted.size(); i++){
+        this.getDirect(contacted.get(i)); 
+      }
     }
     hitWall(); 
   }
   
   //checks if two balls are in contact 
   //returns the index of the contacted ball 
-  public int contact(ArrayList<Ball> balls){
+  public ArrayList<Ball> contact(ArrayList<Ball> balls){
+    ArrayList<Ball> contacted = new ArrayList<Ball>(); 
     for (int j = 0; j < balls.size(); j++){
        Ball c = balls.get(j); 
         if ((this.position.dist(c.position) <= 24 || this.position.copy().add(this.velocity).dist(c.position.copy().add(c.velocity)) <= 24)  && this.position.dist(c.position) != 0){
-          return j ; 
+          contacted.add(c); 
         }
      }
-     return 0; 
+     return contacted;  
    }
   
   //angle of incidence = reflected angle 
