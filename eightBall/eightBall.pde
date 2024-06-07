@@ -136,33 +136,28 @@ void mouseDragged(){
 void mouseClicked(){
   lock = !lock; 
   cueStick.setFreeze(!cueStick.getFreeze()); 
-  cueStick.updatePos(); 
+  if (!cueStick.getFreeze()){
+    cueStick.updatePos(); 
+  }
 }
   
 void mousePressed(){
   if (!cueStick.getFreeze()){
-    cueStick.setVis(true);
-    cueStick.setFreeze(true);
     cueStick.updatePos();
   }
 }
  
 void mouseReleased(){
-  //cueStick.setVis(false); 
-  //for the stick bar
-  if (cueStick.getFreeze()){
+  cueStick.setVis(false); 
+  //for the stick bar 
   if (mouseX > 1120){
     float dist = mouseY - 20; 
-    cueStick.changeForce(dist/90);  
-    cueStick.setFreeze(false);
+    cueStick.changeForce(dist/90); 
     cueStick.hit(); 
-    board.displayBar(80);
-    pressed = false; 
-    cueStick.setVis(false);
+    board.displayBar(80); 
   }
-  }
+  pressed = false; 
 }
-
 void keyPressed(){
   if (key == 'r'){
     setup(); 
