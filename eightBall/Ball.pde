@@ -80,6 +80,10 @@ public class Ball{
     }
   }
   
+  public void multiCollision(Ball hit, ArrayList<Ball> contacted){
+  
+  }
+  
   public void move(ArrayList<Ball> balls){
     if (velocity.mag() <= 0.5){
       velocity.set(0, 0); 
