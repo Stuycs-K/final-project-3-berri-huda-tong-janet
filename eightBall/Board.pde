@@ -50,7 +50,6 @@ public ArrayList<Ball> initializeBalls(){
   ballz.add(new Ball(0, 0, 0, 0, color(110, 90, 1775), false)); //purple
   ballz.add(new Ball(0, 0, 0, 0, color(165, 0, 0), false)); //maroon
   ballz.add(new Ball(0, 0, 0, 0, color(225, 165, 0), true)); //yellow 
-
   ballz.add(new Ball(0, 0, 0, 0, color(110, 90, 1775), true)); //purple
   ballz.add(new Ball(0, 0, 0, 0, color(165, 0, 0), true)); //maroon
       
@@ -99,8 +98,4 @@ public void displayBar(float y){
     rect(1160, y, 20, 450); 
   }
 }
-
-
-
-
 }

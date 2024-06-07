@@ -48,7 +48,8 @@ boolean getStripes(){
 void draw(){ 
   if (!lose && !win){
     board.initialize(); 
-    cueStick.display();
+    if (cueStick.getVis()){
+    cueStick.display();}
       //lock button 
     fill(getLock()); 
     rect(1140, 580, 60, 50, 10, 10, 10, 10); 
@@ -104,7 +105,7 @@ void nextTurn(){
       break;
     }
   }
-  if (allStop && cueStick.getVis()){
+  if (allStop){
     if (!pocketedBalls){
       currInd = (currInd + 1) % players.size();
   }
@@ -138,26 +139,30 @@ void mouseClicked(){
   if (!cueStick.getFreeze()){
     cueStick.updatePos(); 
   }
-  
-  System.out.println("x: " + mouseX + " y: " + mouseY);
 }
   
 void mousePressed(){
-  if (!cueStick.getFreeze()){
+  if (!cueStick.getFreeze() && balls.get(0).velocity.mag() == 0){
+    cueStick.setVis(true);
+    cueStick.setFreeze(true);
     cueStick.updatePos();
   }
 }
  
 void mouseReleased(){
-  cueStick.setVis(false); 
-  //for the stick bar 
+  //cueStick.setVis(false); 
+  //for the stick bar
+  if (cueStick.getFreeze()){
   if (mouseX > 1120){
     float dist = mouseY - 20; 
-    cueStick.changeForce(dist/90); 
+    cueStick.changeForce(dist/90);  
+    cueStick.setFreeze(false);
     cueStick.hit(); 
-    board.displayBar(80); 
+    board.displayBar(80);
+    pressed = false; 
+    cueStick.setVis(false);
   }
-  pressed = false; 
+  }
 }
 
 void keyPressed(){
