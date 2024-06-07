@@ -109,7 +109,7 @@ void nextTurn(){
     if (!pocketedBalls){
       currInd = (currInd + 1) % players.size();
   }
-    cueStick.setVis(true); 
+    //cueStick.setVis(true); 
     pocketedBalls =  false;
   }
 }
@@ -136,13 +136,11 @@ void mouseDragged(){
 void mouseClicked(){
   lock = !lock; 
   cueStick.setFreeze(!cueStick.getFreeze()); 
-  if (!cueStick.getFreeze()){
-    cueStick.updatePos(); 
-  }
+  cueStick.updatePos(); 
 }
   
 void mousePressed(){
-  if (!cueStick.getFreeze() && balls.get(0).velocity.mag() == 0){
+  if (!cueStick.getFreeze()){
     cueStick.setVis(true);
     cueStick.setFreeze(true);
     cueStick.updatePos();
