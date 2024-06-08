@@ -10,7 +10,7 @@ boolean lock = false;
 boolean pressed = false; 
 ArrayList<Player> players;
 int currInd = 0;
-boolean anyIn = false;
+boolean anyIn;
 
 public Stick cueStick;
 public Ball cueBall;
@@ -23,7 +23,7 @@ void setup(){
   players.add(new Player(1, true));
   players.add(new Player(2, false));
   cueStick = new Stick(balls.get(0));
-  //pocketedBalls = false;
+  anyIn = false;
   board.arrangeBalls(balls);  
   //release thing
   board.displayBar(80); 
@@ -102,25 +102,16 @@ void draw(){
 }
 
 void nextTurn(){
-  boolean allStop = true; 
-  boolean anyIn = false;
+  boolean a = true; 
   for (Ball b: balls){
-    if (b.velocity.mag() > 0){
-      allStop = false;
-      break;
-    }
+    a = (b.velocity.mag() == 0); 
   }
-  for (Ball b : balls){
-    if (b.inHole()){
-    anyIn = true;
-    break;
-}
+  if (a){
+    cueStick.setVis(true); 
   }
-  if (!anyIn){
-  //switchPlayer();
-}
-  cueStick.setVis(true);
-  //pocketedBalls =  false;
+  else{
+    cueStick.setVis(false); 
+  }
 }
 
 color getLock(){
