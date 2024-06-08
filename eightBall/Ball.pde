@@ -167,7 +167,7 @@ public class Ball{
       boolean correctBall = (getStripes() == players.get(currInd).getPlayStripes());
       if (correctBall){
         players.get(currInd).addBallIn(this);
-        anyIn = true;
+        //anyIn = true;
       }
       else{
         players.get((currInd + 1) % players.size()).addBallIn(this);

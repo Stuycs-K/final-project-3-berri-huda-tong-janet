@@ -10,7 +10,7 @@ boolean lock = false;
 boolean pressed = false; 
 ArrayList<Player> players;
 int currInd = 0;
-boolean anyIn;
+//boolean anyIn;
 
 public Stick cueStick;
 public Ball cueBall;
@@ -23,7 +23,7 @@ void setup(){
   players.add(new Player(1, true));
   players.add(new Player(2, false));
   cueStick = new Stick(balls.get(0));
-  anyIn = false;
+  //anyIn = false;
   board.arrangeBalls(balls);  
   //release thing
   board.displayBar(80); 
@@ -64,6 +64,7 @@ void draw(){
       textt += "SOLIDS";
   }
     text(textt, 15, 600);
+    players.get(currInd).ballsDisplay();
     if (mouseX < 1120 || (mouseX > 1120 && !pressed)){
       board.displayBar(80);
     }
@@ -82,10 +83,6 @@ void draw(){
       }
       b.hitWall(); 
     }
-    if (!anyIn){
-    //anyIn = false;
-    switchPlayer();
-}
     nextTurn(); 
   }
   else{
@@ -165,7 +162,7 @@ void keyPressed(){
     lose = false; 
     win = false; 
     currInd = 0;
-    anyIn = false;
+    //anyIn = false;
   }
   if (key == 'd'){
     balls.get(5).setPosition(70, 70); 
