@@ -107,11 +107,11 @@ void nextTurn(){
   }
   if (allStop){
     if (!pocketedBalls){
-      currInd = (currInd + 1) % players.size();
-  }
-    //cueStick.setVis(true); 
+      switchPlayer();
+    }
     pocketedBalls =  false;
   }
+  cueStick.setVis(true); 
 }
 
 color getLock(){
@@ -158,6 +158,7 @@ void mouseReleased(){
   }
   pressed = false; 
 }
+
 void keyPressed(){
   if (key == 'r'){
     setup(); 
