@@ -28,4 +28,11 @@ public class Player{
   this.striped = stripe;
   }
   
+  public void ballsDisplay(){
+  for (int i = 0; i < ballsIn.size(); i ++){
+  ballsIn.get(i).setPosition(15 + (i * 8), 620);
+  ballsIn.get(i).display();
+  }
+  }
+  
 }

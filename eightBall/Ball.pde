@@ -167,13 +167,16 @@ public class Ball{
       boolean correctBall = (getStripes() == players.get(currInd).getPlayStripes());
       if (correctBall){
         players.get(currInd).addBallIn(this);
-        pocketedBalls = true;
-      }else{
-      switchPlayer();
+        anyIn = true;
       }
+      else{
+        players.get((currInd + 1) % players.size()).addBallIn(this);
+      switchPlayer();
+    }
       balls.remove(this);
       }
     }
+    //pocketedBalls = false;
     return 2; 
   }
   
