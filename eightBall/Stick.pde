@@ -30,7 +30,7 @@ public class Stick {
   
   void display(){
     if (!visible){return;}
-
+    //if (freeze){return;}
     if (!freeze){
       updatePos();
     }
@@ -61,8 +61,8 @@ public class Stick {
   
   void setFreeze(boolean a){
     freeze = a; 
-    updatePos();
-  PVector pos = cueBall.getPosition();
+    if (a == false){updatePos();}
+  /*PVector pos = cueBall.getPosition();
   PVector dir = PVector.sub(pos, position);
   float angle = atan2(dir.y, dir.x);
   pushMatrix();
@@ -72,7 +72,7 @@ public class Stick {
   fill(255,191,128);
   rect(-200, -7.5, 200, 15); 
   popMatrix();
-
+*/
   }
   
   void hit(){

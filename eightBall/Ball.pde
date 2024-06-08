@@ -7,6 +7,7 @@ public class Ball{
   private boolean stripe; 
   private final float friction_constant = 0.1; 
   
+  
 //temp constructor 
 /*
   public Ball(float x, float y, float xspeed, float yspeed){
@@ -26,6 +27,9 @@ public class Ball{
     acceleration = new PVector(0, 0); 
     colour = c ; 
     stripe = stri; 
+    players = new ArrayList<Player>();
+    players.add(new Player(1, true));
+    players.add(new Player(2, false));
   }
  
 //BALL COLLISIONS -------------
@@ -144,20 +148,35 @@ public class Ball{
       //not white ball
       //if black ball
       if (getColor() == 0){
-        if (balls.size() != 2){
-          return 0; //0 means change lose to true
+        if (players.get(currInd).getBallsIn().size() == 7){
+          win = true;
         }
-        return 1; //0 means display win message
+        else{
+        lose = true;
+        }
+        return getColor();
+       // return 1; //0 means display win message
       }
       if (getColor() == 225){
         setPosition(300, 200); 
         cueGone = true;  
-        cueStick.updatePos(); 
+        cueStick.updatePos();
+        switchPlayer();
       }
-      if (getColor() != 225){
-        balls.remove(this); 
+      else{
+      boolean correctBall = (getStripes() == players.get(currInd).getPlayStripes());
+      if (correctBall){
+        players.get(currInd).addBallIn(this);
+        //anyIn = true;
+      }
+      else{
+        players.get((currInd + 1) % players.size()).addBallIn(this);
+      switchPlayer();
+    }
+      balls.remove(this);
       }
     }
+    //pocketedBalls = false;
     return 2; 
   }
   
@@ -196,6 +215,10 @@ public class Ball{
   velocity.add(acceleration);
   acceleration = new PVector(0,0);
   position.add(velocity);
+  }
+  
+  public boolean getStripes(){
+    return stripe;
   }
 
 }
