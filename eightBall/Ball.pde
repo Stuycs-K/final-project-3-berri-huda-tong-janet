@@ -33,9 +33,11 @@ public class Ball{
   }
  
 //BALL COLLISIONS -------------
-  public void getStationaryDirect(Ball hit){
+
+  //when the ball being hit is stationary 
+  public void getStationaryDirect(Ball hit, PVector pos, PVector vel){
     //get the vectors necessary 
-    PVector hitt = new PVector(hit.position.x - position.x, hit.position.y - position.y);
+    PVector hitt = new PVector(hit.position.x - pos.x, hit.position.y - pos.y);
     PVector cue = new PVector(0, 0);  
     if (PVector.angleBetween(velocity, hitt.copy().rotate(HALF_PI + PI)) < HALF_PI){
       cue = hitt.copy().rotate(HALF_PI + PI); 
@@ -43,17 +45,17 @@ public class Ball{
     else{
       cue = hitt.copy().rotate(HALF_PI); 
     }
-    float theta = PVector.angleBetween(velocity, hitt); 
-    float magH = cos(theta) * velocity.mag() ; 
-    float magC = sin(theta) * velocity.mag(); 
+    float theta = PVector.angleBetween(vel, hitt); 
+    float magH = cos(theta) * vel.mag() ; 
+    float magC = sin(theta) * vel.mag(); 
     hitt.normalize().mult(magH); 
     cue.normalize().mult(magC); 
     velocity.set(cue); 
     hit.velocity.set(hitt); 
   }
   
+  //when theyre both moving 
   public void getMovingDirect(Ball hit){
-    //same idea as stationary Direct but manipulating
     PVector forceVel = velocity.sub(hit.velocity); 
     PVector hitt = new PVector(hit.position.x - position.x, hit.position.y - position.y);
     PVector cue = new PVector(0, 0);  
@@ -72,6 +74,7 @@ public class Ball{
     hit.velocity.set(hitt.add(hit.velocity)); 
   }
   
+  //combines the stationary and moving direction 
   public void getDirect(Ball hit){
     if (hit.velocity.mag() == 0){
         getStationaryDirect(hit); 
@@ -84,6 +87,7 @@ public class Ball{
     }
   }
   
+  //for when a ball is colliding with multiple balls 
   public void multiCollision(Ball hit, ArrayList<Ball> contacted){
   
   }
