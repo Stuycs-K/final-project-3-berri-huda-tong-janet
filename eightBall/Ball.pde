@@ -40,7 +40,7 @@ public class Ball{
     PVector hitt = new PVector(hit.position.x - pos.x, hit.position.y - pos.y);
     PVector cue = new PVector(0, 0);
     //angle
-    if (PVector.angleBetween(velocity, hitt.copy().rotate(HALF_PI + PI)) < HALF_PI){
+    if (PVector.angleBetween(vel, hitt.copy().rotate(HALF_PI + PI)) < HALF_PI){
       cue = hitt.copy().rotate(HALF_PI + PI); 
     }
     else{
@@ -104,8 +104,8 @@ public class Ball{
       for (int i = 0; i < contacted.size(); i++){
         //vector connecting the centers of each ball
         PVector vec = contacted.get(i).position.sub(position); 
-        float angle = PVector.angleBetween(velocity, vec); 
-        PVector newVel = velocity.copy().normalize().mult(mag * cos(abs(angle))); 
+        float angleFrac = abs(degrees(PVector.angleBetween(velocity, vec)))/180; 
+        PVector newVel = velocity.copy().normalize().mult(mag * angleFrac); 
         getDirect(contacted.get(i), pos, newVel); 
       }
     }
@@ -117,9 +117,7 @@ public class Ball{
     }
     ArrayList<Ball> contacted = contact(balls); 
     if (contacted.size() != 0){
-      for (int i = 0; i < contacted.size(); i++){
-         this.getDirect(contacted.get(i)); 
-      }
+      multiCollision(contacted); //does both 1 collision and multicollisions 
     }
     hitWall(); 
     position.add(velocity); 
@@ -128,9 +126,7 @@ public class Ball{
     acceleration.set(0, 0); 
     contacted = contact(balls); 
     if (contacted.size() != 0){
-      for (int i = 0; i < contacted.size(); i++){
-        this.getDirect(contacted.get(i)); 
-      }
+      multiCollision(contacted); 
     }
     hitWall(); 
   }
