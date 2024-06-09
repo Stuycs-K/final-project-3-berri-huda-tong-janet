@@ -10,6 +10,7 @@ boolean lock = false;
 boolean pressed = false; 
 ArrayList<Player> players;
 int currInd = 0;
+boolean forceWin;
 //boolean anyIn;
 
 public Stick cueStick;
@@ -23,7 +24,7 @@ void setup(){
   players.add(new Player(1, true));
   players.add(new Player(2, false));
   cueStick = new Stick(balls.get(0));
-  //anyIn = false;
+  forceWin = false;
   board.arrangeBalls(balls);  
   //release thing
   board.displayBar(80); 
@@ -176,6 +177,7 @@ void keyPressed(){
     }
     balls.get(1).setPosition(70, 70); 
     balls.get(0).setPosition(100, 100); 
+    forceWin = true;
   }
 }
 

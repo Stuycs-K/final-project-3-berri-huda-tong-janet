@@ -148,12 +148,17 @@ public class Ball{
       //not white ball
       //if black ball
       if (getColor() == 0){
-        if (players.get(currInd).getBallsIn().size() == 7){
+        if (forceWin){
+        win = true;
+        return -10;
+      }else{
+       if (players.get(currInd).getBallsIn().size() == 7){
           win = true;
         }
         else{
         lose = true;
         }
+      }
         return getColor();
        // return 1; //0 means display win message
       }
