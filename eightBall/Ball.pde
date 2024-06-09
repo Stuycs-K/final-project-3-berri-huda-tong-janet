@@ -89,6 +89,7 @@ public class Ball{
     else{
       getMovingDirect(hit, pos, vel); 
     }
+    hitWall(); 
   }
   
   //for when a ball is colliding with multiple balls 
@@ -99,20 +100,20 @@ public class Ball{
     else{
       //using the same position instead of using the changed position after one collision
       PVector pos = this.position.copy(); 
+      PVector vel = this.velocity.copy(); 
       //separating the velocities 
-      float mag = velocity.mag(); 
       for (int i = 0; i < contacted.size(); i++){
         //vector connecting the centers of each ball
-        PVector vec = contacted.get(i).position.sub(position); 
-        float angleFrac = abs(degrees(PVector.angleBetween(velocity, vec)))/180; 
-        PVector newVel = velocity.copy().normalize().mult(mag * angleFrac); 
+        PVector vec = pos.sub(contacted.get(i).position); 
+        float angle = PVector.angleBetween(vel, vec); 
+        PVector newVel = vel.normalize().mult(velocity.mag()  * degrees(angle)/90); 
         getDirect(contacted.get(i), pos, newVel); 
       }
     }
   }
   
   public void move(ArrayList<Ball> balls){
-    if (velocity.mag() <= 0.5){
+    if (velocity.mag() <= 0.2){
       velocity.set(0, 0); 
     }
     ArrayList<Ball> contacted = contact(balls); 
