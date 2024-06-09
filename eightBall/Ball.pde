@@ -38,26 +38,30 @@ public class Ball{
   public void getStationaryDirect(Ball hit, PVector pos, PVector vel){
     //get the vectors necessary 
     PVector hitt = new PVector(hit.position.x - pos.x, hit.position.y - pos.y);
-    PVector cue = new PVector(0, 0);  
+    PVector cue = new PVector(0, 0);
+    //angle
     if (PVector.angleBetween(velocity, hitt.copy().rotate(HALF_PI + PI)) < HALF_PI){
       cue = hitt.copy().rotate(HALF_PI + PI); 
     }
     else{
       cue = hitt.copy().rotate(HALF_PI); 
     }
+    //get their magnitudes
     float theta = PVector.angleBetween(vel, hitt); 
     float magH = cos(theta) * vel.mag() ; 
     float magC = sin(theta) * vel.mag(); 
     hitt.normalize().mult(magH); 
     cue.normalize().mult(magC); 
+    //set the vectors
     velocity.set(cue); 
     hit.velocity.set(hitt); 
   }
   
   //when theyre both moving 
-  public void getMovingDirect(Ball hit){
-    PVector forceVel = velocity.sub(hit.velocity); 
-    PVector hitt = new PVector(hit.position.x - position.x, hit.position.y - position.y);
+  public void getMovingDirect(Ball hit, PVector pos, PVector vel){
+    //setting it so that its equivalent to a stationary hit
+    PVector forceVel = vel.sub(hit.velocity); 
+    PVector hitt = new PVector(hit.position.x - pos.x, hit.position.y - pos.y);
     PVector cue = new PVector(0, 0);  
     if (PVector.angleBetween(forceVel, hitt.copy().rotate(HALF_PI + PI)) < HALF_PI){
       cue = hitt.copy().rotate(HALF_PI + PI); 
@@ -75,21 +79,36 @@ public class Ball{
   }
   
   //combines the stationary and moving direction 
-  public void getDirect(Ball hit){
+  public void getDirect(Ball hit, PVector pos, PVector vel){
     if (hit.velocity.mag() == 0){
-        getStationaryDirect(hit); 
+        getStationaryDirect(hit, pos, vel); 
       }
     else if (velocity.mag() == 0){
-      hit.getStationaryDirect(this); 
+      hit.getStationaryDirect(this, pos, vel); 
     }
     else{
-      getMovingDirect(hit); 
+      getMovingDirect(hit, pos, vel); 
     }
   }
   
   //for when a ball is colliding with multiple balls 
-  public void multiCollision(Ball hit, ArrayList<Ball> contacted){
-  
+  public void multiCollision(ArrayList<Ball> contacted){
+    if (contacted.size() == 1){
+      this.getDirect(contacted.get(0), position, velocity); 
+    }
+    else{
+      //using the same position instead of using the changed position after one collision
+      PVector pos = this.position.copy(); 
+      //separating the velocities 
+      float mag = velocity.mag(); 
+      for (int i = 0; i < contacted.size(); i++){
+        //vector connecting the centers of each ball
+        PVector vec = contacted.get(i).position.sub(position); 
+        float angle = PVector.angleBetween(velocity, vec); 
+        PVector newVel = velocity.copy().normalize().mult(mag * cos(abs(angle))); 
+        getDirect(contacted.get(i), pos, newVel); 
+      }
+    }
   }
   
   public void move(ArrayList<Ball> balls){
