@@ -86,10 +86,10 @@ void draw(){
     fill(0); 
     textSize(50); 
     if (lose){
-      text("YOU LOST! Press R to restart", 200, 610); 
+      text("Player " + (((currInd + 1) % 2)+ 1) + " WIN! Press R to restart", 200, 300); 
     }
     if (win){
-      text("YOU WON! Press R to restart", 200, 610); 
+      text("Player " + (((currInd + 1) % 2)+ 1) + " WIN! Press R to restart", 200, 300); 
     }
   }
 }
@@ -145,6 +145,7 @@ void keyPressed(){
     //anyIn = false;
   }
   if (key == 'd'){
+    setup(); 
     balls.get(5).setPosition(70, 70); 
     balls.get(0).setPosition(100, 100); 
   }
