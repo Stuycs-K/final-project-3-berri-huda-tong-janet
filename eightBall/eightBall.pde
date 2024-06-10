@@ -6,7 +6,6 @@ int turns = 0;
 boolean cueGone = false; 
 boolean lose = false; 
 boolean win = false; 
-boolean lock = false; 
 boolean pressed = false; 
 ArrayList<Player> players;
 int currInd = 0;
@@ -113,10 +112,10 @@ void nextTurn(){
 }
 
 color getLock(){
-  if (lock){
-    return color(225, 0, 0); 
+  if (cueStick.getFreeze()){
+    return color(0, 225, 0); 
   }
-  return color(0, 225, 0); 
+  return color(225, 0, 0); 
 }
 
 void mouseDragged(){
@@ -132,7 +131,6 @@ void mouseDragged(){
 }
 
 void mouseClicked(){
-  lock = !lock; 
   cueStick.setFreeze(!cueStick.getFreeze()); 
   if (!cueStick.getFreeze()){
     cueStick.updatePos(); 

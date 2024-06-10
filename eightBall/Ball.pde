@@ -5,7 +5,7 @@ public class Ball{
   private PVector acceleration;
   private color colour;
   private boolean stripe; 
-  private final float friction_constant = 0.1; 
+  private final float friction_constant = 0.06; 
   
   
 //temp constructor 
@@ -80,12 +80,7 @@ public class Ball{
   
   //combines the stationary and moving direction 
   public void getDirect(Ball hit, PVector pos, PVector vel){
-    if (hit.velocity.mag() == 0 && vel.mag() == 0){
-      PVector veloc = vel.sub(hit.velocity).mult(1.5); 
-      hit.velocity.set(veloc); 
-      velocity.set(veloc.mult(-1)); 
-    }
-    else if (hit.velocity.mag() == 0){
+    if (hit.velocity.mag() == 0){
         getStationaryDirect(hit, pos, vel); 
       }
     else if (velocity.mag() == 0){
@@ -118,7 +113,7 @@ public class Ball{
   }
   
   public void move(ArrayList<Ball> balls){
-    if (velocity.mag() <= 0.1){
+    if (velocity.mag() <= 0.01){
       velocity.set(0, 0); 
     }
     ArrayList<Ball> contacted = contact(balls); 
