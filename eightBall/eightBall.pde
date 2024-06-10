@@ -10,6 +10,7 @@ boolean pressed = false;
 ArrayList<Player> players;
 int currInd = 0;
 boolean forceWin;
+boolean firstTurn = true; 
 //boolean anyIn;
 
 public Stick cueStick;
@@ -27,6 +28,7 @@ void setup(){
   board.arrangeBalls(balls);  
   board.displayBar(80);  
   board.displayLock(cueStick); 
+  board.displayScore(players, firstTurn); 
 }
 
 boolean getStripes(){
@@ -46,7 +48,7 @@ void draw(){
       cueStick.display();
     } 
     board.displayLock(cueStick); 
-    //x: 10, y: 580, length: 1100, height: 60.
+    board.displayScore(players, firstTurn);
     if (mouseX < 1120 || (mouseX > 1120 && !pressed)){
       board.displayBar(80);
     }

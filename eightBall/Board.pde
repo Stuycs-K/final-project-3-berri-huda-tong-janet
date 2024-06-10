@@ -105,23 +105,31 @@ public void displayLock(Stick cueStick){
   text("LOCK", 1148, 610);
 }
 
-public void displayScore(ArrayList<Player> players){
+public void displayScore(ArrayList<Player> players, boolean firstTurn){
   stroke(0);
   strokeWeight(3);
   noFill();
   rect(10, 580, 540, 60);
   rect(560, 580, 540, 60); 
   strokeWeight(1);
-  String textOne = "Player: " + (currInd + 1) + "   ||   You're Playing: ";
-  String textTwo = "Player: " + (currInd + 1) + "   ||   You're Playing: ";
-  if (currInd == 0){
-    textOne += "STRIPES";
-  }
-  else{
-    textTwo += "SOLIDS";
+  String textOne = "Player: 1    ||   You're Playing: ";
+  String textTwo = "Player: 2    ||   You're Playing: ";
+  if (!(firstTurn)){
+    if (currInd == 0){
+      if (players.get(currInd).getPlayStripes()){
+        textOne += "STRIPES";
+        textTwo += "SOLIDS"; 
+      }
+      else{
+        textTwo += "STRIPES";
+        textOne += "SOLIDS"; 
+      }
+    }
   }
   text(textOne, 15, 600);
-  players.get(currInd).ballsDisplay();
+  text(textTwo, 565, 600); 
+  players.get(0).ballsDisplay(0);
+  players.get(1).ballsDisplay(1); 
 }
 
 }
