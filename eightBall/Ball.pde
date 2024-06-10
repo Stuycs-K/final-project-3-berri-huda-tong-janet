@@ -202,8 +202,8 @@ public class Ball{
         velocity.set(0, 0);
       }
       else{
+        switchPlayer(); 
         if (firstTurn){
-          switchPlayer();
           players.get(currInd).addBallIn(this);  
           if (getStripes()){
             players.get(currInd).setStripes(true); 
@@ -212,14 +212,16 @@ public class Ball{
             players.get(currInd).setStripes(false); 
           }
           firstTurn = false;
-        }
-        boolean correctBall = (getStripes() == players.get(currInd).getPlayStripes());
-        if (correctBall){
-          players.get(currInd).addBallIn(this);
-        }
-        else{
-          players.get((currInd + 1) % 2).addBallIn(this);
-        }
+       }
+       else{
+         boolean correctBall = (getStripes() == players.get(currInd).getPlayStripes());
+         if (correctBall){
+           players.get(currInd).addBallIn(this);
+         }
+         else{
+           players.get((currInd + 1) % 2).addBallIn(this);
+         }
+       }
         balls.remove(this); 
       }
     }

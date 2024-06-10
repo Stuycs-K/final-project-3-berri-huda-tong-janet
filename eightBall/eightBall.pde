@@ -51,7 +51,6 @@ void draw(){
       cueStick.display();
     } 
     board.displayLock(cueStick); 
-    board.displayScore(players, firstTurn);
     if (mouseX < 1120 || (mouseX > 1120 && !pressed)){
       board.displayBar(80);
     }
@@ -65,6 +64,7 @@ void draw(){
       b.move(balls);
       b.display();
       int upd = b.update(balls); 
+      board.displayScore(players, firstTurn);
       if (upd == 0){
         lose = true; 
       }

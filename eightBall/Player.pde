@@ -29,13 +29,13 @@ public class Player{
   }
   
   public void ballsDisplay(int currInd){
-    for (int i = 0; i < ballsIn.size() -1; i +=2){
+    for (int i = 0; i < ballsIn.size() ; i++){
       if (currInd == 0){
-        ballsIn.get(i).setPosition(25 + (i * 15), 620);
+        ballsIn.get(i).setPosition(25 + (i * 30), 620);
         ballsIn.get(i).setVelocity(0, 0); 
       }
       else{
-        ballsIn.get(i).setPosition(575 + (i * 15), 620);
+        ballsIn.get(i).setPosition(575 + (i * 30), 620);
         ballsIn.get(i).setVelocity(0, 0); 
       }
       ballsIn.get(i).display();
