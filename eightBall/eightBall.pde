@@ -3,7 +3,7 @@ Ball A;
 Ball B; 
 Board board; 
 int turns = 0; 
-boolean cueGone = false; 
+boolean cueGone = true; 
 boolean lose = false; 
 boolean win = false; 
 boolean pressed = false; 
@@ -75,9 +75,6 @@ void draw(){
       else if (upd == 2){
         noneInHole = false; 
       }
-      else if (upd == 4){
-        switchPlayer(); 
-      }
       b.hitWall();  
     }
     if (noneInHole && TurnDone){
@@ -126,15 +123,17 @@ void mouseReleased(){
   //for the stick bar 
   if (mouseX > 1120){
     float dist = mouseY - 20; 
-    cueStick.changeForce(dist/90); 
+    cueStick.changeForce(dist/120); 
     cueStick.hit(); 
     board.displayBar(80);
     TurnDone = true; 
   }
-  pressed = false; 
+  pressed = false;
+  /* -- for demo purposes
   if (cueGone){
     cueGone= !cueGone; 
   }
+  */
 }
 
 void keyPressed(){

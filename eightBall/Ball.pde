@@ -203,6 +203,7 @@ public class Ball{
       }
       else{
         if (firstTurn){
+          switchPlayer();
           players.get(currInd).addBallIn(this);  
           if (getStripes()){
             players.get(currInd).setStripes(true); 
@@ -215,12 +216,11 @@ public class Ball{
         boolean correctBall = (getStripes() == players.get(currInd).getPlayStripes());
         if (correctBall){
           players.get(currInd).addBallIn(this);
-          return 2; //means no switch player, also for first turn
         }
         else{
-          players.get((currInd + 1) % players.size()).addBallIn(this);
+          players.get((currInd + 1) % 2).addBallIn(this);
         }
-        balls.remove(this);
+        balls.remove(this); 
       }
     }
     return 3; 
