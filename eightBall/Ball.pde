@@ -173,8 +173,10 @@ public class Ball{
 
   public boolean inHole(){
     //if center of ball is within these radii, then considered inHole 
-    if ((position.y >= 20 && position.y <= 60) || (position.y >= 520 && position.y <= 560)){
-      return ((position.x >= 25 && position.x <= 55) || (position.x >= 545 && position.x <= 575) || (position.x >= 1065 && position.x <= 1095)); 
+    if ((position.y >= 20 && position.y <= 60) || (position.y + velocity.y >= 20 && position.y + velocity.y <= 60) || (position.y >= 520 && position.y <= 560) || (position.y + velocity.y >= 520 && position.y + velocity.y <=560)){
+      return ((position.x >= 25 && position.x <= 55) || (position.x + velocity.x >= 25 && position.x + velocity.x <= 55) 
+      || (position.x >= 545 && position.x <= 575) || (position.x + velocity.x >= 545 && position.x + velocity.x <= 575)
+      || (position.x >= 1065 && position.x <= 1095) || (position.x + velocity.x >= 1065 && position.x + velocity.x <= 1095)); 
     }
     return false; 
   }
@@ -219,7 +221,8 @@ public class Ball{
            players.get(currInd).addBallIn(this);
          }
          else{
-           players.get((currInd + 1) % 2).addBallIn(this);
+           switchPlayer(); 
+           players.get(currInd).addBallIn(this);
          }
        }
         balls.remove(this); 
