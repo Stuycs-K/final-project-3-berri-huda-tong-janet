@@ -24,15 +24,6 @@ void initialize(){
   circle(560, 540, 40);
   circle(1080, 540, 40); 
   
-  stroke(0);
-  strokeWeight(3);
-  noFill();
-  rect(10, 580, 1100, 60);
-  //560 is middle
-  //rect(560, 580, 550, 45);
-  strokeWeight(1);
-  
-  
 }
 
 public ArrayList<Ball> initializeBalls(){
@@ -98,4 +89,39 @@ public void displayBar(float y){
     rect(1160, y, 20, 450); 
   }
 }
+
+color getLock(Stick cueStick){
+  if (cueStick.getFreeze()){
+    return color(0, 225, 0); 
+  }
+  return color(225, 0, 0); 
+}
+
+public void displayLock(Stick cueStick){
+  fill(getLock(cueStick)); 
+  rect(1140, 580, 60, 50, 10, 10, 10, 10); 
+  textSize(20); 
+  fill(0); 
+  text("LOCK", 1148, 610);
+}
+
+public void displayScore(ArrayList<Player> players){
+  stroke(0);
+  strokeWeight(3);
+  noFill();
+  rect(10, 580, 540, 60);
+  rect(560, 580, 540, 60); 
+  strokeWeight(1);
+  String textOne = "Player: " + (currInd + 1) + "   ||   You're Playing: ";
+  String textTwo = "Player: " + (currInd + 1) + "   ||   You're Playing: ";
+  if (currInd == 0){
+    textOne += "STRIPES";
+  }
+  else{
+    textTwo += "SOLIDS";
+  }
+  text(textOne, 15, 600);
+  players.get(currInd).ballsDisplay();
+}
+
 }

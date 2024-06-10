@@ -179,43 +179,39 @@ public class Ball{
   
   public int update(ArrayList<Ball> balls){
     if (inHole()){
-      //not white ball
       //if black ball
       if (getColor() == 0){
         if (forceWin){
-        win = true;
-        return -10;
-      }else{
-       if (players.get(currInd).getBallsIn().size() == 7){
-          win = true;
+          return 1; 
         }
         else{
-        lose = true;
+          if (players.get(currInd).getBallsIn().size() == 7){
+            return 1; 
+          }
+          else{
+            return 0; 
+          }
         }
       }
-        return getColor();
-       // return 1; //0 means display win message
-      }
+      //if white
       if (getColor() == 225){
         setPosition(300, 200); 
-        cueGone = true;  
-        cueStick.updatePos();
-        switchPlayer();
+        setCueGone(true); 
+        velocity.set(0, 0);
+        switchPlayer(); 
       }
       else{
-      boolean correctBall = (getStripes() == players.get(currInd).getPlayStripes());
-      if (correctBall){
-        players.get(currInd).addBallIn(this);
-        //anyIn = true;
+        boolean correctBall = (getStripes() == players.get(currInd).getPlayStripes());
+        if (correctBall){
+          players.get(currInd).addBallIn(this);
+        }
+        else{
+          players.get((currInd + 1) % players.size()).addBallIn(this);
+          switchPlayer();
+        }
+        balls.remove(this);
       }
-      else{
-        players.get((currInd + 1) % players.size()).addBallIn(this);
-      switchPlayer();
     }
-      balls.remove(this);
-      }
-    }
-    //pocketedBalls = false;
     return 2; 
   }
   

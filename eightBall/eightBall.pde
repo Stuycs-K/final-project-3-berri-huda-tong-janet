@@ -25,14 +25,8 @@ void setup(){
   cueStick = new Stick(balls.get(0));
   forceWin = false;
   board.arrangeBalls(balls);  
-  //release thing
-  board.displayBar(80); 
-  //lock button 
-  fill(getLock()); 
-  rect(1140, 580, 60, 50, 10, 10, 10, 10); 
-  textSize(20); 
-  fill(0); 
-  text("LOCK", 1148, 610); 
+  board.displayBar(80);  
+  board.displayLock(cueStick); 
 }
 
 boolean getStripes(){
@@ -49,22 +43,10 @@ void draw(){
   if (!lose && !win){
     board.initialize(); 
     if (cueStick.getVis()){
-    cueStick.display();}
-      //lock button 
-    fill(getLock()); 
-    rect(1140, 580, 60, 50, 10, 10, 10, 10); 
-    textSize(20); 
-    fill(0); 
-    text("LOCK", 1148, 610);
+      cueStick.display();
+    } 
+    board.displayLock(cueStick); 
     //x: 10, y: 580, length: 1100, height: 60.
-    String textt = "Player: " + (currInd + 1) + "   ||   You're Playing: ";
-    if (currInd == 0){
-    textt += "STRIPES";
-    }else{
-      textt += "SOLIDS";
-  }
-    text(textt, 15, 600);
-    players.get(currInd).ballsDisplay();
     if (mouseX < 1120 || (mouseX > 1120 && !pressed)){
       board.displayBar(80);
     }
@@ -94,7 +76,6 @@ void draw(){
     if (win){
       text("YOU WON! Press R to restart", 200, 610); 
     }
-    
   }
 }
 
@@ -109,13 +90,6 @@ void nextTurn(){
   else{
     cueStick.setVis(false); 
   }
-}
-
-color getLock(){
-  if (cueStick.getFreeze()){
-    return color(0, 225, 0); 
-  }
-  return color(225, 0, 0); 
 }
 
 void mouseDragged(){
@@ -153,6 +127,9 @@ void mouseReleased(){
     board.displayBar(80); 
   }
   pressed = false; 
+  if (cueGone){
+    cueGone= !cueGone; 
+  }
 }
 
 void keyPressed(){
@@ -179,7 +156,10 @@ void keyPressed(){
   }
 }
 
+void setCueGone(boolean x){
+  cueGone = x; 
+}
+
 void switchPlayer(){
-  currInd = (currInd + 1) % players.size();
-  //pocketedBalls = false;
+  currInd = (currInd + 1) % 2;
 }
