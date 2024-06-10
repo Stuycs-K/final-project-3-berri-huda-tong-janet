@@ -7,17 +7,7 @@ public class Ball{
   private boolean stripe; 
   private final float friction_constant = 0.06; 
   
-  
-//temp constructor 
-/*
-  public Ball(float x, float y, float xspeed, float yspeed){
-    mass = .165; 
-    position = new PVector(x, y); 
-    velocity = new PVector(xspeed, yspeed); 
-    acceleration = new PVector(0, 0); 
-    colour = random(225) ; 
-  }
-  */ 
+
 
 //CONSTRUCTOR -------------
   public Ball(float x, float y, float xspeed, float yspeed, color c, boolean stri){

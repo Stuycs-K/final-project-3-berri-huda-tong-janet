@@ -50,10 +50,6 @@ public class Stick {
   }
   
   
-  void displayLines(){
-    line(cueBall.position.x, cueBall.position.y, cueBall.position.x + 100 * cueStick.direction.x, cueBall.position.y + 100 * cueStick.direction.y); 
-  }
-  
   
   boolean getFreeze(){
     return freeze;
