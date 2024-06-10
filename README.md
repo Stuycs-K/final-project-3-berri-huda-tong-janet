@@ -40,4 +40,4 @@ To effectively land a ball into a pocket, don't put too much force; otherwise, t
 Shooting balls in while they're very close to pockets is susceptible to bugs due to the way the turn function is written. To counter this, place the cue ball farther away before shooting balls into pockets. 
 
 ## LINK TO VIDEO 
-
+https://drive.google.com/file/d/1-BQS6eU88jVCtFpVfoYNhXkq_dKqGVMQ/view?usp=sharing
