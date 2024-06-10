@@ -35,6 +35,20 @@ tried to get the line of the stick to show
 ### 6/5
 wrote a helper method for beginning the turn logistics/player displays
 
+### 6/6
+Wrote the Player class and implemented turn changing logic
+
+### 6/6
+Debugged (the Stick got messed up after I changed Player class).
+
+### 6/7
+continued to debug and made design changes to the Player class/ how it shows up
+Showed the Balls that went in at the bottom ofthe screen
+
+### 6/8 - 6/9
+Made final changes/fixes to the displays regarding turn changes
+also fixed the "w" key to actually let it win; added a forceWin for demonstrations
+
 ## Janet Tong
 
 ### 5/23 
