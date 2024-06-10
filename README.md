@@ -37,5 +37,7 @@ The inital break shot is unrealistic and buggy at times due to our trouble in re
 
 To effectively land a ball into a pocket, don't put too much force; otherwise, the bounce will appear to be in the hole but will bounce off. 
 
+Shooting balls in while they're very close to pockets is susceptible to bugs due to the way the turn function is written. To counter this, place the cue ball farther away before shooting balls into pockets. 
+
 ## LINK TO VIDEO 
 
