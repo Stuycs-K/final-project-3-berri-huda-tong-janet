@@ -18,16 +18,24 @@ Once the angle is secured, move your mouse to the sidebar and drag the stick dow
 
 Repeat this cycle by once again pressing your mouse to reset the location of the stick and play! 
 
+For easier demo-ing, the cueball can be moved at any time: to do so, ensure the cursor is over the ball the whole duration of dragging, meaning do not drag the ball around too fast. 
+
 To reset the board, press the key "r". This will return the board to its initial state. 
 
 To easily win the game, press the key "w". This will set up a very easy win, to display the win screen.
 
 To easily lose the game, press the key "d". This will set up a very easy loss, to display the lose screen.
 
-By default, Player One will be playing Stripes and Player Two will be playing Solids. To win, each player must get all 7 of their balls in, THEN get the black 8 Ball in. If either player gets the white cue ball in, their turn is over, and the other player is able to place the cue ball anywhere on the screen. 
+Like regular billiards, players determine whether they are striped or solid based on which ball is hit first: once a player hits a certain type of ball, the opposite is designated to the other player. To win, each player must get all 7 of their respective balls in, and THEN get the black 8 Ball in. If either player gets the white cue ball in, their turn is over, and the other player is able to place the cue ball anywhere on the screen. 
 
 If a player does not get in any balls or only gets in their opponents balls, their turn ends. 
 If a player gets their own balls in the holes, they can play again. 
+
+## POSSIBLE BUGS 
+
+The inital break shot is unrealistic and buggy at times due to our trouble in resolving multi-ball collisions. The best way to separate the balls is to hit the dead center of the very closest yellow ball at a force an intensity of about 4-5 bars (see the side bar lines). At times, balls may be stacked on top of eachother -- if so aggressively hit the jumbled balls at a high intensity to break them apart. 
+
+To effectively land a ball into a pocket, don't put too much force; otherwise, the bounce will appear to be in the hole but will bounce off. 
 
 ## LINK TO VIDEO 
 

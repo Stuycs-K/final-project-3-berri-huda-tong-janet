@@ -99,3 +99,13 @@ began working on cueBall repositioning
 
 completed cueBall repositioning, WIN/LOSS messages created based on result 
 with black ball, created "demo" keys, debugging 
+
+### 6/5 - 6/7 
+
+looking into collision problems, began multi-collision method 
+
+### 6/9 
+
+finished multi-collision method although buggy, worked on player/turn 
+switching 
+
