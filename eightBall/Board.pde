@@ -127,15 +127,13 @@ public void displayScore(ArrayList<Player> players, boolean firstTurn){
   String textOne = "Player: 1    ||   You're Playing: ";
   String textTwo = "Player: 2    ||   You're Playing: ";
   if (!(firstTurn)){
-    if (currInd == 0){
-      if (players.get(currInd).getPlayStripes()){
-        textOne += "STRIPES";
-        textTwo += "SOLIDS"; 
-      }
-      else{
-        textTwo += "STRIPES";
-        textOne += "SOLIDS"; 
-      }
+    if (players.get(0).getPlayStripes()){
+      textOne += "STRIPES";
+      textTwo += "SOLIDS"; 
+    }
+    else{
+      textTwo += "STRIPES";
+      textOne += "SOLIDS"; 
     }
   }
   text(textOne, 15, 600);

@@ -11,12 +11,14 @@ ArrayList<Player> players;
 int currInd = 0;
 boolean forceWin;
 boolean firstTurn = true; 
+boolean TurnDone = false; 
 //boolean anyIn;
 
 public Stick cueStick;
 public Ball cueBall;
 
 void setup(){
+  firstTurn = true; 
   size(1220, 650);//real board is 9 ft by 4.5 ft; 540 by 1080 converted!
   board = new Board();
   balls = board.initializeBalls(); 
@@ -29,7 +31,7 @@ void setup(){
   board.arrangeBalls(balls);  
   board.displayBar(80);  
   board.displayLock(cueStick); 
-  board.displayScore(players, firstTurn); 
+  board.displayScore(players, firstTurn);
 }
 
 boolean getStripes(){
@@ -56,35 +58,31 @@ void draw(){
     if (pressed){
       board.displayBar(mouseY); 
     }
+    //check if any balls were hit
+    boolean noneInHole = true; 
     for (int i = 0; i < balls.size(); i++){
       Ball b = balls.get(i); 
       b.move(balls);
       b.display();
-      //check if any balls were hit
-      boolean a = true; 
       int upd = b.update(balls); 
       if (upd == 0){
         lose = true; 
-        a = false; 
       }
       else if (upd == 1){
         win = true; 
-        a = false; 
+        noneInHole = false; 
       }
-      else if (upd == 2 && firstTurn){
-        if (b.getStripes()){
-            players.get(currInd).setStripes(true); 
-          }
-          else{
-            players.get(currInd).setStripes(false); 
-          }
-        firstTurn = false;
-        a = false; 
+      else if (upd == 2){
+        noneInHole = false; 
       }
-      if (a){
+      else if (upd == 4){
         switchPlayer(); 
       }
-      b.hitWall(); 
+      b.hitWall();  
+    }
+    if (noneInHole && TurnDone){
+      switchPlayer(); 
+      TurnDone = false; 
     }
   }
   else{
@@ -130,7 +128,8 @@ void mouseReleased(){
     float dist = mouseY - 20; 
     cueStick.changeForce(dist/90); 
     cueStick.hit(); 
-    board.displayBar(80); 
+    board.displayBar(80);
+    TurnDone = true; 
   }
   pressed = false; 
   if (cueGone){

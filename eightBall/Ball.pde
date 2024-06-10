@@ -200,12 +200,17 @@ public class Ball{
         setPosition(300, 200); 
         setCueGone(true); 
         velocity.set(0, 0);
-        switchPlayer(); 
       }
       else{
         if (firstTurn){
-          players.get(currInd).addBallIn(this); 
-          return 2; 
+          players.get(currInd).addBallIn(this);  
+          if (getStripes()){
+            players.get(currInd).setStripes(true); 
+          }
+          else{
+            players.get(currInd).setStripes(false); 
+          }
+          firstTurn = false;
         }
         boolean correctBall = (getStripes() == players.get(currInd).getPlayStripes());
         if (correctBall){
@@ -214,7 +219,6 @@ public class Ball{
         }
         else{
           players.get((currInd + 1) % players.size()).addBallIn(this);
-          switchPlayer();
         }
         balls.remove(this);
       }
