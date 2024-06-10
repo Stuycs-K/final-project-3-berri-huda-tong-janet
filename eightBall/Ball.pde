@@ -189,6 +189,7 @@ public class Ball{
           return 1; 
         }
         else{
+          switchPlayer(); 
           if (players.get(currInd).getBallsIn().size() == 7){
             return 1; 
           }
