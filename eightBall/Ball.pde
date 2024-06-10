@@ -113,7 +113,7 @@ public class Ball{
   }
   
   public void move(ArrayList<Ball> balls){
-    if (velocity.mag() <= 0.01){
+    if (velocity.mag() <= 0.05){
       velocity.set(0, 0); 
     }
     ArrayList<Ball> contacted = contact(balls); 
@@ -152,11 +152,13 @@ public class Ball{
   
   //angle of incidence = reflected angle 
   public void hitWall(){
-    if ((position.x -12  <= 40) || (position.x -12 + velocity.x <= 40) || (position.x +12 >= 1080) || (position.x + 12 + velocity.x >= 1080)){
+    if (!inHole()){
+      if ((position.x -12  <= 40) || (position.x -12 + velocity.x <= 40) || (position.x +12 >= 1080) || (position.x + 12 + velocity.x >= 1080)){
      velocity.x = -1 * velocity.x; 
     }
     if ((position.y -12  <= 40) || (position.y -12 + velocity.y <= 40) || (position.y +12 >= 540) || (position.y + 12 + velocity.y >= 540)){
       velocity.y = -1 * velocity.y; 
+    }
     }
   }
  
@@ -201,9 +203,14 @@ public class Ball{
         switchPlayer(); 
       }
       else{
+        if (firstTurn){
+          players.get(currInd).addBallIn(this); 
+          return 2; 
+        }
         boolean correctBall = (getStripes() == players.get(currInd).getPlayStripes());
         if (correctBall){
           players.get(currInd).addBallIn(this);
+          return 2; //means no switch player, also for first turn
         }
         else{
           players.get((currInd + 1) % players.size()).addBallIn(this);
@@ -212,7 +219,7 @@ public class Ball{
         balls.remove(this);
       }
     }
-    return 2; 
+    return 3; 
   }
   
   
@@ -222,6 +229,11 @@ public class Ball{
   public void setPosition(float x, float y){
     position.x = x; 
     position.y = y; 
+  }
+  
+  public void setVelocity(float x, float y){
+    velocity.x = x; 
+    velocity.y = y; 
   }
   
   void display() {

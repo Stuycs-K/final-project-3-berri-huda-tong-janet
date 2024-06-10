@@ -31,10 +31,12 @@ public class Player{
   public void ballsDisplay(int currInd){
     for (int i = 0; i < ballsIn.size() -1; i +=2){
       if (currInd == 0){
-        ballsIn.get(i).setPosition(25 + (i * 10), 620);
+        ballsIn.get(i).setPosition(25 + (i * 15), 620);
+        ballsIn.get(i).setVelocity(0, 0); 
       }
       else{
-        ballsIn.get(i).setPosition(575 + (i * 10), 620);
+        ballsIn.get(i).setPosition(575 + (i * 15), 620);
+        ballsIn.get(i).setVelocity(0, 0); 
       }
       ballsIn.get(i).display();
     }

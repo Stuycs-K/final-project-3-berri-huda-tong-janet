@@ -24,6 +24,7 @@ void setup(){
   players.add(new Player(1, true));
   players.add(new Player(2, false));
   cueStick = new Stick(balls.get(0));
+  cueStick.setVis(true); 
   forceWin = false;
   board.arrangeBalls(balls);  
   board.displayBar(80);  
@@ -58,16 +59,33 @@ void draw(){
     for (int i = 0; i < balls.size(); i++){
       Ball b = balls.get(i); 
       b.move(balls);
-      b.display(); 
-      if (b.update(balls) == 0){
+      b.display();
+      //check if any balls were hit
+      boolean a = true; 
+      int upd = b.update(balls); 
+      if (upd == 0){
         lose = true; 
+        a = false; 
       }
-      else if (b.update(balls) == 1){
+      else if (upd == 1){
         win = true; 
+        a = false; 
+      }
+      else if (upd == 2 && firstTurn){
+        if (b.getStripes()){
+            players.get(currInd).setStripes(true); 
+          }
+          else{
+            players.get(currInd).setStripes(false); 
+          }
+        firstTurn = false;
+        a = false; 
+      }
+      if (a){
+        switchPlayer(); 
       }
       b.hitWall(); 
     }
-    nextTurn(); 
   }
   else{
     fill(0); 
@@ -78,19 +96,6 @@ void draw(){
     if (win){
       text("YOU WON! Press R to restart", 200, 610); 
     }
-  }
-}
-
-void nextTurn(){
-  boolean a = true; 
-  for (Ball b: balls){
-    a = (b.velocity.mag() == 0); 
-  }
-  if (a){
-    cueStick.setVis(true); 
-  }
-  else{
-    cueStick.setVis(false); 
   }
 }
 
@@ -120,7 +125,6 @@ void mousePressed(){
 }
  
 void mouseReleased(){
-  cueStick.setVis(false); 
   //for the stick bar 
   if (mouseX > 1120){
     float dist = mouseY - 20; 

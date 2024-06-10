@@ -108,10 +108,22 @@ public void displayLock(Stick cueStick){
 public void displayScore(ArrayList<Player> players, boolean firstTurn){
   stroke(0);
   strokeWeight(3);
-  noFill();
+  if (currInd == 0){
+    fill(color(160, 185, 205)); 
+  }
+  else{
+    noFill(); 
+  }
   rect(10, 580, 540, 60);
+  if (currInd == 1){
+    fill(color(160, 185, 205)); 
+  }
+  else{
+    noFill(); 
+  }
   rect(560, 580, 540, 60); 
   strokeWeight(1);
+  fill(0); 
   String textOne = "Player: 1    ||   You're Playing: ";
   String textTwo = "Player: 2    ||   You're Playing: ";
   if (!(firstTurn)){
