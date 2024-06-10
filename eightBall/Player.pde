@@ -32,7 +32,6 @@ public class Player{
   for (int i = 0; i < ballsIn.size() -1; i +=2){
   ballsIn.get(i).setPosition(25 + (i * 25), 620);
   ballsIn.get(i).display();
-  System.out.println(ballsIn.size());
   }
   }
   

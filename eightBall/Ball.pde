@@ -5,7 +5,7 @@ public class Ball{
   private PVector acceleration;
   private color colour;
   private boolean stripe; 
-  private final float friction_constant = 0.06; 
+  private final float friction_constant = 0.1; 
   
   
 //temp constructor 
@@ -80,7 +80,12 @@ public class Ball{
   
   //combines the stationary and moving direction 
   public void getDirect(Ball hit, PVector pos, PVector vel){
-    if (hit.velocity.mag() == 0){
+    if (hit.velocity.mag() == 0 && vel.mag() == 0){
+      PVector veloc = vel.sub(hit.velocity).mult(1.5); 
+      hit.velocity.set(veloc); 
+      velocity.set(veloc.mult(-1)); 
+    }
+    else if (hit.velocity.mag() == 0){
         getStationaryDirect(hit, pos, vel); 
       }
     else if (velocity.mag() == 0){
@@ -113,11 +118,11 @@ public class Ball{
   }
   
   public void move(ArrayList<Ball> balls){
-    if (velocity.mag() <= 0.2){
+    if (velocity.mag() <= 0.1){
       velocity.set(0, 0); 
     }
     ArrayList<Ball> contacted = contact(balls); 
-    if (contacted.size() != 0){
+    if (isCollide(balls)){
       multiCollision(contacted); //does both 1 collision and multicollisions 
     }
     hitWall(); 
@@ -143,6 +148,11 @@ public class Ball{
         }
      }
      return contacted;  
+   }
+   
+   public boolean isCollide(ArrayList<Ball> balls){
+     ArrayList<Ball> a = contact(balls); 
+     return a.size() != 0; 
    }
   
   //angle of incidence = reflected angle 
